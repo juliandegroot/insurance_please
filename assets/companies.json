@@ -1,0 +1,14 @@
+{"companies":[
+  { "companyName":"Company A",
+    "companyCategory":"Bank",
+    "companySize":10,
+    "securityAspects":[],
+    "backgroundStory":"First bank of the world!"
+  },
+  { "companyName":"Company B",
+    "companyCategory":"Bakery",
+    "companySize":1,
+    "securityAspects":[],
+    "backgroundStory":""
+  }
+]}
