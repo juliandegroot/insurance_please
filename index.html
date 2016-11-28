@@ -4,23 +4,37 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-		<title>Insurance please</title>
-		<script type="text/javascript" src="js/phaser.js"></script>		
+		<title>Insurance Please</title>
+
 		<style>
 		  body {
+		  	background-color: black;
 		    padding: 0px;
 		    margin: 0px;
-		    background: black;
 		  }
-		  </style>
+		  @font-face {
+		  	font-family: 'Prstart';
+		  	src: url('assets/fonts/prstart.ttf');
+		  }
+
+		  .fontPreload {
+		  	font-family: Prstart;
+		  	position:absolute;
+		  	left:-100px;
+		  }
+
+
+	  </style>
 	</head>
 
-	<body>  
-		<!-- include the main game file -->
-		<script src="js/states/GameState.js"></script>
-		<script src="js/states/PreloadState.js"></script>
-		<script src="js/states/BootState.js"></script>
-		<script src="js/states/HomeState.js"></script>
-		<script src="js/main.js"></script>
+	<body>
+		<div class="fontPreload">.</div>
+		<script type="text/javascript" src="js/phaser.js"></script>
+		<script type="text/javascript" src="js/states/Boot.js"></script>
+		<script type="text/javascript" src="js/states/Preload.js"></script>
+		<script type="text/javascript" src="js/states/Game.js"></script>
+		<script type="text/javascript" src="js/prefabs/Target.js"></script>
+		<script type="text/javascript" src="js/prefabs/Attack.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
