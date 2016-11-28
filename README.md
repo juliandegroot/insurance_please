@@ -3,7 +3,7 @@ The internet is becoming ever more prevalent in people's lives. However, it is n
 The target audience for this game is insurance workers. However, it can also be used to teach the dangers of cybercrime to company/office workers in general.
 
 Useful sites:
-https://phaser.io/docs \n
-https://phaser.io/learn \n
-https://www.udemy.com/phaser-tutorial/ \n
+https://phaser.io/docs <br />
+https://phaser.io/learn <br />
+https://www.udemy.com/phaser-tutorial/ <br />
 And many more..
