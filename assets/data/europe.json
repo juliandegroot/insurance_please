@@ -1,0 +1,28 @@
+{
+  "background": "europe",
+  "targets": [
+    {
+      "asset": "company",
+      "text": "This company is bad",
+      "x": 290,
+      "y": 160,
+      "type": "door",
+      "size": "lare",
+      "isInsured": false,
+      "interactions": {
+          "text": "You've unlocked ",
+          "asset": "openDoor",
+          "action": "open-door"
+        }
+    }
+  ],
+  "attacks": [
+      {
+      "asset": "database_attack",
+      "text": "SQL Injection?",
+      "x": 10,
+      "y": 384,
+      "type": "inanimated"
+    }
+  ] 
+}
