@@ -12,7 +12,8 @@ InsurancePlz.GameState = {
     this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
     var style = {
         color: 'white',
-      font: '15px Prstart',
+        // temp font, need to find font for commercial use
+      font: '15px HackerFont',
       fill: '#fff',
       align: 'left',
       wordWrap: true,
