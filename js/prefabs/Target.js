@@ -40,7 +40,7 @@ InsurancePlz.Target.prototype.touch = function() {
                 // execute attack on target feature j with effectiveness secvector[k][j]
                 if (secvector[k][j] == 1) { // if the attack has any effect on a sec measure, we attack
                     console.log("attack effectiveness for " + j + " detected");
-                    this.data.damage = this.executeAttack(j, secvector[k][j]);
+                    this.data.damage = this.data.damage + this.executeAttack(j, secvector[k][j]); // increment damage for target
                     this.state.clearAttackSelection(); // deselect attack
                     this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString());
                     //this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString(), this.state); // update news
