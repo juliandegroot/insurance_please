@@ -62,5 +62,8 @@ InsurancePlz.GameState = {
   clearAttackSelection: function() {
     this.selectedAttack = null;
     this.attacks.setAll('alpha', 1);
-  }  
+  },
+  updateNews: function(news) {
+      this.newspanelLabel.text = news;
+  }
 };

@@ -27,14 +27,14 @@
   "attacks": [
       {
       "asset": "database_attack",
-      "text": "SQL Injection?",
+      "text": "Database hack",
       "x": 10,
       "y": 410,
       "securityVector":[{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}]
      },
       {
       "asset": "ddos_attack",
-      "text": "DDOS em hard?",
+      "text": "DDOS attack",
       "x": 100,
       "y": 410,
       "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]    
