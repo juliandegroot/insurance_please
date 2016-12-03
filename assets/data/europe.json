@@ -6,23 +6,38 @@
       "text": "This company is bad",
       "x": 290,
       "y": 160,
-      "type": "door",
-      "size": "lare",
-      "isInsured": false,
-      "interactions": {
-          "text": "You've unlocked ",
-          "asset": "openDoor",
-          "action": "open-door"
-        }
-    }
+      "name":"Target 1",
+      "category":"Category 1",
+      "securityVector":[{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
+      "impact":5,
+      "damage":0
+    },
+      {
+      "asset": "company",
+      "text": "This company is worse",
+      "x": 490,
+      "y": 260,
+      "name":"Target 2",
+      "category":"Category 2",
+      "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 0}],
+      "impact":2,
+      "damage":0
+     }
   ],
   "attacks": [
       {
       "asset": "database_attack",
       "text": "SQL Injection?",
       "x": 10,
-      "y": 384,
-      "type": "inanimated"
-    }
+      "y": 410,
+      "securityVector":[{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}]
+     },
+      {
+      "asset": "ddos_attack",
+      "text": "DDOS em hard?",
+      "x": 100,
+      "y": 410,
+      "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]    
+      }
   ] 
 }

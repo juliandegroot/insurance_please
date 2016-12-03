@@ -24,12 +24,11 @@ InsurancePlz.GameState = {
     //newspanel area
     this.newspanel = this.add.sprite(640, 0, 'newspanel');
     this.newspanelLabel = this.add.text(644, 15, '', style);
-      
-    this.loadRoom();
-
-    //this.showAttacks();
+    
+    //loading the map with targets and attacks
+    this.loadMap();
   },
-  loadRoom: function() {
+  loadMap: function() {
     //loading all targets and attacks for this attackmap
     this.attackmapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
     this.background = this.add.sprite(0, 0, this.attackmapData.background);
@@ -49,5 +48,19 @@ InsurancePlz.GameState = {
       attack = new InsurancePlz.Attack(this, attackData);
       this.attacks.add(attack);
     }, this);      
-  }
+  },
+  selectAttack: function(attack) {
+    if(this.selectedAttack != attack) {
+      this.clearAttackSelection();
+      this.selectedAttack = attack;
+      this.selectedAttack.alpha = 0.5;
+    }
+    else {
+      this.clearAttackSelection();
+    }
+  },
+  clearAttackSelection: function() {
+    this.selectedAttack = null;
+    this.attacks.setAll('alpha', 1);
+  }  
 };
