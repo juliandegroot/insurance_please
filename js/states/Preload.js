@@ -13,6 +13,7 @@ InsurancePlz.PreloadState = {
 
     this.load.image('attackpanel', 'assets/images/attackpanel.png');
     this.load.image('newspanel', 'assets/images/newspanel.png');
+    this.load.image('popuppanel', 'assets/images/popuppanel.png');
     this.load.image('europe', 'assets/images/attackmap.png');
     this.load.image('company', 'assets/images/building.png');
     this.load.image('hackdamage', 'assets/images/hackdamage.png');
@@ -20,6 +21,8 @@ InsurancePlz.PreloadState = {
     //make sure all images are equal in size to prevent anchor and scaling issues
     this.load.image('database_attack', 'assets/images/database_attack.png');
     this.load.image('ddos_attack', 'assets/images/ddos_attack.png');
+    this.load.image('button', 'assets/images/button.png');
+    this.load.image('button-circle', 'assets/images/button-circle.png');
 
     //data files
     this.load.text('europe', 'assets/data/europe.json');
