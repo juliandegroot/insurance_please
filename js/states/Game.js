@@ -113,6 +113,7 @@ InsurancePlz.GameState = {
     this.popup = {};
     this.popup.group = this.add.group();
     this.popup.overlay = this.add.graphics(0, 0);
+    this.popup.overlay.inputEnabled = true;
     this.popup.overlay.beginFill(0x000000, 0.5);
     this.popup.overlay.drawRect(0, 0, 1000, 1000);
     this.popup.overlay.endFill();
