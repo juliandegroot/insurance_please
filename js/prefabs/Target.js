@@ -44,6 +44,8 @@ InsurancePlz.Target.prototype.touch = function() {
                     this.state.clearAttackSelection(); // deselect attack
                     this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString());
                     //this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString(), this.state); // update news
+                    this.state.refreshStats(); // update stats
+                    console.log("refresh after attack");
                 }
         }
     }    
