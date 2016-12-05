@@ -10,7 +10,7 @@ function createTargetsFromJSON(targetJSON) {
   let list = JSON.parse(targetJSON).targets;
   var targets = [];
   for (i = 0; i < list.length; i++) {
-    targets.push(new InsurancePlz.TargetData(list[i].targetName, list[i].targetCategory, list[i].securityVector, list[i].impact, list[i].attackImage));
+    targets.push(new InsurancePlz.TargetData(list[i].targetName, list[i].targetCategory, list[i].securityVector, list[i].impact, list[i].targetImage));
   }
   return targets;
 }
