@@ -6,7 +6,7 @@ var InsurancePlz = InsurancePlz || {};
  * @param {String} targetsJSON A string in JSON format containing all target data.
  * @return {Array} targets An array containing all the target data in the JSON string.
  */
-function createAttacksFromJSON(targetJSON) {
+function createTargetsFromJSON(targetJSON) {
   let list = JSON.parse(targetJSON).targets;
   var targets = [];
   for (i = 0; i < list.length; i++) {
