@@ -13,6 +13,9 @@ InsurancePlz.GameState = {
       "actionPointsMax":1,
       "score":0
     };
+
+    this.targetDataList = createTargetsFromJSON(this.game.cache.getText('targets'));
+    console.log(this.targetDataList);
   },
   create: function() {
     //attackpanel area
@@ -36,13 +39,13 @@ InsurancePlz.GameState = {
       wordWrapWidth: 256
     };
     this.attackpanelLabel = this.add.text(10, 400, '', style);
-      
+
     //newspanel area
     this.newspanel = this.add.sprite(640, 0, 'newspanel');
     this.newspanelLabel = this.add.text(644, 15, '', style);
-    
+
     //scoreboard logo
-    
+
     //loading the map with targets and attacks
     this.loadMap();
     this.damagelogo = this.add.sprite(0, 0, 'hackdamage');
@@ -68,14 +71,14 @@ InsurancePlz.GameState = {
       target = new InsurancePlz.Target(this, targetData);
       this.targets.add(target);
     }, this);
-      
+
     //create attack instances
     this.attacks = this.add.group();
     var attack;
     this.attackmapData.attacks.forEach(function(attackData){
       attack = new InsurancePlz.Attack(this, attackData);
       this.attacks.add(attack);
-    }, this);      
+    }, this);
   },
   selectAttack: function(attack) {
     if(this.selectedAttack != attack) {
@@ -99,7 +102,7 @@ InsurancePlz.GameState = {
       for (var k in this.attackmapData.targets){ // getting the actual array
           console.log(this.attackmapData.targets[k].damage);
               stats = stats + this.attackmapData.targets[k].damage;
-          
+
       }
       hackingdamageText.text = "Total: $ " +stats;
   },
@@ -121,12 +124,12 @@ InsurancePlz.GameState = {
     this.popup.background.beginFill(0x000000, 0.5);
     this.popup.background.drawRect(0, 0, 1000, 1000);
     this.popup.background.endFill();
-    
+
     //Create popup panel
     this.popup.panel = this.add.sprite(this.game.world.centerX,
       this.game.world.centerY,'popuppanel');
     this.popup.panel.anchor.setTo(0.5);
-    
+
     //Text style
     var style = {
       color: 'white',
@@ -140,7 +143,7 @@ InsurancePlz.GameState = {
     //Message text. Can be changed to also use anchor(0.5) to center vertically
     this.popup.message = this.add.text(this.game.world.centerX-220,
       this.game.world.centerY-160, text, style);
-    
+
     this.popup.group.add(this.popup.background);
     this.popup.group.add(this.popup.panel);
     this.popup.group.add(this.popup.message);
