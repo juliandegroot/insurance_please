@@ -9,9 +9,9 @@ InsurancePlz.AttackData = function(name, securityVector, spriteTag) {
 }
 
 // TODO: is this needed?
-InsurancePlz.Attack.prototype = Object.create(Phaser.Sprite.prototype);
-InsurancePlz.Attack.prototype.constructor = InsurancePlz.Attack;
+InsurancePlz.AttackData.prototype = Object.create(Phaser.Sprite.prototype);
+InsurancePlz.AttackData.prototype.constructor = InsurancePlz.AttackData;
 
-InsurancePlz.Attack.prototype.updateSecurityVector = function(securityVector) {
+InsurancePlz.AttackData.prototype.updateSecurityVector = function(securityVector) {
   this.securityVector = securityVector;
 };
