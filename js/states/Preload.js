@@ -9,8 +9,10 @@ InsurancePlz.PreloadState = {
     this.preloadBar.scale.setTo(100, 1);
     this.load.setPreloadSprite(this.preloadBar);
 
-    //load game assets
+    //load menu assets
+    this.load.image('menupanel', 'assets/images/menupanel.png');
 
+    //load game assets
     this.load.image('attackpanel', 'assets/images/attackpanel.png');
     this.load.image('newspanel', 'assets/images/newspanel.png');
     this.load.image('popuppanel', 'assets/images/popuppanel.png');
@@ -28,6 +30,6 @@ InsurancePlz.PreloadState = {
     this.load.text('europe', 'assets/data/europe.json');
   },
   create: function() {
-    this.state.start('Game');
+    this.state.start('Menu');
   }
 };
