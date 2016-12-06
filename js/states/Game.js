@@ -110,7 +110,7 @@ InsurancePlz.GameState = {
     this.popup.group.destroy();
   },
   //Could be extended with an additional argument for a callback function
-  createPopup: function(text, btntext=null){
+  createPopup: function(text, btntext){
     //Create objects to hold the data
     this.popup = {};
     this.popup.group = this.add.group();
@@ -148,7 +148,7 @@ InsurancePlz.GameState = {
     if (btntext!=null){
       //Close button
       this.popup.button = this.add.button(this.game.world.centerX,
-      this.game.world.centerY+140, 'button', this.closeNews, this)//, this, 'button', 'button', 'button', 'button', this.popup);
+      this.game.world.centerY+140, 'button', this.closeNews, this);
       this.popup.button.anchor.setTo(0.5);
       //Close button text
       this.popup.buttontext = this.add.text(this.game.world.centerX,
