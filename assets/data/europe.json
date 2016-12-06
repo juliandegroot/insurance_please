@@ -2,6 +2,7 @@
   "background": "europe",
   "targets": [
     {
+      "id": 1,
       "asset": "company",
       "text": "This company is bad",
       "x": 290,
@@ -13,6 +14,7 @@
       "damage":0
     },
       {
+      "id": 2,
       "asset": "company",
       "text": "This company is worse",
       "x": 490,
@@ -26,18 +28,22 @@
   ],
   "attacks": [
       {
+      "id": 1,
       "asset": "database_attack",
       "text": "Database hack",
+      "points":30,
       "x": 10,
       "y": 410,
       "securityVector":[{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}]
      },
       {
+      "id": 2,
       "asset": "ddos_attack",
       "text": "DDOS attack",
+      "points":50,
       "x": 100,
       "y": 410,
-      "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]    
+      "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]
       }
   ] 
 }
