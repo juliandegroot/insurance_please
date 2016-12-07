@@ -34,3 +34,7 @@ InsurancePlz.Attack.prototype.getEffect = function() {
 InsurancePlz.Attack.prototype.getPoints = function() {
     return this.points;
 };
+
+InsurancePlz.Attack.prototype.getID = function() {
+    return this.data.id;
+};

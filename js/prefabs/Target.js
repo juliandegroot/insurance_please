@@ -42,17 +42,20 @@ InsurancePlz.Target.prototype.touch = function() {
                 if (secvector[k][j] == 1) { // if the attack has any effect on a sec measure, we attack
                     console.log("attack effectiveness for " + j + " detected");
                     console.log("Current action points: " + this.state.gameProgress.actionPoints);
-                    if ((this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points) >= 0) {
+                    if (((this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points) >= 0) && (this.state.alreadyStackedForTarget(this.data.id, this.state.selectedAttack.data.id) == false)) {
                         //while attack points last and selected attack does not let us drop below 0:
                         //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
+                        // and cannot stack same tar/attack combination more than once
                         this.state.stackAttack(this, this.state.selectedAttack);
                         this.state.gameProgress.actionPoints = this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points;
-                        console.log("Attack stacked for this round, Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
+                        this.state.refreshStats();
+                        console.log("Stacked for this round, Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
                         this.state.clearAttackSelection(); // deselect attack
                        
                     }
                     else {
-                        console.log("not enough points to stack this");
+                        console.log("Cannot stack, not enough points or already stacked");
+                        this.state.clearAttackSelection(); // deselect attack
                     }
                 }
                  
@@ -94,6 +97,10 @@ InsurancePlz.Target.prototype.getDamage = function() {
     return this.damage;
 };
 
+InsurancePlz.Target.prototype.getID = function() {
+    return this.data.id;
+};
+
 InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness) {
     console.log("attack vector: ");console.log(secmeasure);
     console.log("target secvector: ");console.log(this.data.securityVector[0]);
@@ -103,13 +110,16 @@ InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness) {
         for (var k in secvector){ // getting the actual array
             //console.log("k in secvector: " + k);
             for (var j in secvector[k]){ // getting the key
-                console.log("j: " + j);
+                //console.log("j: " + j);
                     for (var a in secmeasure) { // getting the array inside secmeasure object
-                        console.log("a: " + a);console.log("Ba :" + secmeasure[a])
+                        //console.log("a: " + a);console.log("Ba :" + secmeasure[a])
                         if (j == a && secmeasure[a] == 1 && secvector[k][j] == 0) { //vulnerability found! 
                                 console.log("vul found on "+j);
                                 damage_inflicted = 5000 * this.data.impact;
                             } 
+                        else {
+                            console.log("no vulnerabities found on sec vector");
+                        }
                     }
             }
                 

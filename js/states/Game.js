@@ -36,6 +36,15 @@ InsurancePlz.GameState = {
       wordWrap: true,
       wordWrapWidth: 256
     };
+     var acpointsstyle = {
+        color: 'yellow',
+        // temp font, need to find font for commercial use
+      font: '15px HackerFont',
+      fill: '#f0f',
+      align: 'left',
+      wordWrap: true,
+      wordWrapWidth: 256
+    };
     this.attackpanelLabel = this.add.text(10, 400, '', style);
       
     //newspanel area
@@ -49,7 +58,9 @@ InsurancePlz.GameState = {
     this.damagelogo = this.add.sprite(0, 0, 'hackdamage');
     this.damagelogo.scale.setTo(0.1);
     //overlay scoreboard text
-    hackingdamageText = this.game.add.text(10, 10, '', scorestyle);
+    hackingdamageText = this.game.add.text(480, 30, '', scorestyle);
+    //actionpoints text
+    actionpointsText = this.game.add.text(480, 10, '', acpointsstyle);
     this.refreshStats();
 
     //end turn button and start of game
@@ -108,7 +119,8 @@ InsurancePlz.GameState = {
           }
       }
       this.gameProgress.score = total;
-      hackingdamageText.text = "Total: $ " +this.gameProgress.score;
+      hackingdamageText.text = "$ " +this.gameProgress.score +"\nDamage total";
+      actionpointsText.text = "A.points: " +this.gameProgress.actionPoints;
   },
 
 
@@ -174,7 +186,7 @@ InsurancePlz.GameState = {
   },
   executeAttacks: function(){
       // for each target and attack combination in the attackstack array:
-      //console.log(this.gameProgress.attackstack);
+      //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
       
       for(var i = 0; i < this.gameProgress.attackstack.length; i++) {
           var target = this.gameProgress.attackstack[i][0];
@@ -185,16 +197,30 @@ InsurancePlz.GameState = {
             // to be executed after actual max stack is reached (to end round):
             //this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString());
   },
+  alreadyStackedForTarget: function(target_id, attack_id) {
+      //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
+      for(var i = 0; i < this.gameProgress.attackstack.length; i++) {
+          var target = this.gameProgress.attackstack[i][0];
+          var attack = this.gameProgress.attackstack[i][1];
+          var tar_id = target.getID();
+          var atk_id = attack.getID();
+          if (tar_id == target_id && atk_id == attack_id ) {
+              console.log("already stacked! : tar" + tar_id + "atk: " +atk_id );
+              return true
+          }
+      }
+      return false;
+  },
   startTurn: function(){
     //Pop up news message, fade out & make uninteractable rest of game
     this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
   },
   endTurn: function(){
     this.executeAttacks()// we are executing our attacks
-    this.refreshStats(); // update stats
     this.clearAttackStack(); // clear stacked attack array
     this.gameProgress.turn++;
     this.gameProgress.actionPoints=this.gameProgress.actionPointsMax;
+    this.refreshStats(); // update stats
     console.log('It is now turn: ' + this.gameProgress.turn);
     if (this.gameProgress.turn > 3){
       this.endGame();

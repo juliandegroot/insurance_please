@@ -31,7 +31,7 @@
       "id": 1,
       "asset": "database_attack",
       "text": "Database hack",
-      "points":30,
+      "points":20,
       "x": 10,
       "y": 410,
       "securityVector":[{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}]
