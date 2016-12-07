@@ -1,0 +1,18 @@
+{
+  "targets":[
+    {
+      "targetName":"Target 1",
+      "targetCategory":"Category 1",
+      "securityVector":[0, 0, 1, 1],
+      "impact":5,
+      "targetImage":"default_target"
+    },
+    {
+      "targetName":"Target 2",
+      "targetCategory":"Category 2",
+      "securityVector":[1, 0, 1, 0],
+      "impact":2,
+      "targetImage":"default_target"
+    }
+  ]
+}
