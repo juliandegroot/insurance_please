@@ -16,6 +16,10 @@ InsurancePlz.GameState = {
 
     this.targetDataList = createTargetsFromJSON(this.game.cache.getText('targets'));
     console.log(this.targetDataList);
+
+    this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
+    console.log(this.attackDataList);
+
   },
   create: function() {
     //attackpanel area

@@ -1,0 +1,14 @@
+{
+  "attacks":[
+    {
+      "attackName":"Attack 1",
+      "attackImage":"default_attack",
+      "securityVector":[1, 0, 0, 1]
+    },
+    {
+      "attackName":"Attack 2",
+      "attackImage":"default_attack",
+      "securityVector":[0, 1, 0, 1]
+    }
+  ]
+}
