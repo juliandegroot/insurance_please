@@ -8,6 +8,7 @@ InsurancePlz.game = new Phaser.Game(896, 504, Phaser.AUTO);
 
 InsurancePlz.game.state.add('Boot', InsurancePlz.BootState);
 InsurancePlz.game.state.add('Preload', InsurancePlz.PreloadState);
+InsurancePlz.game.state.add('Menu', InsurancePlz.MenuState);
 InsurancePlz.game.state.add('Game', InsurancePlz.GameState);
 
 InsurancePlz.game.state.start('Boot');
