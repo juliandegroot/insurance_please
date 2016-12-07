@@ -1,5 +1,11 @@
 {
   "background": "europe",
+  "numberOfTargets":2,
+  "locations":[
+    [290, 160],
+    [490, 260]
+  ],
+  
   "targets": [
     {
       "id": 1,
@@ -45,5 +51,5 @@
       "y": 410,
       "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]
       }
-  ] 
+  ]
 }
