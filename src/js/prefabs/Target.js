@@ -36,12 +36,10 @@ InsurancePlz.Target.prototype.touch = function() {
     var secvector = this.state.selectedAttack.data.securityVector; // the attack's security vector object
         for (var k in secvector){ // getting the actual array
             for (var j in secvector[k]){ // getting the key
-                //string = string + j + ": " + secvector[k][j] + "\n";
-                //console.log(j + ": " + secvector[k][j] + "\n");
                 // execute attack on target feature j with effectiveness secvector[k][j]
                 if (secvector[k][j] == 1) { // if the attack has any effect on a sec measure, we attack
-                    console.log("attack effectiveness for " + j + " detected");
-                    console.log("Current action points: " + this.state.gameProgress.actionPoints);
+                    console.log("Vulnerability " + j + " for Tar_id: " + this.data.id + " detected");
+                    
                     if (((this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points) >= 0) && (this.state.alreadyStackedForTarget(this.data.id, this.state.selectedAttack.data.id) == false)) {
                         //while attack points last and selected attack does not let us drop below 0:
                         //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
@@ -49,7 +47,7 @@ InsurancePlz.Target.prototype.touch = function() {
                         this.state.stackAttack(this, this.state.selectedAttack);
                         this.state.gameProgress.actionPoints = this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points;
                         this.state.refreshStats();
-                        console.log("Stacked for this round, Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
+                        console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
                         this.state.clearAttackSelection(); // deselect attack
                        
                     }
@@ -58,6 +56,7 @@ InsurancePlz.Target.prototype.touch = function() {
                         this.state.clearAttackSelection(); // deselect attack
                     }
                 }
+                console.log("Current action points: " + this.state.gameProgress.actionPoints);
                  
         }
     }    

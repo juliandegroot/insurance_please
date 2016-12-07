@@ -5,7 +5,7 @@ InsurancePlz.AttackData = function(name, securityVector, spriteTag) {
   this.securityVector = securityVector;
   this.sprite = spriteTag;
 
-  console.log('AttackData created: {' + this.name + ',' + this.securityVector + ',' + this.sprite + '}');
+  //console.log('AttackData created: {' + this.name + ',' + this.securityVector + ',' + this.sprite + '}');
 }
 
 // TODO: is this needed?

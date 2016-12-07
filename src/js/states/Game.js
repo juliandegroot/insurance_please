@@ -16,10 +16,10 @@ InsurancePlz.GameState = {
     };
 
     this.targetDataList = createTargetsFromJSON(this.game.cache.getText('targets'));
-    console.log(this.targetDataList);
+    //console.log(this.targetDataList);
 
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
-    console.log(this.attackDataList);
+    //console.log(this.attackDataList);
 
   },
   create: function() {
@@ -212,7 +212,7 @@ InsurancePlz.GameState = {
           var tar_id = target.getID();
           var atk_id = attack.getID();
           if (tar_id == target_id && atk_id == attack_id ) {
-              console.log("already stacked! : tar" + tar_id + "atk: " +atk_id );
+              console.log("Combination already stacked! Tar_id: " + tar_id + " Atk_id: " +atk_id );
               return true
           }
       }

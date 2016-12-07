@@ -7,7 +7,7 @@ InsurancePlz.TargetData = function(name, category, securityVector, impact,sprite
   this.impact = impact;
   this.sprite = spriteTag;
 
-  console.log('TargetData created: {' + this.name + ',' + this.category + ',' + this.securityVector + ',' + this.impact + ',' + this.sprite + '}');
+  //console.log('TargetData created: {' + this.name + ',' + this.category + ',' + this.securityVector + ',' + this.impact + ',' + this.sprite + '}');
 }
 
 // TODO: is this needed?
