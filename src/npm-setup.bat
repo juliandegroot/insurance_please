@@ -1,2 +1,3 @@
-npm install -g grunt-cli
-npm update --save
+call npm update -g npm
+call npm update -g grunt
+call npm update
