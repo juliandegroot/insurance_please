@@ -4,23 +4,46 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-		<title>Insurance please</title>
-		<script type="text/javascript" src="js/phaser.js"></script>		
+		<title>Insurance Please</title>
+
 		<style>
 		  body {
+		  	background-color: black;
 		    padding: 0px;
 		    margin: 0px;
-		    background: black;
 		  }
-		  </style>
+		  @font-face {
+		  	font-family: HackerFont;
+		  	src: url('assets/fonts/hacker.ttf');
+		  }
+
+		  .fontPreload {
+		  	font-family: HackerFont;
+		  	position:absolute;
+		  	left:-100px;
+		  }
+
+
+	  </style>
 	</head>
 
-	<body>  
-		<!-- include the main game file -->
-		<script src="js/states/GameState.js"></script>
-		<script src="js/states/PreloadState.js"></script>
-		<script src="js/states/BootState.js"></script>
-		<script src="js/states/HomeState.js"></script>
-		<script src="js/main.js"></script>
+	<body>
+		<div class="fontPreload">.</div>
+		<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/phaser.js"></script>
+		<script type="text/javascript" src="js/states/Boot.js"></script>
+		<script type="text/javascript" src="js/states/Preload.js"></script>
+		<script type="text/javascript" src="js/states/Menu.js"></script>
+		<script type="text/javascript" src="js/states/Game.js"></script>
+		<script type="text/javascript" src="js/prefabs/Target.js"></script>
+		<script type="text/javascript" src="js/prefabs/Attack.js"></script>
+		<script type="text/javascript" src="js/builders/TargetData.js"></script>
+		<script type="text/javascript" src="js/builders/TargetDataBuilder.js"></script>
+		<script type="text/javascript" src="js/builders/AttackData.js"></script>
+		<script type="text/javascript" src="js/builders/AttackDataBuilder.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
