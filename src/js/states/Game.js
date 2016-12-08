@@ -62,6 +62,9 @@ InsurancePlz.GameState = {
 
     //loading the map with targets and attacks
     this.loadMap();
+    // TODO: keep one of the two
+    this.createMap();
+
     this.damagelogo = this.add.sprite(0, 0, 'hackdamage');
     this.damagelogo.scale.setTo(0.1);
     //overlay scoreboard text
@@ -75,6 +78,23 @@ InsurancePlz.GameState = {
     this.endturntext = this.add.text(715, 410, 'End turn', style)
     this.startTurn();
   },
+
+  createMap: function() {
+    let attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
+    let targetNumber = attackMapData.numberOfTargets;
+    let targetLocations = attackMapData.locations;
+
+    this.targetDataList;
+
+    console.log(targetNumber);
+    console.log(targetLocations);
+  },
+
+  createTargets: function() {
+
+  },
+
+
   loadMap: function() {
     //loading all targets and attacks for this attackmap
     this.attackmapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
@@ -194,7 +214,7 @@ InsurancePlz.GameState = {
   executeAttacks: function(){
       // for each target and attack combination in the attackstack array:
       //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
-      
+
       for(var i = 0; i < this.gameProgress.attackstack.length; i++) {
           var target = this.gameProgress.attackstack[i][0];
           var attack = this.gameProgress.attackstack[i][1];
