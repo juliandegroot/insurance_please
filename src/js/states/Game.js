@@ -15,9 +15,6 @@ InsurancePlz.GameState = {
       "attackstack": []
     };
 
-    this.targetDataList = createTargetsFromJSON(this.game.cache.getText('targets'));
-    //console.log(this.targetDataList);
-
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
     //console.log(this.attackDataList);
 
@@ -111,7 +108,7 @@ InsurancePlz.GameState = {
     * @param {Number} attackMapData.targetNumber - The number of targets for the map.
     * @param {Object[]} attackMapData.locations - Array of arrays of locations. Each location array in the array consists of x and y coordinates at index 0 and 1 respectively.
     * @param {Object[]} targetData - The structure holding all the data of the targets.
-    * @returns {Array} finalTargets - The array containing the target data with their locations.
+    * @returns {Array} finalTargets - The array containing the target with their locations.
     */
   createTargetData: function(attackMapData, targetData) {
     let targetNumber = attackMapData.numberOfTargets;
