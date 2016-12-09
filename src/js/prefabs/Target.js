@@ -44,7 +44,7 @@ InsurancePlz.Target.prototype.touch = function() {
                         //while attack points last and selected attack does not let us drop below 0:
                         //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
                         // and cannot stack same tar/attack combination more than once
-                        this.state.stackAttack(this, this.state.selectedAttack);
+                        this.state.stackAttack(this, this.state.selectedAttack, this.state.selectedAttack.data.asset);
                         this.state.gameProgress.actionPoints = this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points;
                         this.state.refreshStats();
                         console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);

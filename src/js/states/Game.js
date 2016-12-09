@@ -9,10 +9,13 @@ InsurancePlz.GameState = {
 
     this.gameProgress = {
       "turn":1,
-      "actionPoints":50,
-      "actionPointsMax":50,
+      "actionPoints":100,
+      "actionPointsMax":100,
       "score":0,
-      "attackstack": []
+      "attackstack": [],
+      "index": 0,
+      "buttonstack": [[650,false],[700,false],[750,false],[800,false],[850,false]],
+      "textstack": [[650,''],[700,''],[750,''],[800,''],[850,'']]
     };
 
     this.targetDataList = createTargetsFromJSON(this.game.cache.getText('targets'));
@@ -52,6 +55,15 @@ InsurancePlz.GameState = {
       wordWrap: true,
       wordWrapWidth: 256
     };
+           var stackstyle = {
+        color: 'yellow',
+        // temp font, need to find font for commercial use
+      font: '15px HackerFont',
+      fill: '#ffff00',
+      align: 'left',
+      wordWrap: true,
+      wordWrapWidth: 256
+    };
     this.attackpanelLabel = this.add.text(10, 400, '', style);
 
     //newspanel area
@@ -68,11 +80,22 @@ InsurancePlz.GameState = {
     hackingdamageText = this.game.add.text(480, 30, '', scorestyle);
     //actionpoints text
     actionpointsText = this.game.add.text(480, 10, '', acpointsstyle);
+    stackText1 = this.game.add.text(650, 350, '', stackstyle);
+      stackText2 = this.game.add.text(700, 350, '', stackstyle);
+      stackText3 = this.game.add.text(750, 350, '', stackstyle);
+      stackText4 = this.game.add.text(800, 350, '', stackstyle);
+      stackText5 = this.game.add.text(850, 350, '', stackstyle);
     this.refreshStats();
 
     //end turn button and start of game
-    this.endturnbtn = this.add.button(700, 350, 'button-circle', this.endTurn, this);
-    this.endturntext = this.add.text(715, 410, 'End turn', style)
+    this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
+    this.endturntext = this.add.text(715, 470, 'End turn', style);
+    this.stackboxtext = this.add.text(650, 330, '', style);     
+      
+    //group of stacked attack buttons:
+    this.stackedattacks = this.add.group();
+      
+    //start turn:
     this.startTurn();
   },
   loadMap: function() {
@@ -185,8 +208,118 @@ InsurancePlz.GameState = {
     }
 
   },
-  stackAttack: function(target, attack){
-      this.gameProgress.attackstack.push([target,attack]);
+  giveAvailableButtonx: function() {
+      console.log("hier2");console.log(this.gameProgress.buttonstack);
+      for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
+          if(this.gameProgress.buttonstack[i][1] == false) {
+              //console.log(this.gameProgress.buttonstack[i][0]);
+              return this.gameProgress.buttonstack[i][0]; // return first available x
+              
+          }
+      }
+  },
+  checkAllButtonsAvailable: function() {
+      console.log("testje");
+      for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
+          if(this.gameProgress.buttonstack[i][1] != false) { // false is empty
+              return true;
+          }
+      }
+      return false;
+  },
+  setButtonxTaken: function(coordx) {
+   for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
+          if(this.gameProgress.buttonstack[i][0] == coordx) {
+              this.gameProgress.buttonstack[i][1] = true; // taken
+              
+          }
+      }   
+  },
+  setButtonxAvailable: function(coordx) {
+   for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
+          if(this.gameProgress.buttonstack[i][0] == coordx) {
+              this.gameProgress.buttonstack[i][1] = false; // taken
+              
+          }
+      }   
+  },
+  setAllButtonxAvailable: function() { // at round end
+   for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
+      this.gameProgress.buttonstack[i][1] = false; // taken
+      }   
+  },
+  stackAttack: function(target, attack, sprite){
+      this.gameProgress.attackstack.push([target,attack]);    
+      var spritename = sprite + '_small';
+      //under here we have to check in some sort of array if on all possible x's 650,700,750,800,850 there is a true or false
+      // to know whether , check for first false x in buttonstack and return that so we can use it here
+      //if (this.gameProgress.buttonstack)
+      var newx = this.giveAvailableButtonx();
+      this.stackbutton = this.add.button(newx, 350, spritename, this.removeFromStack, this);
+      this.setButtonxTaken(newx); // set previously given out button position as taken
+      //this.stackbutton.input.enabled = false;
+      this.stackbutton.targetid = target.getID();
+      this.stackbutton.attackpoints = attack.getPoints();
+      this.stackbutton.attackid = attack.getID();
+      this.stackbutton.xcoord = newx;
+      var scorestyle = {
+        color: 'red',
+        // temp font, need to find font for commercial use
+      font: '15px HackerFont',
+      fill: '#f00',
+      align: 'left',
+      wordWrap: true,
+      wordWrapWidth: 256
+      
+    };
+
+
+      this.gameProgress.index += 50;
+      this.stackedattacks.add(this.stackbutton);
+      this.stackboxtext.text = 'Stacked Attacks:';
+
+      if (newx == 650) { stackText1.text = this.stackbutton.targetid; }
+      if (newx == 700) { stackText2.text = this.stackbutton.targetid;}
+      if (newx == 750) { stackText3.text = this.stackbutton.targetid;}
+      if (newx == 800) { stackText4.text = this.stackbutton.targetid;}
+      if (newx == 850) { stackText5.text = this.stackbutton.targetid;}
+      this.game.world.bringToTop(stackText1);this.game.world.bringToTop(stackText2);this.game.world.bringToTop(stackText3);this.game.world.bringToTop(stackText4);this.game.world.bringToTop(stackText5);
+      
+  },
+  removeFromStack: function(button) {
+      console.log("button tid: " + button.targetid);console.log(button.attackid);
+      var i = this.gameProgress.attackstack.length;
+          while (i--) {
+              var targetid = this.gameProgress.attackstack[i][0].getID();
+              var attackid = this.gameProgress.attackstack[i][1].getID();
+              //console.log(targetid);
+              if (targetid == button.targetid && attackid == button.attackid) {
+                    this.gameProgress.attackstack.splice(i,1); // hier gaat ie mis want pop(i)
+                    this.setButtonxAvailable(button.xcoord);
+                    if (button.xcoord == 650) { stackText1.text = ''; }
+                    if (button.xcoord == 700) { stackText2.text = '';}
+                    if (button.xcoord == 750) { stackText3.text = '';}
+                    if (button.xcoord == 800) { stackText4.text = '';}
+                    if (button.xcoord == 850) { stackText5.text = '';}
+                    //console.log("bli");console.log(this.gameProgress.attackstack);
+                    button.destroy();
+                    this.gameProgress.actionPoints += button.attackpoints;
+                    this.refreshStats();
+                    //console.log("roep die flush aan");
+                    //this.flushAttackStack();
+                    
+              }
+
+          }
+        if (this.checkAllButtonsAvailable() == false) { this.stackboxtext.text = ''; }
+  },
+  flushAttackStack: function(){
+      var i = this.gameProgress.attackstack.length;
+          while (i--) {
+          console.log("destroying " + i);
+          this.stackedattacks.children[i].destroy();
+      }
+      this.stackboxtext.text = '';stackText1.text = '';stackText2.text = '';stackText3.text = '';stackText4.text = '';stackText5.text = ''
   },
   clearAttackStack: function(){
       this.gameProgress.attackstack = [];
@@ -223,8 +356,11 @@ InsurancePlz.GameState = {
     this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
   },
   endTurn: function(){
+    this.flushAttackStack(); // buttons on the right in panel
     this.executeAttacks()// we are executing our attacks
     this.clearAttackStack(); // clear stacked attack array
+    this.setAllButtonxAvailable(); // all button positions can be taken again
+    this.gameProgress.index = 0;
     this.gameProgress.turn++;
     this.gameProgress.actionPoints=this.gameProgress.actionPointsMax;
     this.refreshStats(); // update stats
