@@ -88,11 +88,11 @@ InsurancePlz.GameState = {
     //end turn button and start of game
     this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
     this.endturntext = this.add.text(715, 470, 'End turn', style);
-    this.stackboxtext = this.add.text(650, 330, '', style);     
-      
+    this.stackboxtext = this.add.text(650, 330, '', style);
+
     //group of stacked attack buttons:
     this.stackedattacks = this.add.group();
-      
+
     //start turn:
     this.startTurn();
   },
@@ -104,6 +104,8 @@ InsurancePlz.GameState = {
   createMap: function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
     let targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
+
+    this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
     //create target instances
@@ -250,7 +252,7 @@ InsurancePlz.GameState = {
           if(this.gameProgress.buttonstack[i][1] == false) {
               //console.log(this.gameProgress.buttonstack[i][0]);
               return this.gameProgress.buttonstack[i][0]; // return first available x
-              
+
           }
       }
   },
@@ -267,25 +269,25 @@ InsurancePlz.GameState = {
    for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
           if(this.gameProgress.buttonstack[i][0] == coordx) {
               this.gameProgress.buttonstack[i][1] = true; // taken
-              
+
           }
-      }   
+      }
   },
   setButtonxAvailable: function(coordx) {
    for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
           if(this.gameProgress.buttonstack[i][0] == coordx) {
               this.gameProgress.buttonstack[i][1] = false; // taken
-              
+
           }
-      }   
+      }
   },
   setAllButtonxAvailable: function() { // at round end
    for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
       this.gameProgress.buttonstack[i][1] = false; // taken
-      }   
+      }
   },
   stackAttack: function(target, attack, sprite){
-      this.gameProgress.attackstack.push([target,attack]);    
+      this.gameProgress.attackstack.push([target,attack]);
       var spritename = sprite + '_small';
       //under here we have to check in some sort of array if on all possible x's 650,700,750,800,850 there is a true or false
       // to know whether , check for first false x in buttonstack and return that so we can use it here
@@ -306,7 +308,7 @@ InsurancePlz.GameState = {
       align: 'left',
       wordWrap: true,
       wordWrapWidth: 256
-      
+
     };
 
 
@@ -320,7 +322,7 @@ InsurancePlz.GameState = {
       if (newx == 800) { stackText4.text = this.stackbutton.targetid;}
       if (newx == 850) { stackText5.text = this.stackbutton.targetid;}
       this.game.world.bringToTop(stackText1);this.game.world.bringToTop(stackText2);this.game.world.bringToTop(stackText3);this.game.world.bringToTop(stackText4);this.game.world.bringToTop(stackText5);
-      
+
   },
   removeFromStack: function(button) {
       console.log("button tid: " + button.targetid);console.log(button.attackid);
@@ -343,7 +345,7 @@ InsurancePlz.GameState = {
                     this.refreshStats();
                     //console.log("roep die flush aan");
                     //this.flushAttackStack();
-                    
+
               }
 
           }
