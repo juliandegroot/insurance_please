@@ -61,7 +61,7 @@ InsurancePlz.GameState = {
     //scoreboard logo
 
     //loading the map with targets and attacks
-    this.loadMap();
+    //this.loadMap();
     // TODO: keep one of the two
     this.createMap();
 
@@ -80,30 +80,16 @@ InsurancePlz.GameState = {
   },
 
   createMap: function() {
-    let attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
-    let targetNumber = attackMapData.numberOfTargets;
-    let targetLocations = attackMapData.locations;
+    this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
+    let targets = this.createTargetData(this.attackMapData, this.attackMapData.targets);
 
-    this.targetDataList;
+    console.log(targets);
 
-    console.log(targetNumber);
-    console.log(targetLocations);
-  },
-
-  createTargets: function() {
-
-  },
-
-
-  loadMap: function() {
-    //loading all targets and attacks for this attackmap
-    this.attackmapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
-    this.background = this.add.sprite(0, 0, this.attackmapData.background);
-
+    this.background = this.add.sprite(0, 0, this.attackMapData.background);
     //create target instances
     this.targets = this.add.group();
     var target;
-    this.attackmapData.targets.forEach(function(targetData){
+    targets.forEach(function(targetData){
       target = new InsurancePlz.Target(this, targetData);
       this.targets.add(target);
     }, this);
@@ -111,7 +97,47 @@ InsurancePlz.GameState = {
     //create attack instances
     this.attacks = this.add.group();
     var attack;
-    this.attackmapData.attacks.forEach(function(attackData){
+    this.attackMapData.attacks.forEach(function(attackData){
+      attack = new InsurancePlz.Attack(this, attackData);
+      this.attacks.add(attack);
+    }, this);
+  },
+
+  createTargetData: function(attackMapData, targetData) {
+    let targetNumber = attackMapData.numberOfTargets;
+    let targetLocations = attackMapData.locations;
+    let targets = targetData;
+    let finalTargets = [];
+
+    for (i = 0; i < targetNumber; i++) {
+      let j = Math.floor(Math.random() * targets.length);
+      let target = targets[j];
+      target.x = targetLocations[i][0];
+      target.y = targetLocations[i][1];
+      finalTargets.push(target);
+      targets.splice(j,1);
+    }
+    return finalTargets;
+  },
+
+  // TODO: remove, still here for reference
+  loadMap: function() {
+    //loading all targets and attacks for this attackmap
+    this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
+    this.background = this.add.sprite(0, 0, this.attackMapData.background);
+
+    //create target instances
+    this.targets = this.add.group();
+    var target;
+    this.attackMapData.targets.forEach(function(targetData){
+      target = new InsurancePlz.Target(this, targetData);
+      this.targets.add(target);
+    }, this);
+
+    //create attack instances
+    this.attacks = this.add.group();
+    var attack;
+    this.attackMapData.attacks.forEach(function(attackData){
       attack = new InsurancePlz.Attack(this, attackData);
       this.attacks.add(attack);
     }, this);
@@ -135,11 +161,11 @@ InsurancePlz.GameState = {
   },
   refreshStats: function() {
       var total = 0
-      for (var k in this.attackmapData.targets){ // getting the actual array
-          for (var l in this.attackmapData.targets[k]) {
+      for (var k in this.attackMapData.targets){ // getting the actual array
+          for (var l in this.attackMapData.targets[k]) {
               if (l == "damage") {
-                 //console.log("l: " +this.attackmapData.targets[k][l]);
-                  total = total + this.attackmapData.targets[k][l];
+                 //console.log("l: " +this.attackMapData.targets[k][l]);
+                  total = total + this.attackMapData.targets[k][l];
               }
 
               //total = total + k
