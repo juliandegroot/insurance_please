@@ -1,5 +1,13 @@
 {
   "background": "europe",
+  "numberOfTargets":4,
+  "locations":[
+    [290, 160],
+    [490, 260],
+    [450, 140],
+    [160, 290]
+  ],
+
   "targets": [
     {
       "id": 1,
@@ -24,7 +32,43 @@
       "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 0}],
       "impact":2,
       "damage":0
-     }
+    },
+    {
+      "id": 3,
+      "asset": "company",
+      "text": "This company is bad",
+      "x": 290,
+      "y": 160,
+      "name":"Target 3",
+      "category":"Category 1",
+      "securityVector":[{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
+      "impact":5,
+      "damage":0
+    },
+    {
+      "id": 4,
+      "asset": "company",
+      "text": "This company is bad",
+      "x": 290,
+      "y": 160,
+      "name":"Target 4",
+      "category":"Category 1",
+      "securityVector":[{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
+      "impact":5,
+      "damage":0
+    },
+    {
+      "id": 5,
+      "asset": "company",
+      "text": "This company is bad",
+      "x": 290,
+      "y": 160,
+      "name":"Target 5",
+      "category":"Category 1",
+      "securityVector":[{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
+      "impact":5,
+      "damage":0
+    }
   ],
   "attacks": [
       {
@@ -45,5 +89,5 @@
       "y": 410,
       "securityVector":[{ "pw_protection": 0, "physical_security": 0, "ddos_protection": 1}]
       }
-  ] 
+  ]
 }
