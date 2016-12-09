@@ -111,6 +111,7 @@ InsurancePlz.GameState = {
     * @param {Number} attackMapData.targetNumber - The number of targets for the map.
     * @param {Object[]} attackMapData.locations - Array of arrays of locations. Each location array in the array consists of x and y coordinates at index 0 and 1 respectively.
     * @param {Object[]} targetData - The structure holding all the data of the targets.
+    * @returns {Array} finalTargets - The array containing the target data with their locations.
     */
   createTargetData: function(attackMapData, targetData) {
     let targetNumber = attackMapData.numberOfTargets;
