@@ -61,8 +61,6 @@ InsurancePlz.GameState = {
     //scoreboard logo
 
     //loading the map with targets and attacks
-    //this.loadMap();
-    // TODO: keep one of the two
     this.createMap();
 
     this.damagelogo = this.add.sprite(0, 0, 'hackdamage');
@@ -103,9 +101,19 @@ InsurancePlz.GameState = {
     }, this);
   },
 
+  /**
+    * Creates an array of target data. To each location in the AttackMapData a
+    * random target is assigned. The target data array contains the original
+    * target data with the additional location coordinates.
+    * @param {Object[]} attackMapData - The structure holding all data for the attack map.
+    * @param {Number} attackMapData.targetNumber - The number of targets for the map.
+    * @param {Object[]} attackMapData.locations - Array of arrays of locations. Each location array in the array consists of x and y coordinates at index 0 and 1 respectively.
+    * @param {Object[]} targetData - The structure holding all the data of the targets.
+    */
   createTargetData: function(attackMapData, targetData) {
     let targetNumber = attackMapData.numberOfTargets;
     let targetLocations = attackMapData.locations;
+    console.log(targetLocations)
     let targets = targetData;
     let finalTargets = [];
 
@@ -120,28 +128,7 @@ InsurancePlz.GameState = {
     return finalTargets;
   },
 
-  // TODO: remove, still here for reference
-  loadMap: function() {
-    //loading all targets and attacks for this attackmap
-    this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
-    this.background = this.add.sprite(0, 0, this.attackMapData.background);
 
-    //create target instances
-    this.targets = this.add.group();
-    var target;
-    this.attackMapData.targets.forEach(function(targetData){
-      target = new InsurancePlz.Target(this, targetData);
-      this.targets.add(target);
-    }, this);
-
-    //create attack instances
-    this.attacks = this.add.group();
-    var attack;
-    this.attackMapData.attacks.forEach(function(attackData){
-      attack = new InsurancePlz.Attack(this, attackData);
-      this.attacks.add(attack);
-    }, this);
-  },
   selectAttack: function(attack) {
     if(this.selectedAttack != attack) {
       this.clearAttackSelection();
