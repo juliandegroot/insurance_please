@@ -79,9 +79,7 @@ InsurancePlz.GameState = {
 
   createMap: function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
-    let targets = this.createTargetData(this.attackMapData, this.attackMapData.targets);
-
-    console.log(targets);
+    let targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
     //create target instances
@@ -113,7 +111,6 @@ InsurancePlz.GameState = {
   createTargetData: function(attackMapData, targetData) {
     let targetNumber = attackMapData.numberOfTargets;
     let targetLocations = attackMapData.locations;
-    console.log(targetLocations)
     let targets = targetData;
     let finalTargets = [];
 

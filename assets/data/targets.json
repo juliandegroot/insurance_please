@@ -1,18 +1,54 @@
 {
-  "targets":[
+  "targets": [
     {
-      "targetName":"Target 1",
-      "targetCategory":"Category 1",
-      "securityVector":[0, 0, 1, 1],
-      "impact":5,
-      "targetImage":"default_target"
+      "id": 1,
+      "asset": "company",
+      "text": "This company is bad",
+      "name": "Target 1",
+      "category": "Category 1",
+      "securityVector": [{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
+      "impact": 5,
+      "damage": 0
+    },
+      {
+      "id": 2,
+      "asset": "company",
+      "text": "This company is worse",
+      "name": "Target 2",
+      "category": "Category 2",
+      "securityVector": [{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 1}],
+      "impact": 2,
+      "damage": 0
     },
     {
-      "targetName":"Target 2",
-      "targetCategory":"Category 2",
-      "securityVector":[1, 0, 1, 0],
-      "impact":2,
-      "targetImage":"default_target"
+      "id": 3,
+      "asset": "company",
+      "text": "This company is bad",
+      "name": "Target 3",
+      "category": "Category 1",
+      "securityVector": [{ "pw_protection": 0, "physical_security": 1, "ddos_protection": 0}],
+      "impact": 5,
+      "damage": 0
+    },
+    {
+      "id": 4,
+      "asset": "company",
+      "text": "This company is bad",
+      "name": "Target 4",
+      "category": "Category 1",
+      "securityVector": [{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}],
+      "impact": 4,
+      "damage": 0
+    },
+    {
+      "id": 5,
+      "asset": "company",
+      "text": "This company is bad",
+      "name": "Target 5",
+      "category": "Category 1",
+      "securityVector": [{ "pw_protection": 0, "physical_security": 1, "ddos_protection": 1}],
+      "impact": 2,
+      "damage": 0
     }
   ]
 }
