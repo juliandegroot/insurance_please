@@ -10,6 +10,7 @@ And many more..
 
 # Running Grunt
 In order to run Grunt, the Node.js service for packaging all javascript files into a minified version (which `index-batch.html` and `index-min.html` require to function) it is required to install [Node.js](https://nodejs.org/en/download/). It is recommended to use version 6.9.1.  
-After installing Node.js you can run `grunt-once.bat` to minify the JavaScript once, or `grunt-watch.bat` to automatically minify whenever files are updated.
+Once Node.js is installed it is required to run `npm-setup.bat` (located in the `folder`) which ensures the Node Package Manager and Grunt is installed/up to date.  
+After installing Node.js you can run `grunt-once.bat` to minify the JavaScript once, or `grunt-watch.bat` to automatically minify whenever files are updated. Both these files are also located in the `src` folder.
 
-Note that minification requires a few seconds to complete. When developing, it is recommended to use `index-batch.html` instead of `intex-min.html`.
+Note that minification requires a few seconds to complete. When developing, it is recommended to use `index-batch.html` instead of `index-min.html`.
