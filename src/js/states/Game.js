@@ -77,6 +77,10 @@ InsurancePlz.GameState = {
     this.startTurn();
   },
 
+  /**
+    * createMap creates the map part of the game: it reads in the targets, attacks
+    * and assigns them to a possition in the UI.
+    */
   createMap: function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
     let targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
@@ -115,11 +119,15 @@ InsurancePlz.GameState = {
     let finalTargets = [];
 
     for (i = 0; i < targetNumber; i++) {
+      // Choose a random target from the remaining targets.
       let j = Math.floor(Math.random() * targets.length);
       let target = targets[j];
+      // Assign the location coordinates
       target.x = targetLocations[i][0];
       target.y = targetLocations[i][1];
+      // Add the target to the final target list
       finalTargets.push(target);
+      // Remove the assigned target from the unassigned list
       targets.splice(j,1);
     }
     return finalTargets;
