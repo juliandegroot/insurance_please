@@ -23,6 +23,11 @@ InsurancePlz.PreloadState = {
     //make sure all images are equal in size to prevent anchor and scaling issues
     this.load.image('database_attack', 'assets/images/database_attack.png');
     this.load.image('ddos_attack', 'assets/images/ddos_attack.png');
+      
+    //for the attack stack images:
+    this.load.image('database_attack_small', 'assets/images/database_attack_small.png');
+    this.load.image('ddos_attack_small', 'assets/images/ddos_attack_small.png');
+      
     this.load.image('button', 'assets/images/button.png');
     this.load.image('button-circle', 'assets/images/button-circle.png');
 
