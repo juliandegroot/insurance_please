@@ -35,6 +35,7 @@ InsurancePlz.PreloadState = {
     this.load.text('europe', 'assets/data/europe.json');
     this.load.text('targets', 'assets/data/targets.json');
     this.load.text('attacks', 'assets/data/attacks.json');
+    this.load.text('events', 'assets/data/events.json');
 
   },
   create: function() {

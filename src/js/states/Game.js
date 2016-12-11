@@ -18,9 +18,11 @@ InsurancePlz.GameState = {
       "textstack": [[650,''],[700,''],[750,''],[800,''],[850,'']]
     };
 
+    //TODO: These JSON's should be removed from the cache afterwards.
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
+    this.eventDataList = createEventsFromJSON(this.game.cache.getText('events'));
     //console.log(this.attackDataList);
-
+    console.log(this.eventDataList);
   },
   create: function() {
     //attackpanel area
@@ -190,62 +192,6 @@ InsurancePlz.GameState = {
       hackingdamageText.text = "$ " +this.gameProgress.score +"\nDamage total";
       actionpointsText.text = "A.points: " +this.gameProgress.actionPoints;
   },
-
-
-  closeNews: function(){
-    console.log('Closing news');
-    this.popup.group.destroy();
-  },
-  //Could be extended with an additional argument for a callback function
-  createPopup: function(text, btntext){
-    //Create objects to hold the data
-    this.popup = {};
-    this.popup.group = this.add.group();
-
-    //Create background
-    this.popup.background = this.add.graphics(0, 0);
-    this.popup.background.inputEnabled = true;
-    this.popup.background.beginFill(0x000000, 0.5);
-    this.popup.background.drawRect(0, 0, 1000, 1000);
-    this.popup.background.endFill();
-
-    //Create popup panel
-    this.popup.panel = this.add.sprite(this.game.world.centerX,
-      this.game.world.centerY,'popuppanel');
-    this.popup.panel.anchor.setTo(0.5);
-
-    //Text style
-    var style = {
-      color: 'white',
-      font: '15px HackerFont',
-      fill: '#fff',
-      align: 'center',
-      wordWrap: true,
-      wordWrapWidth: 440
-    };
-
-    //Message text. Can be changed to also use anchor(0.5) to center vertically
-    this.popup.message = this.add.text(this.game.world.centerX-220,
-      this.game.world.centerY-160, text, style);
-
-    this.popup.group.add(this.popup.background);
-    this.popup.group.add(this.popup.panel);
-    this.popup.group.add(this.popup.message);
-
-    if (btntext!=null){
-      //Close button
-      this.popup.button = this.add.button(this.game.world.centerX,
-      this.game.world.centerY+140, 'button', this.closeNews, this);
-      this.popup.button.anchor.setTo(0.5);
-      //Close button text
-      this.popup.buttontext = this.add.text(this.game.world.centerX,
-        this.game.world.centerY+145, btntext, style);
-      this.popup.buttontext.anchor.setTo(0.5);
-      this.popup.group.add(this.popup.button);
-      this.popup.group.add(this.popup.buttontext);
-    }
-
-  },
   giveAvailableButtonx: function() {
       console.log("hier2");console.log(this.gameProgress.buttonstack);
       for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
@@ -389,9 +335,14 @@ InsurancePlz.GameState = {
       }
       return false;
   },
+  triggerEvent: function(){
+    this.popup = this.eventDataList[Math.floor(Math.random()*this.eventDataList.length)].createPopup();
+  },
+  closePopup: function(){
+    this.popup.destroy();
+  },
   startTurn: function(){
-    //Pop up news message, fade out & make uninteractable rest of game
-    this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
+    this.triggerEvent();
   },
   endTurn: function(){
     this.flushAttackStack(); // buttons on the right in panel
@@ -410,6 +361,6 @@ InsurancePlz.GameState = {
     }
   },
   endGame: function(){
-    this.createPopup('Congratulations. You have reached the end of the prototype game!');
+    this.popup = new Popup("Congratulations!", "You have reached the end of the prototype game!");
   }
 };
