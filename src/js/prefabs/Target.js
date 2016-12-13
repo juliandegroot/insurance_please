@@ -100,7 +100,11 @@ InsurancePlz.Target.prototype.getID = function() {
     return this.data.id;
 };
 
-InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness) {
+InsurancePlz.Target.prototype.getName = function() {
+    return this.data.name;
+};
+
+InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness, attackname, targetname) {
     console.log("attack vector: ");console.log(secmeasure);
     console.log("target secvector: ");console.log(this.data.securityVector[0]);
     var damage_inflicted = 0;
@@ -115,6 +119,7 @@ InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness) {
                         if (j == a && secmeasure[a] == 1 && secvector[k][j] == 0) { //vulnerability found!
                                 console.log("vul found on "+j);
                                 damage_inflicted = 5000 * this.data.impact;
+                                this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
                             }
                         else {
                             console.log("no vulnerabities found on sec vector");

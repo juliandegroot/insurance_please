@@ -15,7 +15,8 @@ InsurancePlz.GameState = {
       "attackstack": [],
       "index": 0,
       "buttonstack": [[650,false],[700,false],[750,false],[800,false],[850,false]],
-      "textstack": [[650,''],[700,''],[750,''],[800,''],[850,'']]
+      "textstack": [[650,''],[700,''],[750,''],[800,''],[850,'']],
+      "newsarray": []
     };
 
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
@@ -370,13 +371,36 @@ InsurancePlz.GameState = {
           var target = this.gameProgress.attackstack[i][0];
           var attack = this.gameProgress.attackstack[i][1];
           //console.log(target);
-          target.doDamage(attack.getSecmeasure(), attack.getEffect());
+          target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(),target.getName());
       }
-            // to be executed after actual max stack is reached (to end round):
-            //this.state.updateNews(this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString());
+  },
+    
+  /**
+   * Function to generate news items as JSON objects to be put in newsarray
+   * which is part of the game's gameProgress object
+   * @param {number} damagedone     - the damage inflicted
+   * @param {string} attackname     - the name of the attack
+   * @param {string} targetname     - the name of the target (company)
+   * @param {string} targetcategory - the type of target (i.e. bank, insurance)
+   */
+  generateAttackNewsItem: function(damagedone, attackname, targetname, targetcategory) {
+      var nheadline = "Target " + targetname + " suffered from " + attackname;
+      var nbody = "Over the last 24 hours " + targetcategory + " company " + targetname + " suffered from " + attackname + ".\nIt is estimated damage is done for $" + damagedone + ".";
+      var newsitem = {round: this.gameProgress.turn, type: "attack", headline: nheadline, body: nbody};
+      this.gameProgress.newsarray.push(newsitem);
+      //this.showNews();
+  },
+  /**
+   * Help function to show all news items from gameProgress newsarray
+   */
+  showNews: function() {
+      console.log("All the news:")
+      for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
+          var newsitem = this.gameProgress.newsarray[i];
+          console.log(newsitem);
+      }
   },
   alreadyStackedForTarget: function(target_id, attack_id) {
-      //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
       for(var i = 0; i < this.gameProgress.attackstack.length; i++) {
           var target = this.gameProgress.attackstack[i][0];
           var attack = this.gameProgress.attackstack[i][1];
