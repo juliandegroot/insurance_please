@@ -20,9 +20,11 @@ InsurancePlz.GameState = {
 
     //TODO: These JSON's should be removed from the cache afterwards.
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
-    this.eventDataList = createEventsFromJSON(this.game.cache.getText('events'));
+    this.majorEventList = createMajorEventsFromJSON(this.game.cache.getText('major_events'));
+    this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
     //console.log(this.attackDataList);
-    console.log(this.eventDataList);
+    console.log(this.majorEventList);
+    console.log(this.minorEventList);
   },
   create: function() {
     //attackpanel area
@@ -335,9 +337,6 @@ InsurancePlz.GameState = {
       }
       return false;
   },
-  triggerEvent: function(){
-    this.popup = this.eventDataList[Math.floor(Math.random()*this.eventDataList.length)].createPopup();
-  },
   closePopup: function(){
     this.popup.destroy();
   },
@@ -362,5 +361,68 @@ InsurancePlz.GameState = {
   },
   endGame: function(){
     this.popup = new Popup("Congratulations!", "You have reached the end of the prototype game!");
+  },
+  /**
+    * Executes (a number of) minor, silent events.
+    */
+  triggerMinorEvents(){
+    let roulette = [];
+    for (var i=0;i<this.minorEventList.length;i++){
+      for (var j=0;j<this.minorEventList.getWeight();j++){
+        roulette.push(i);
+      }
+    }
+    this.minorEventList[Math.floor(Math.random()*roulette.length)].execute();
+  },
+  /**
+    * Executes a major event and adds it to the list of news items events.
+    */
+  triggerMajorEvent(){
+    let roulette = [];
+    for (var i=0;i<this.majorEventList.length;i++){
+      for (var j=0;j<this.majorEventList.getWeight();j++){
+        roulette.push(i);
+      }
+    }
+    if (roulette.length>0){
+      //TODO: Add result to news list
+      this.majorEventList[Math.floor(Math.random()*roulette.length)].execute();
+      //Prevent event from being executed again
+      this.majorEventList.splice(i, i);
+    }
+  },
+  triggerMajorEvent_global_pw_protection(){
+    this.globalSecurityUpgrade("pw_protection");
+  },
+  triggerMajorEvent_global_physical_security(){
+    this.globalSecurityUpgrade("physical_security");
+  },
+  triggerMajorEvent_global_ddos_protection(){
+    this.globalSecurityUpgrade("ddos_protection");
+  },
+  globalSecurityUpgrade(key){
+    for (var i=0;i<this.targets.children.length;i++){
+      this.targets.children[i].data.securityVector[key]=1;
+    }
+  },
+  triggerMinorEvent_security_upgrade(){
+    console.log("Security upgraded");
+    let list = [];
+    for (var i=0;i<this.targets.children.length;i++){
+      if (this.targets.children[i].canBeUpgraded()){
+        list.push(i);
+      }
+    }
+    if (list.length>0){
+      this.targets.children[list[Math.floor(Math.random()*keys.length)]].upgradeSecurity();
+      return true;
+    } else {
+      return false;
+    }
+  },
+  triggerMinorEvent_impact_upgrade(){
+    console.log("Impact upgraded");
+    this.targets.children[Math.floor(Math.random()*this.targets.children.length)].data.impact++;
+    return true;
   }
 };

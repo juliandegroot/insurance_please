@@ -127,3 +127,28 @@ InsurancePlz.Target.prototype.doDamage = function(secmeasure, effectiveness) {
     this.data.damage = this.data.damage + damage_inflicted; // increment damage for this target
 
 };
+
+InsurancePlz.Target.prototype.canBeUpgraded = function(){
+  for (var k in this.data.securityVector[0]){
+    if (this.data.securityVector[0][k]===0){
+      return true;
+    }
+  }
+  return false;
+};
+
+InsurancePlz.Target.prototype.upgradeSecurity = function(){
+  let keys = [];
+  for (var k in this.data.securityVector[0]){
+    if (this.data.securityVector[0][k]===0){
+      keys.push(k);
+      console.log(k);
+    }
+  }
+  if (keys.length>0){
+    this.data.securityVector[0][keys[Math.floor(Math.random()*keys.length)]]++;
+    return true;
+  } else {
+    return false;
+  }
+};

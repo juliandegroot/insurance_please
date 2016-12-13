@@ -4,7 +4,7 @@ var InsurancePlz = InsurancePlz || {};
 /**
 * Creates a popup with the given headline and text in the center of the screen.
 * @constructor
-* @param {String} headline - The headline of the popup.
+* @param {String} headline - The headline of the popup. Will currently go out of bounds at more than ~25 characters.
 * @param {Number} text - The content of the popup.
 */
 function Popup(headline, text){
@@ -12,6 +12,7 @@ function Popup(headline, text){
 	this.group = InsurancePlz.game.add.group();
 	//Create array to hold the buttons
 	this.buttons = [];
+	this.offset = 15;
 
 	//Create background
 	this.background = InsurancePlz.game.add.graphics(0, 0);
@@ -44,7 +45,7 @@ function Popup(headline, text){
 	//Message text. Can be changed to also use anchor(0.5) to center vertically
 	this.headline = this.panel.addChild(InsurancePlz.game.make.text(
 		0,
-		-this.panel.height/2+20,
+		-this.panel.height/2+this.offset,
 		headline,
 		headlineStyle
 	));
@@ -56,14 +57,14 @@ function Popup(headline, text){
 	  color: 'white',
 	  font: '14px HackerFont',
 	  fill: '#fff',
-	  align: 'center',
+	  align: 'left',
 	  wordWrap: true,
-	  wordWrapWidth: this.panel.width-20
+	  wordWrapWidth: this.panel.width-2*this.offset
 	};
 
 	//Message text. Can be changed to also use anchor(0.5) to center vertically
 	this.message = this.panel.addChild(InsurancePlz.game.make.text(
-		-this.panel.width/2+20,
+		-this.panel.width/2+this.offset,
 		-this.panel.height/2+50,
 		text,
 		textStyle
@@ -88,7 +89,7 @@ Popup.prototype.addButton = function(text, callback, context){
 
 	var button = this.panel.addChild(InsurancePlz.game.make.button(
 		0,
-		this.panel.height/2-20,
+		this.panel.height/2-this.offset,
 		'button',
 		callback,
 		context
@@ -120,10 +121,10 @@ Popup.prototype.addButton = function(text, callback, context){
 * Responsible for ensuring all buttons are aligned nicely.
 */
 Popup.prototype.organizeButtons = function(){
-	var startPoint = -(this.buttons[0].width*this.buttons.length+20*(this.buttons.length-1))/2;
+	var startPoint = -(this.buttons[0].width*this.buttons.length+this.offset*(this.buttons.length-1))/2;
 	console.log(startPoint);
 	for (var i=0;i<this.buttons.length;i++){
-		this.buttons[i].x = startPoint + 20*i + this.buttons[0].width*(i+0.5);
+		this.buttons[i].x = startPoint + this.offset*i + this.buttons[0].width*(i+0.5);
 		console.log(this.buttons[i].x);
 	}
 }

@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "key" : "global_pw_protection",
+      "headline" : "Global password security",
+      "text" : "Password protection has been globally increased.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_physical_security",
+      "headline" : "Global physical security",
+      "text" : "Physical security has been globally increased.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_ddos_protection",
+      "headline" : "ISP's solve DDOS dilemma",
+      "text" : "After many years of DDOS attacks running rampant in society, a new network protocol has allowed ISP's to rid themselves of this long-standing issue. DDOS attacks are now officially a thing of the past.",
+      "weight" : 1
+    }
+  ]
+}
