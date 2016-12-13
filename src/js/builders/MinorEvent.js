@@ -3,6 +3,7 @@ var InsurancePlz = InsurancePlz || {};
 InsurancePlz.MinorEvent = function(data) {
   this.key = data.key;
   this.weight = data.weight;
+  //Sets up a link to the function that executes this event.
   this.execute = new Function("InsurancePlz.GameState.triggerMinorEvent_" + this.key + "()");
 }
 
@@ -14,7 +15,7 @@ InsurancePlz.MinorEvent.prototype.getKey = function() {
 };
 
 /**
-* @returns {String} key - The key of this event.
+* @returns {Number} weight - The weight of this event.
 */
 InsurancePlz.MinorEvent.prototype.getWeight = function() {
   return this.weight;

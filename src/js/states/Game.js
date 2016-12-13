@@ -363,7 +363,8 @@ InsurancePlz.GameState = {
     this.popup = new Popup("Congratulations!", "You have reached the end of the prototype game!");
   },
   /**
-    * Executes (a number of) minor, silent events.
+    * Executes (a number of?) minor, silent events.
+    * Decides which event to trigger using a roulette system based on the weights of each event.
     */
   triggerMinorEvents(){
     let roulette = [];
@@ -376,6 +377,7 @@ InsurancePlz.GameState = {
   },
   /**
     * Executes a major event and adds it to the list of news items events.
+    * Decides which event to trigger using a roulette system based on the weights of each event.
     */
   triggerMajorEvent(){
     let roulette = [];
@@ -385,8 +387,11 @@ InsurancePlz.GameState = {
       }
     }
     if (roulette.length>0){
+      let rand = Math.floor(Math.random()*roulette.length);
       //TODO: Add result to news list
-      this.majorEventList[Math.floor(Math.random()*roulette.length)].execute();
+      //x.push(this.majorEventList[rand].getNews());
+      //Execute event
+      this.majorEventList[rand].execute();
       //Prevent event from being executed again
       this.majorEventList.splice(i, i);
     }
@@ -400,11 +405,18 @@ InsurancePlz.GameState = {
   triggerMajorEvent_global_ddos_protection(){
     this.globalSecurityUpgrade("ddos_protection");
   },
+  /**
+    * Sets the security level of the given key for every target to 1 (maximum).
+    */
   globalSecurityUpgrade(key){
     for (var i=0;i<this.targets.children.length;i++){
       this.targets.children[i].data.securityVector[key]=1;
     }
   },
+  /**
+    * Attempts to upgrade a random key in the security vector of a random target.
+    * @returns {Boolean} success - True or false depending on whether an upgradable target was found.
+    */
   triggerMinorEvent_security_upgrade(){
     console.log("Security upgraded");
     let list = [];
@@ -420,6 +432,9 @@ InsurancePlz.GameState = {
       return false;
     }
   },
+  /**
+    * Increases the impact of a random target by 1.
+    */
   triggerMinorEvent_impact_upgrade(){
     console.log("Impact upgraded");
     this.targets.children[Math.floor(Math.random()*this.targets.children.length)].data.impact++;

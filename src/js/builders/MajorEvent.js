@@ -5,15 +5,18 @@ InsurancePlz.MajorEvent = function(data) {
   this.headline = data.headline;
   this.text = data.text;
   this.weight = data.weight;
+  //Sets up a link to the function that executes this event.
+  this.execute = new Function("InsurancePlz.GameState.triggerMajorEvent_" + this.key + "()");
 }
 
 /**
-* Creates the popup for this event and returns the popup object.
-* @returns {Popup} popup - The popup created.
+* @returns {Object} news - An object with a headline and text field containing the news for this event.
 */
-InsurancePlz.MajorEvent.prototype.execute = function() {
-  new Function("InsurancePlz.GameState.triggerMajorEvent_" + this.key + "()")();
-  return {"headline":this.headline,"text":this.text};
+InsurancePlz.MajorEvent.prototype.getNews = function() {
+  return {
+    "headline" : this.headline,
+    "text" : this.text
+  };
 };
 
 /**
@@ -24,7 +27,7 @@ InsurancePlz.MajorEvent.prototype.getKey = function() {
 };
 
 /**
-* @returns {String} key - The key of this event.
+* @returns {Number} weight - The weight of this event.
 */
 InsurancePlz.MajorEvent.prototype.getWeight = function() {
   return this.weight;
