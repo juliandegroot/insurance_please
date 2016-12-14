@@ -395,7 +395,7 @@ InsurancePlz.GameState = {
         // for each target and attack combination in the attackstack array:
         //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
 
-              }
+    },
 
     /**
      * Function to generate news items as JSON objects to be put in newsarray
@@ -469,8 +469,4 @@ InsurancePlz.GameState = {
     endGame: function () {
         this.createPopup('Congratulations. You have reached the end of the prototype game!');
     }
-  },
-  endGame: function(){
-    this.createPopup('Congratulations. You have reached the end of the prototype game!');
-  }
 };
