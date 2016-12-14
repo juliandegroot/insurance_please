@@ -459,7 +459,7 @@ InsurancePlz.GameState = {
           let text = "THE NEWS\n";
           for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
             let newsitem = this.gameProgress.newsarray[i];
-            text += newsitem.headline += "\n" + newsitem.body + "\n\n";
+            text += newsitem.body + "\n\n";
           }
           this.createPopup(text, 'Close');
         }
