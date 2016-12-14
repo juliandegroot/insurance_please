@@ -397,7 +397,7 @@ InsurancePlz.GameState = {
         for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
           let target = this.gameProgress.attackstack[i][0];
           let attack = this.gameProgress.attackstack[i][1];
-          target.doDamage(attack.getSecmeasure(), attack.getEffect());
+          target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName());
         }
     },
 
