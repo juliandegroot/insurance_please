@@ -394,11 +394,7 @@ InsurancePlz.GameState = {
     executeAttacks: function () {
         // for each target and attack combination in the attackstack array:
         //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
-        for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
-          let target = this.gameProgress.attackstack[i][0];
-          let attack = this.gameProgress.attackstack[i][1];
-          target.doDamage(attack.getSecmeasure(), attack.getEffect());
-        }
+
     },
 
     /**
@@ -422,7 +418,6 @@ InsurancePlz.GameState = {
         //this.showNews();
     },
     /**
-     * TODO: remove: only usefull for debugging.
      * Help function to show all news items from gameProgress newsarray
      */
     showNews: function () {
@@ -453,13 +448,7 @@ InsurancePlz.GameState = {
     },
     startTurn: function () {
         //Pop up news message, fade out & make uninteractable rest of game
-        console.log("round: " + this.gameProgress.turn);
-        console.log("news: " )
-        if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.items == 0) {
-          this.createPopup("There is no news today!\nHappy hacking!\n");
-        } else {
-          this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
-        }
+        this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
     },
     endTurn: function () {
         this.flushAttackStack(); // buttons on the right in panel
