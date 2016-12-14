@@ -457,7 +457,7 @@ InsurancePlz.GameState = {
           this.createPopup("There is no news today!\nHappy hacking!\n", 'Close');
         } else {
           let text = "THE NEWS\n";
-          for (int i = 0; i < this.gameProgress.newsarray.length; i++) {
+          for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
             let newsitem = this.gameProgress.newsarray[i];
             text += newsitem.headline += "\n" + newsitem.body + "\n\n";
           }
