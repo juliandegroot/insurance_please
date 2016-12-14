@@ -418,6 +418,7 @@ InsurancePlz.GameState = {
         //this.showNews();
     },
     /**
+     * TODO: remove: only usefull for debugging.
      * Help function to show all news items from gameProgress newsarray
      */
     showNews: function () {
@@ -448,7 +449,16 @@ InsurancePlz.GameState = {
     },
     startTurn: function () {
         //Pop up news message, fade out & make uninteractable rest of game
-        this.createPopup('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id eleifend est. Nulla gravida vel turpis non mattis. Quisque non pellentesque orci. Nulla porttitor mattis ligula, et dignissim urna ultrices eu. Vestibulum quis tempor leo. Proin fermentum quis orci quis convallis. Sed ullamcorper auctor lectus, sed blandit dolor. Integer non mi in urna molestie consectetur.', 'Close');
+        if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.length == 0) {
+          this.createPopup("There is no news today!\nHappy hacking!\n", 'Close');
+        } else {
+          let text = "THE NEWS\n";
+          for (int i = 0; i < this.gameProgress.newsarray.length; i++) {
+            let newsitem = this.gameProgress.newsarray[i];
+            text += newsitem.headline += "\n" + newsitem.body + "\n\n";
+          }
+          this.createPopup(text, 'Close');
+        }
     },
     endTurn: function () {
         this.flushAttackStack(); // buttons on the right in panel
