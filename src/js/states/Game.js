@@ -9,8 +9,8 @@ InsurancePlz.GameState = {
 
     this.gameProgress = {
       "turn":1,
-      "actionPoints":100,
-      "actionPointsMax":100,
+      "actionPoints":20,
+      "actionPointsMax":20,
       "score":0,
       "attackstack": [],
       "index": 0,
@@ -257,7 +257,7 @@ InsurancePlz.GameState = {
      * @returns {number} - available x coordinate
      */
     giveAvailableButtonx: function () {
-        console.log(this.gameProgress.buttonstack);
+        //console.log(this.gameProgress.buttonstack);
         for (var i = 0; i < this.gameProgress.buttonstack.length; i++) {
             if (this.gameProgress.buttonstack[i][1] == false) { // if the 2nd element is false we can place
                 return this.gameProgress.buttonstack[i][0]; // return first available x
@@ -375,7 +375,7 @@ InsurancePlz.GameState = {
     flushAttackStack: function () {
         var i = this.gameProgress.attackstack.length;
         while (i--) {
-            console.log("destroying " + i);
+            //console.log("destroying " + i);
             this.stackedattacks.children[i].destroy();
         }
         this.stackboxtext.text = '';

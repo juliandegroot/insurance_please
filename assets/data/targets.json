@@ -1,54 +1,59 @@
 {
-  "targets": [
-    {
-      "id": 1,
-      "asset": "company",
-      "text": "This company is bad",
-      "name": "Gouden Kruis",
-      "category": "Insurance",
-      "securityVector": [{ "pw_protection": 1, "physical_security": 1, "ddos_protection": 0}],
-      "impact": 5,
-      "damage": 0
+    "targets": [
+        {
+            "id": 1,
+            "asset": "company",
+            "text": "Top company",
+            "name": "Gouden Kruis",
+            "category": "Insurance",
+            "securityVector": [["iot", 1], ["nobyod", 1], ["pwman", 1], ["websec", 1], ["autoup", 1], ["firewall", 1], ["stafftrain", 1], ["riskaudit", 1], ["techadvice", 1], ["servicecon", 1]],
+            "damagecontrol": [["insurance", 0], ["backup",0],["offline",1],["infra", 1]],
+            "impact": 5,
+            "damage": 0
     },
-      {
-      "id": 2,
-      "asset": "company",
-      "text": "This company is worse",
-      "name": "EvilCorp",
-      "category": "Tech",
-      "securityVector": [{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 1}],
-      "impact": 2,
-      "damage": 0
+        {
+            "id": 2,
+            "asset": "company",
+            "text": "This company is worse",
+            "name": "EvilCorp",
+            "category": "Tech",
+            "securityVector": [["iot", 0], ["nobyod", 0], ["pwman", 0], ["websec", 1], ["autoup", 0], ["firewall", 0], ["stafftrain", 1], ["riskaudit", 1], ["techadvice", 0], ["servicecon", 0]],
+            "damagecontrol": [["insurance", 1], ["backup",0],["offline",0],["infra", 1]],
+            "impact": 2,
+            "damage": 0
     },
-    {
-      "id": 3,
-      "asset": "company",
-      "text": "This company is bad",
-      "name": "OCHMEA",
-      "category": "Insurance",
-      "securityVector": [{ "pw_protection": 0, "physical_security": 1, "ddos_protection": 0}],
-      "impact": 5,
-      "damage": 0
+        {
+            "id": 3,
+            "asset": "company",
+            "text": "This company is bad",
+            "name": "OCHMEA",
+            "category": "Insurance",
+            "securityVector": [["iot", 1], ["nobyod", 1], ["pwman", 0], ["websec", 0], ["autoup", 1], ["firewall", 0], ["stafftrain", 1], ["riskaudit", 0], ["techadvice", 1], ["servicecon", 0]],
+            "damagecontrol": [["insurance", 1], ["backup",1],["offline",0],["infra", 1]],
+            "impact": 5,
+            "damage": 0
     },
-    {
-      "id": 4,
-      "asset": "company",
-      "text": "This company is bad",
-      "name": "ROBOBANK",
-      "category": "Banking",
-      "securityVector": [{ "pw_protection": 1, "physical_security": 0, "ddos_protection": 0}],
-      "impact": 4,
-      "damage": 0
+        {
+            "id": 4,
+            "asset": "company",
+            "text": "This company is crap",
+            "name": "ROBOBANK",
+            "category": "Banking",
+            "securityVector": [["iot", 0], ["nobyod", 0], ["pwman", 0], ["websec", 0], ["autoup", 0], ["firewall", 0], ["stafftrain", 0], ["riskaudit", 0], ["techadvice", 0], ["servicecon", 0]],
+            "damagecontrol": [["insurance", 0], ["backup",0],["offline",0],["infra", 0]],
+            "impact": 4,
+            "damage": 0
     },
-    {
-      "id": 5,
-      "asset": "company",
-      "text": "This company is bad",
-      "name": "LameManBrothers",
-      "category": "Banking",
-      "securityVector": [{ "pw_protection": 0, "physical_security": 1, "ddos_protection": 1}],
-      "impact": 2,
-      "damage": 0
+        {
+            "id": 5,
+            "asset": "company",
+            "text": "This company is bad",
+            "name": "LameManBrothers",
+            "category": "Banking",
+            "securityVector": [["iot", 1], ["nobyod", 0], ["pwman", 1], ["websec", 0], ["autoup", 1], ["firewall", 0], ["stafftrain", 1], ["riskaudit", 0], ["techadvice", 1], ["servicecon", 0]],
+            "damagecontrol": [["insurance", 1], ["backup",0],["offline",1],["infra", 1]],
+            "impact": 2,
+            "damage": 0
     }
   ]
 }
