@@ -180,7 +180,7 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     console.log("Damage reduc factor: " + reducfactor);
     console.log(damageavoidedon);
     console.log("hacker has done $" + attackstrength * 100000 + " in damage")
-    console.log("company suffered $" + ((attackstrength - (reducfactor * attackstrength)) * 100000) + " in damage")
+    console.log("company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
 
     if (company_damage_suffered > 0) {
       this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
