@@ -162,15 +162,25 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     //console.log("tempnum: " + tempnum);
     //console.log("cell_sum: " + cell_sum);
     //console.log("totalseclevels: " + totalseclevels);
+
     attackstrength = Math.round((1 - (cell_sum / tempnum)) * 10) / 10;
+    if (attackname == "DDoS") {
+        console.log("DDOS!!");
+        reducfactor = 0;
+        attackstrength = 2;
+    }
+    if (attackname != "DDoS") {
+        hacker_damage_inflicted = attackstrength * 100000;
+        company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
+    }
+    
+    
     console.log("Attackstrength: " + attackstrength);
     console.log(effecton);
     console.log("Damage reduc factor: " + reducfactor);
     console.log(damageavoidedon);
     console.log("hacker has done $" + attackstrength * 100000 + " in damage")
     console.log("company suffered $" + ((attackstrength - (reducfactor * attackstrength)) * 100000) + " in damage")
-    hacker_damage_inflicted = attackstrength * 100000;
-    company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
 
     if (company_damage_suffered > 0) {
       this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
