@@ -65,8 +65,13 @@ InsurancePlz.Target.prototype.getVectorString = function () {
     var secvector = this.data.securityVector; // the target's security vector object
     var string = "";
     for (var k in secvector) { // getting the actual array
-            string = string + secvector[k][0] + ": " + secvector[k][1] + "\n";
+        if (secvector[k][1] == 1) {
+            string = string + secvector[k][0] + ": secured \n";
             //console.log(string);
+        }
+        if (secvector[k][1] == 0) {
+            string = string + secvector[k][0] + ": vulnerable \n";  
+        }
     }
     return string;
 };
