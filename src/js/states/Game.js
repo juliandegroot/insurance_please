@@ -341,7 +341,7 @@ InsurancePlz.GameState = {
     this.popup.destroy();
   },
   startTurn: function(){
-    this.triggerEvent();
+    this.triggerMajorEvent();
   },
   endTurn: function(){
     this.flushAttackStack(); // buttons on the right in panel
@@ -366,14 +366,15 @@ InsurancePlz.GameState = {
     * Executes (a number of?) minor, silent events.
     * Decides which event to trigger using a roulette system based on the weights of each event.
     */
-  triggerMinorEvents(){
+  triggerMinorEvent(){
     let roulette = [];
     for (var i=0;i<this.minorEventList.length;i++){
-      for (var j=0;j<this.minorEventList.getWeight();j++){
+      console.log(this.minorEventList[i]);
+      for (var j=0;j<this.minorEventList[i].getWeight();j++){
         roulette.push(i);
       }
     }
-    this.minorEventList[Math.floor(Math.random()*roulette.length)].execute();
+    this.minorEventList[roulette[Math.floor(Math.random()*roulette.length)]].execute();
   },
   /**
     * Executes a major event and adds it to the list of news items events.
@@ -382,7 +383,7 @@ InsurancePlz.GameState = {
   triggerMajorEvent(){
     let roulette = [];
     for (var i=0;i<this.majorEventList.length;i++){
-      for (var j=0;j<this.majorEventList.getWeight();j++){
+      for (var j=0;j<this.majorEventList[i].getWeight();j++){
         roulette.push(i);
       }
     }
@@ -391,7 +392,7 @@ InsurancePlz.GameState = {
       //TODO: Add result to news list
       //x.push(this.majorEventList[rand].getNews());
       //Execute event
-      this.majorEventList[rand].execute();
+      this.majorEventList[roulette[rand]].execute();
       //Prevent event from being executed again
       this.majorEventList.splice(i, i);
     }
@@ -426,7 +427,8 @@ InsurancePlz.GameState = {
       }
     }
     if (list.length>0){
-      this.targets.children[list[Math.floor(Math.random()*keys.length)]].upgradeSecurity();
+      let r = Math.floor(Math.random()*list.length);
+      this.targets.children[list[Math.floor(Math.random()*list.length)]].upgradeSecurity();
       return true;
     } else {
       return false;
