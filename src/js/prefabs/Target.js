@@ -70,7 +70,7 @@ InsurancePlz.Target.prototype.getVectorString = function () {
             //console.log(string);
         }
         if (secvector[k][1] == 0) {
-            string = string + secvector[k][0] + ": vulnerable \n";  
+            string = string + secvector[k][0] + ": vulnerable \n";
         }
     }
     return string;
@@ -116,12 +116,12 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
             var damagecontrolmeasure = dreduction[f][0]; // we start with "insurance"
             var dnumber = dreduction[f][1]; // 1 as in json
             if (damagecontrolmeasure == dcontrolmeasure) {
-                reducfactor += dnumber * dweight 
+                reducfactor += dnumber * dweight
                 if (dnumber == 1) {  damageavoidedon.push(damagecontrolmeasure); } // throw in array to be used later in news
             }
         }
     }
-        
+
     for (var k in weights) {
         var weighttocheck = weights[k][0]; // we start with "iot"
         var weighttochecklevel = weights[k][1]; // this would be 1 (upper row in matrix under sec measures)
@@ -159,6 +159,11 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     console.log("company suffered $" + ((attackstrength - (reducfactor * attackstrength)) * 100000) + " in damage")
     hacker_damage_inflicted = attackstrength * 100000;
     company_damage_suffered = ((attackstrength - (reducfactor * attackstrength)) * 100000);
+
+    if (company_damage_suffered > 0) {
+      this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
+    }
+
     this.data.damage = this.data.damage + company_damage_suffered
     //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
     //TODO random damage range that determines what effects are chosen for the news sheet
