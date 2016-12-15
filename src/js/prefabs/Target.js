@@ -168,6 +168,8 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
         console.log("DDOS!!");
         reducfactor = 0;
         attackstrength = 2;
+        hacker_damage_inflicted = attackstrength * 100000;
+        company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
     }
     if (attackname != "DDoS") {
         hacker_damage_inflicted = attackstrength * 100000;
