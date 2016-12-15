@@ -62,11 +62,23 @@ InsurancePlz.GameState = {
             wordWrap: true,
             wordWrapWidth: 256
         };
+        var secmstyle = {
+            color: 'yellow',
+            // temp font, need to find font for commercial use
+            font: '13px HackerFont',
+            fill: '#ffff00',
+            align: 'left',
+            wordWrap: true,
+            wordWrapWidth: 256
+        };
+
         this.attackpanelLabel = this.add.text(10, 400, '', style);
 
     //newspanel area
     this.newspanel = this.add.sprite(640, 0, 'newspanel');
     this.newspanelLabel = this.add.text(644, 15, '', style);
+    this.securedpanelLabel = this.add.text(644, 100, '', secmstyle);
+    this.vulnerablepanelLabel = this.add.text(770, 100, '', secmstyle);
 
     //scoreboard logo
 

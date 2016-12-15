@@ -22,10 +22,13 @@ InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 InsurancePlz.Target.prototype.touch = function () {
     //shows target info in news panel:
 
-    var news = this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString();
-
+    var news = this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Measures: \n";
+    var secured = this.getSecuredString();
+    var vulnerabilities = this.getVulnerableString();
+    
     this.state.newspanelLabel.text = news;
-
+    this.state.securedpanelLabel.text = secured;
+    this.state.vulnerablepanelLabel.text = vulnerabilities;
 
     //are we selecting anything?
     var selectedAttack = this.state.selectedAttack;
@@ -61,16 +64,25 @@ InsurancePlz.Target.prototype.touch = function () {
     console.log("Current action points: " + this.state.gameProgress.actionPoints);
 };
 
-InsurancePlz.Target.prototype.getVectorString = function () {
+InsurancePlz.Target.prototype.getSecuredString = function () {
     var secvector = this.data.securityVector; // the target's security vector object
-    var string = "";
+    var string = "Secured:\n";
     for (var k in secvector) { // getting the actual array
         if (secvector[k][1] == 1) {
-            string = string + secvector[k][0] + ": secured \n";
+            string = string + secvector[k][0] + "\n";
             //console.log(string);
         }
+    }
+    return string;
+};
+
+InsurancePlz.Target.prototype.getVulnerableString = function () {
+    var secvector = this.data.securityVector; // the target's security vector object
+    var string = "Vulnerable:\n";
+    for (var k in secvector) { // getting the actual array
         if (secvector[k][1] == 0) {
-            string = string + secvector[k][0] + ": vulnerable \n";
+            string = string + secvector[k][0] + "\n";
+            //console.log(string);
         }
     }
     return string;
@@ -158,7 +170,7 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     console.log("hacker has done $" + attackstrength * 100000 + " in damage")
     console.log("company suffered $" + ((attackstrength - (reducfactor * attackstrength)) * 100000) + " in damage")
     hacker_damage_inflicted = attackstrength * 100000;
-    company_damage_suffered = ((attackstrength - (reducfactor * attackstrength)) * 100000);
+    company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
 
     if (company_damage_suffered > 0) {
       this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
