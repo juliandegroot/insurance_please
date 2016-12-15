@@ -20,13 +20,25 @@ InsurancePlz.PreloadState = {
     this.load.image('company', 'assets/images/building.png');
     this.load.image('hackdamage', 'assets/images/hackdamage.png');
 
-    //make sure all images are equal in size to prevent anchor and scaling issues
-    this.load.image('database_attack', 'assets/images/database_attack.png');
+    //make sure all images are equal in size (150x161) to prevent anchor and scaling issues
+    this.load.image('drivebydownload', 'assets/images/drivebydownload.png');
     this.load.image('ddos_attack', 'assets/images/ddos_attack.png');
-      
+    this.load.image('freefoundusbstick', 'assets/images/freefoundusbstick.png');
+    this.load.image('popup', 'assets/images/popup.png');
+    this.load.image('roguewifi', 'assets/images/roguewifi.png');
+    this.load.image('socialengineering', 'assets/images/socialengineering.png');
+    this.load.image('spoofing', 'assets/images/spoofing.png');
+    this.load.image('stolenpasswords', 'assets/images/stolenpasswords.png');
+
     //for the attack stack images:
-    this.load.image('database_attack_small', 'assets/images/database_attack_small.png');
+    this.load.image('drivebydownload_small', 'assets/images/drivebydownload_small.png');
     this.load.image('ddos_attack_small', 'assets/images/ddos_attack_small.png');
+    this.load.image('freefoundusbstick_small', 'assets/images/freefoundusbstick_small.png');
+    this.load.image('popup_small', 'assets/images/popup_small.png');
+    this.load.image('roguewifi_small', 'assets/images/roguewifi_small.png');
+    this.load.image('socialengineering_small', 'assets/images/socialengineering_small.png');
+    this.load.image('spoofing_small', 'assets/images/spoofing_small.png');
+    this.load.image('stolenpasswords_small', 'assets/images/stolenpasswords_small.png');
       
     this.load.image('button', 'assets/images/button.png');
     this.load.image('button-circle', 'assets/images/button-circle.png');

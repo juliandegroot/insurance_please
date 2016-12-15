@@ -24,7 +24,7 @@ InsurancePlz.Attack.prototype.constructor = InsurancePlz.Attack;
 InsurancePlz.Attack.prototype.getSecmeasure = function() {
     //console.log(this.data);
     //console.log(this.secvector);
-    return this.secvector[0];
+    return this.secvector;
 };
 
 InsurancePlz.Attack.prototype.getEffect = function() {
@@ -37,7 +37,7 @@ InsurancePlz.Attack.prototype.getName = function() {
 
 
 InsurancePlz.Attack.prototype.getPoints = function() {
-    return this.points;
+    return this.data.points;
 };
 
 InsurancePlz.Attack.prototype.getID = function() {
