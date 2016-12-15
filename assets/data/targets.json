@@ -36,7 +36,7 @@
         {
             "id": 4,
             "asset": "company",
-            "text": "This company is crap",
+            "text": "Bad bank",
             "name": "ROBOBANK",
             "category": "Banking",
             "securityVector": [["iot", 0], ["nobyod", 0], ["pwman", 0], ["websec", 0], ["autoup", 0], ["firewall", 0], ["stafftrain", 0], ["riskaudit", 0], ["techadvice", 0], ["servicecon", 0]],
