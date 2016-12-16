@@ -69,7 +69,7 @@
             "asset": "drivebydownload",
             "text": "Drive-by-download",
             "points": 6,
-            "x": 540,
+            "x": 550,
             "y": 410,
             "securityVector": ["iot","nobyod","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
      },
@@ -79,8 +79,8 @@
             "asset": "ddos_attack",
             "text": "DDoS",
             "points": 20,
-            "x": 630,
-            "y": 410,
+            "x": 1000,
+            "y": 1000,
             "securityVector": ["iot","nobyod","pwman","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
       }
   ]
