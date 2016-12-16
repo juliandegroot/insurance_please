@@ -22,10 +22,13 @@ InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 InsurancePlz.Target.prototype.touch = function () {
     //shows target info in news panel:
 
-    var news = this.data.text + "\n" + this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Vector: \n" + this.getVectorString();
-
+    var news = this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Measures: \n";
+    var secured = this.getSecuredString();
+    var vulnerabilities = this.getVulnerableString();
+    
     this.state.newspanelLabel.text = news;
-
+    this.state.securedpanelLabel.text = secured;
+    this.state.vulnerablepanelLabel.text = vulnerabilities;
 
     //are we selecting anything?
     var selectedAttack = this.state.selectedAttack;
@@ -61,16 +64,25 @@ InsurancePlz.Target.prototype.touch = function () {
     console.log("Current action points: " + this.state.gameProgress.actionPoints);
 };
 
-InsurancePlz.Target.prototype.getVectorString = function () {
+InsurancePlz.Target.prototype.getSecuredString = function () {
     var secvector = this.data.securityVector; // the target's security vector object
-    var string = "";
+    var string = "Secured:\n";
     for (var k in secvector) { // getting the actual array
         if (secvector[k][1] == 1) {
-            string = string + secvector[k][0] + ": secured \n";
+            string = string + secvector[k][0] + "\n";
             //console.log(string);
         }
+    }
+    return string;
+};
+
+InsurancePlz.Target.prototype.getVulnerableString = function () {
+    var secvector = this.data.securityVector; // the target's security vector object
+    var string = "Vulnerable:\n";
+    for (var k in secvector) { // getting the actual array
         if (secvector[k][1] == 0) {
-            string = string + secvector[k][0] + ": vulnerable \n";
+            string = string + secvector[k][0] + "\n";
+            //console.log(string);
         }
     }
     return string;
@@ -150,15 +162,27 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     //console.log("tempnum: " + tempnum);
     //console.log("cell_sum: " + cell_sum);
     //console.log("totalseclevels: " + totalseclevels);
+
     attackstrength = Math.round((1 - (cell_sum / tempnum)) * 10) / 10;
+    if (attackname == "DDoS") {
+        console.log("DDOS!!");
+        reducfactor = 0;
+        attackstrength = 2;
+        hacker_damage_inflicted = attackstrength * 100000;
+        company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
+    }
+    if (attackname != "DDoS") {
+        hacker_damage_inflicted = attackstrength * 100000;
+        company_damage_suffered = Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000));
+    }
+    
+    
     console.log("Attackstrength: " + attackstrength);
     console.log(effecton);
     console.log("Damage reduc factor: " + reducfactor);
     console.log(damageavoidedon);
     console.log("hacker has done $" + attackstrength * 100000 + " in damage")
-    console.log("company suffered $" + ((attackstrength - (reducfactor * attackstrength)) * 100000) + " in damage")
-    hacker_damage_inflicted = attackstrength * 100000;
-    company_damage_suffered = ((attackstrength - (reducfactor * attackstrength)) * 100000);
+    console.log("company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
 
     if (company_damage_suffered > 0) {
       this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
@@ -168,4 +192,30 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
     //TODO random damage range that determines what effects are chosen for the news sheet
 
+};
+
+InsurancePlz.Target.prototype.canBeUpgraded = function(){
+  for (var k in this.data.securityVector){
+    if (this.data.securityVector[k][1]===0){
+      return true;
+    }
+  }
+  return false;
+};
+
+InsurancePlz.Target.prototype.upgradeSecurity = function(){
+  let keys = [];
+  for (var k in this.data.securityVector){
+    if (this.data.securityVector[k][1]===0){
+      keys.push(k);
+    }
+  }
+  if (keys.length>0){
+    let rand = keys[Math.floor(Math.random()*keys.length)];
+    console.log(this.data.name + " upgraded security " + this.data.securityVector[rand][0]);
+    this.data.securityVector[rand][1]++;
+    return true;
+  } else {
+    return false;
+  }
 };
