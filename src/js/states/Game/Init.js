@@ -30,15 +30,15 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
 };
 
 
-    /**
-     * createMap creates the map part of the game: it reads in the targets, attacks
-     * and assigns them to a possition in the UI.
-     */
+/**
+ * createMap creates the map part of the game: it reads in the targets, attacks
+ * and assigns them to a possition in the UI.
+ */
 InsurancePlz.GameState.createMap = function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
     var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
 
-this.attackMapData.targets = targets;
+    this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
     //create target instances

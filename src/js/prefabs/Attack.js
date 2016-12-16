@@ -1,7 +1,7 @@
 var InsurancePlz = InsurancePlz || {};
 
 InsurancePlz.Attack = function(state, data) {
-  Phaser.Sprite.call(this, state.game, data.x, data.y, data.asset);
+    Phaser.Sprite.call(this, state.game, data.x, data.y, data.asset);
 
     this.game = state.game;
     this.state = state;
@@ -12,10 +12,10 @@ InsurancePlz.Attack = function(state, data) {
     this.points = this.data.points;
     this.impact = this.data.impact;
 
-  //listen for input
-  this.inputEnabled = true;
-  this.input.pixelPerfectClick = true;
-  this.events.onInputDown.add(this.state.selectAttack, this.state);
+    //listen for input
+    this.inputEnabled = true;
+    this.input.pixelPerfectClick = true;
+    this.events.onInputDown.add(this.state.selectAttack, this.state);
 };
 
 InsurancePlz.Attack.prototype = Object.create(Phaser.Sprite.prototype);

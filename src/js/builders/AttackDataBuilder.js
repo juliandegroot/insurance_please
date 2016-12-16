@@ -7,10 +7,10 @@ var InsurancePlz = InsurancePlz || {};
  * @return {Array} attacks An array containing all the attacks in the JSON string.
  */
 function createAttacksFromJSON(attacksJSON) {
-  var list = JSON.parse(attacksJSON).attacks;
-  var attacks = [];
-  for (i = 0; i < list.length; i++) {
-    attacks.push(new InsurancePlz.AttackData(list[i].attackName, list[i].securityVector, list[i].attackImage));
-  }
-  return attacks;
+    var list = JSON.parse(attacksJSON).attacks;
+    var attacks = [];
+    for (i = 0; i < list.length; i++) {
+        attacks.push(new InsurancePlz.AttackData(list[i].attackName, list[i].securityVector, list[i].attackImage));
+    }
+    return attacks;
 }
