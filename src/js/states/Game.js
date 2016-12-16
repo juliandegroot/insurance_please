@@ -475,7 +475,7 @@ InsurancePlz.GameState = {
         this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
         this.refreshStats(); // update stats
         console.log('It is now turn: ' + this.gameProgress.turn);
-        if (this.gameProgress.turn > 3) {
+        if (this.gameProgress.turn > 10) {
             this.endGame();
         } else {
             this.startTurn();
