@@ -19,60 +19,62 @@ InsurancePlz.GameState = {
       "newsarray": []
     };
 
+    //TODO: These JSON's should be removed from the cache afterwards.
     this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
+    this.majorEventList = createMajorEventsFromJSON(this.game.cache.getText('major_events'));
+    this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
     //console.log(this.attackDataList);
+  },
+  create: function () {
+    //attackpanel area
+    this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
+    var style = {
+        color: 'white',
+        // temp font, need to find font for commercial use
+        font: '15px HackerFont',
+        fill: '#fff',
+        align: 'left',
+        wordWrap: true,
+        wordWrapWidth: 256
+    };
+    var scorestyle = {
+        color: 'red',
+        // temp font, need to find font for commercial use
+        font: '15px HackerFont',
+        fill: '#f00',
+        align: 'left',
+        wordWrap: true,
+        wordWrapWidth: 256
+    };
+    var acpointsstyle = {
+        color: 'yellow',
+        // temp font, need to find font for commercial use
+        font: '15px HackerFont',
+        fill: '#f0f',
+        align: 'left',
+        wordWrap: true,
+        wordWrapWidth: 256
+    };
+    var stackstyle = {
+        color: 'yellow',
+        // temp font, need to find font for commercial use
+        font: '15px HackerFont',
+        fill: '#ffff00',
+        align: 'left',
+        wordWrap: true,
+        wordWrapWidth: 256
+    };
+    var secmstyle = {
+        color: 'yellow',
+        // temp font, need to find font for commercial use
+        font: '13px HackerFont',
+        fill: '#ffff00',
+        align: 'left',
+        wordWrap: true,
+        wordWrapWidth: 256
+    };
 
-    },
-    create: function () {
-        //attackpanel area
-        this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
-        var style = {
-            color: 'white',
-            // temp font, need to find font for commercial use
-            font: '15px HackerFont',
-            fill: '#fff',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 256
-        };
-        var scorestyle = {
-            color: 'red',
-            // temp font, need to find font for commercial use
-            font: '15px HackerFont',
-            fill: '#f00',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 256
-        };
-        var acpointsstyle = {
-            color: 'yellow',
-            // temp font, need to find font for commercial use
-            font: '15px HackerFont',
-            fill: '#f0f',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 256
-        };
-        var stackstyle = {
-            color: 'yellow',
-            // temp font, need to find font for commercial use
-            font: '15px HackerFont',
-            fill: '#ffff00',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 256
-        };
-        var secmstyle = {
-            color: 'yellow',
-            // temp font, need to find font for commercial use
-            font: '13px HackerFont',
-            fill: '#ffff00',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 256
-        };
-
-        this.attackpanelLabel = this.add.text(10, 400, '', style);
+    this.attackpanelLabel = this.add.text(10, 400, '', style);
 
     //newspanel area
     this.newspanel = this.add.sprite(640, 0, 'newspanel');
@@ -206,62 +208,6 @@ InsurancePlz.GameState = {
       hackingdamageText.text = "$ " +this.gameProgress.score +"\nDamage total";
       actionpointsText.text = "A.points: " +this.gameProgress.actionPoints;
   },
-
-
-    closeNews: function() {
-        console.log('Closing news');
-        this.popup.group.destroy();
-    },
-    //Could be extended with an additional argument for a callback function
-    createPopup: function(text, btntext) {
-        //Create objects to hold the data
-        this.popup = {};
-        this.popup.group = this.add.group();
-
-    //Create background
-    this.popup.background = this.add.graphics(0, 0);
-    this.popup.background.inputEnabled = true;
-    this.popup.background.beginFill(0x000000, 0.5);
-    this.popup.background.drawRect(0, 0, 1000, 1000);
-    this.popup.background.endFill();
-
-    //Create popup panel
-    this.popup.panel = this.add.sprite(this.game.world.centerX,
-      this.game.world.centerY,'popuppanel');
-    this.popup.panel.anchor.setTo(0.5);
-
-    //Text style
-    var style = {
-      color: 'white',
-      font: '15px HackerFont',
-      fill: '#fff',
-      align: 'center',
-      wordWrap: true,
-      wordWrapWidth: 440
-    };
-
-    //Message text. Can be changed to also use anchor(0.5) to center vertically
-    this.popup.message = this.add.text(this.game.world.centerX-220,
-      this.game.world.centerY-160, text, style);
-
-    this.popup.group.add(this.popup.background);
-    this.popup.group.add(this.popup.panel);
-    this.popup.group.add(this.popup.message);
-
-    if (btntext!=null){
-      //Close button
-      this.popup.button = this.add.button(this.game.world.centerX,
-      this.game.world.centerY+140, 'button', this.closeNews, this);
-      this.popup.button.anchor.setTo(0.5);
-      //Close button text
-      this.popup.buttontext = this.add.text(this.game.world.centerX,
-        this.game.world.centerY+145, btntext, style);
-      this.popup.buttontext.anchor.setTo(0.5);
-      this.popup.group.add(this.popup.button);
-      this.popup.group.add(this.popup.buttontext);
-    }
-
-    },
     /**
      * Returns available an available x coordinate from the buttonstack
      * where we are dealing with a 2dimensional array : [[650, false],..]
@@ -332,7 +278,6 @@ InsurancePlz.GameState = {
             align: 'left',
             wordWrap: true,
             wordWrapWidth: 256
-
     };
 
 
@@ -466,14 +411,16 @@ InsurancePlz.GameState = {
     startTurn: function () {
         //Pop up news message, fade out & make uninteractable rest of game
         if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.length == 0) {
-          this.createPopup("There is no news today!\nHappy hacking!\n", 'Close');
+          this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\n", 'Close');
+          this.popup.addButton("Let's begin!", this.closePopup, this);
         } else {
           let text = "THE NEWS\n";
           for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
             let newsitem = this.gameProgress.newsarray[i];
             text += newsitem.body + "\n\n";
           }
-          this.createPopup(text, 'Close');
+          this.popup = new Popup("Turn " + this.gameProgress.turn + " News", text);
+          this.popup.addButton("Close", this.closePopup, this);
           this.gameProgress.newsarray = [];
         }
     },
@@ -482,6 +429,8 @@ InsurancePlz.GameState = {
         this.executeAttacks() // we are executing our attacks
         this.clearAttackStack(); // clear stacked attack array
         this.setAllButtonxAvailable(); // all button positions can be taken again
+        this.triggerMajorEvent();
+        this.triggerMinorEvent();
         this.gameProgress.index = 0;
         this.gameProgress.turn++;
         this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
@@ -493,7 +442,122 @@ InsurancePlz.GameState = {
             this.startTurn();
         }
     },
-    endGame: function () {
-        this.createPopup('Congratulations. You have reached the end of the prototype game!');
+  closePopup: function(){
+    this.popup.destroy();
+  },
+  endGame: function(){
+    this.popup = new Popup("Congratulations!", "You have reached the end of the prototype game!");
+  },
+  /**
+    * Executes (a number of?) minor, silent events.
+    * Decides which event to trigger using a roulette system based on the weights of each event.
+    */
+  triggerMinorEvent: function(){
+    let roulette = [];
+    for (var i=0;i<this.minorEventList.length;i++){
+      console.log(this.minorEventList[i]);
+      for (var j=0;j<this.minorEventList[i].getWeight();j++){
+        roulette.push(i);
+      }
     }
+    this.minorEventList[roulette[Math.floor(Math.random()*roulette.length)]].execute();
+  },
+  /**
+    * Executes a major event and adds it to the list of news items events.
+    * Decides which event to trigger using a roulette system based on the weights of each event.
+    */
+  triggerMajorEvent: function(){
+    let roulette = [];
+    for (var i=0;i<this.majorEventList.length;i++){
+      for (var j=0;j<this.majorEventList[i].getWeight();j++){
+        roulette.push(i);
+      }
+    }
+    if (roulette.length>0){
+      let rand = Math.floor(Math.random()*roulette.length);
+      //TODO: Add result to news list
+      let news = this.majorEventList[rand].getNews();
+      this.gameProgress.newsarray.push({
+          round: this.gameProgress.turn,
+          type: "event",
+          headline: news.headline,
+          body: news.body
+      });
+      //Execute event
+      this.majorEventList[roulette[rand]].execute();
+      //Prevent event from being executed again
+      this.majorEventList.splice(i, i);
+    }
+  },
+  triggerMajorEvent_global_iot: function(){
+    this.globalSecurityUpgrade("iot");
+  },
+  triggerMajorEvent_global_nobyod: function(){
+    this.globalSecurityUpgrade("nobyod");
+  },
+  triggerMajorEvent_global_pwman: function(){
+    this.globalSecurityUpgrade("pwman");
+  },
+  triggerMajorEvent_global_websec: function(){
+    this.globalSecurityUpgrade("websec");
+  },
+  triggerMajorEvent_global_autoup: function(){
+    this.globalSecurityUpgrade("autoup");
+  },
+  triggerMajorEvent_global_firewall: function(){
+    this.globalSecurityUpgrade("firewall");
+  },
+  triggerMajorEvent_global_stafftrain: function(){
+    this.globalSecurityUpgrade("stafftrain");
+  },
+  triggerMajorEvent_global_riskaudit: function(){
+    this.globalSecurityUpgrade("riskaudit");
+  },
+  triggerMajorEvent_global_techadvice: function(){
+    this.globalSecurityUpgrade("techadvice");
+  },
+  triggerMajorEvent_global_servicecon: function(){
+    this.globalSecurityUpgrade("servicecon");
+  },
+  /**
+    * Sets the security level of the given key for every target to 1 (maximum).
+    */
+  globalSecurityUpgrade: function(key){
+    for (var i=0;i<this.targets.children.length;i++){
+      for (var j=0;j<this.targets.children[i].data.securityVector.length;j++){
+        console.log()
+        if (this.targets.children[i].data.securityVector[j][0]===key){
+            this.targets.children[i].data.securityVector[j][1]=1;
+        }
+      }
+    }
+  },
+  /**
+    * Attempts to upgrade a random key in the security vector of a random target.
+    * @returns {Boolean} success - True or false depending on whether an upgradable target was found.
+    */
+  triggerMinorEvent_security_upgrade: function(){
+    console.log("Security upgraded");
+    let list = [];
+    for (var i=0;i<this.targets.children.length;i++){
+      if (this.targets.children[i].canBeUpgraded()){
+        list.push(i);
+      }
+    }
+    if (list.length>0){
+      let r = Math.floor(Math.random()*list.length);
+      this.targets.children[list[Math.floor(Math.random()*list.length)]].upgradeSecurity();
+      return true;
+    } else {
+      return false;
+    }
+  },
+  /**
+    * Increases the impact of a random target by 1.
+    */
+  triggerMinorEvent_impact_upgrade: function(){
+    console.log("Impact upgraded");
+    this.targets.children[Math.floor(Math.random()*this.targets.children.length)].data.impact++;
+    return true;
+  }
 };

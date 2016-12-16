@@ -193,3 +193,29 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     //TODO random damage range that determines what effects are chosen for the news sheet
 
 };
+
+InsurancePlz.Target.prototype.canBeUpgraded = function(){
+  for (var k in this.data.securityVector){
+    if (this.data.securityVector[k][1]===0){
+      return true;
+    }
+  }
+  return false;
+};
+
+InsurancePlz.Target.prototype.upgradeSecurity = function(){
+  let keys = [];
+  for (var k in this.data.securityVector){
+    if (this.data.securityVector[k][1]===0){
+      keys.push(k);
+    }
+  }
+  if (keys.length>0){
+    let rand = keys[Math.floor(Math.random()*keys.length)];
+    console.log(this.data.name + " upgraded security " + this.data.securityVector[rand][0]);
+    this.data.securityVector[rand][1]++;
+    return true;
+  } else {
+    return false;
+  }
+};
