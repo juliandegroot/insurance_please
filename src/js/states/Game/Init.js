@@ -37,6 +37,7 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
 InsurancePlz.GameState.createMap = function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
     var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
+    var attackData = JSON.parse(this.game.cache.getText('attacks')).attacks;
 
     this.attackMapData.targets = targets;
 
@@ -52,7 +53,7 @@ InsurancePlz.GameState.createMap = function() {
     //create attack instances
     this.attacks = this.add.group();
     var attack;
-    this.attackMapData.attacks.forEach(function(attackData) {
+    attackData.forEach(function(attackData) {
         attack = new InsurancePlz.Attack(this, attackData);
         this.attacks.add(attack);
     }, this);
