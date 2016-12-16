@@ -25,7 +25,7 @@ InsurancePlz.Target.prototype.touch = function () {
     var news = this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Measures: \n";
     var secured = this.getSecuredString();
     var vulnerabilities = this.getVulnerableString();
-    
+
     this.state.newspanelLabel.text = news;
     this.state.securedpanelLabel.text = secured;
     this.state.vulnerablepanelLabel.text = vulnerabilities;
@@ -79,7 +79,7 @@ InsurancePlz.Target.prototype.getVulnerableString = function () {
     var string = "Vulnerable:\n";
     for (var key in secvector) { // getting the actual array
         if (secvector[key] == 0) {
-            string = string + secvector[key] + "\n";
+            string = string + key + "\n";
             //console.log(string);
         }
     }
@@ -143,8 +143,8 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
 
     var hacker_damage_inflicted = attackstrength * 100000;
     var company_damage_suffered = hacker_damage_inflicted * (1-reducfactor);
-    
-    
+
+
     console.log("Attackstrength: " + attackstrength);
     console.log(effecton);
     console.log("Damage reduc factor: " + reducfactor);
