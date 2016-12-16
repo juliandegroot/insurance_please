@@ -15,6 +15,7 @@ InsurancePlz.PreloadState = {
         //load game assets
         this.load.image('attackpanel', 'assets/images/attackpanel.png');
         this.load.image('newspanel', 'assets/images/newspanel.png');
+        this.load.image('howtoplaypanel', 'assets/images/howtoplaypanel.png');
         this.load.image('popuppanel', 'assets/images/popuppanel.png');
         this.load.image('europe', 'assets/images/attackmap.png');
         this.load.image('company', 'assets/images/building.png');
@@ -42,6 +43,7 @@ InsurancePlz.PreloadState = {
 
         this.load.image('button', 'assets/images/button.png');
         this.load.image('button-circle', 'assets/images/button-circle.png');
+        this.load.image('howtoplay', 'assets/images/howtoplay.png');
 
         //data files
         this.load.text('europe', 'assets/data/europe.json');
