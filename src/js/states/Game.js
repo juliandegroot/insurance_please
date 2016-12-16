@@ -524,12 +524,7 @@ InsurancePlz.GameState = {
     */
   globalSecurityUpgrade: function(key){
     for (var i=0;i<this.targets.children.length;i++){
-      for (var j=0;j<this.targets.children[i].data.securityVector.length;j++){
-        console.log()
-        if (this.targets.children[i].data.securityVector[j][0]===key){
-            this.targets.children[i].data.securityVector[j][1]=1;
-        }
-      }
+      this.targets.children[i].data.securityVector[key]=1;
     }
   },
   /**
@@ -545,7 +540,6 @@ InsurancePlz.GameState = {
       }
     }
     if (list.length>0){
-      let r = Math.floor(Math.random()*list.length);
       this.targets.children[list[Math.floor(Math.random()*list.length)]].upgradeSecurity();
       return true;
     } else {
