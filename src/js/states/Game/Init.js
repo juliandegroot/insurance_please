@@ -9,15 +9,15 @@
  * @returns {Array} finalTargets - The array containing the target with their locations.
  */
 InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
-    let targetNumber = attackMapData.numberOfTargets;
-    let targetLocations = attackMapData.locations;
-    let targets = targetData;
-    let finalTargets = [];
+    var targetNumber = attackMapData.numberOfTargets;
+    var targetLocations = attackMapData.locations;
+    var targets = targetData;
+    var finalTargets = [];
 
     for (i = 0; i < targetNumber; i++) {
         // Choose a random target from the remaining targets.
-        let j = Math.floor(Math.random() * targets.length);
-        let target = targets[j];
+        var j = Math.floor(Math.random() * targets.length);
+        var target = targets[j];
         // Assign the location coordinates
         target.x = targetLocations[i][0];
         target.y = targetLocations[i][1];
@@ -36,7 +36,7 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
      */
 InsurancePlz.GameState.createMap = function() {
     this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
-    let targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
+    var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
 
 this.attackMapData.targets = targets;
 

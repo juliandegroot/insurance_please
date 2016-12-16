@@ -3,16 +3,16 @@
  * Decides which event to trigger using a roulette system based on the weights of each event.
  */
 InsurancePlz.GameState.triggerMajorEvent = function() {
-    let roulette = [];
+    var roulette = [];
     for (var i = 0; i < this.majorEventList.length; i++) {
         for (var j = 0; j < this.majorEventList[i].getWeight(); j++) {
             roulette.push(i);
         }
     }
     if (roulette.length > 0) {
-        let rand = Math.floor(Math.random() * roulette.length);
+        var rand = Math.floor(Math.random() * roulette.length);
         //TODO: Add result to news list
-        let news = this.majorEventList[rand].getNews();
+        var news = this.majorEventList[rand].getNews();
         this.gameProgress.newsarray.push({
             round: this.gameProgress.turn,
             type: "event",

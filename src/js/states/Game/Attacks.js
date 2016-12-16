@@ -183,8 +183,8 @@ InsurancePlz.GameState.executeAttacks = function() {
     // for each target and attack combination in the attackstack array:
     //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
-        let target = this.gameProgress.attackstack[i][0];
-        let attack = this.gameProgress.attackstack[i][1];
+        var target = this.gameProgress.attackstack[i][0];
+        var attack = this.gameProgress.attackstack[i][1];
         target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName());
     }
 };

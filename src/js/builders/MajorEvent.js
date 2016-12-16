@@ -38,7 +38,7 @@ InsurancePlz.MajorEvent.prototype.getWeight = function() {
 * @returns {Object[]} events - A list of all major event objects found in the given JSON.
 */
 function createMajorEventsFromJSON(eventJSON){
-  let list = JSON.parse(eventJSON).events;
+  var list = JSON.parse(eventJSON).events;
   var events = [];
   for (i = 0; i < list.length; i++) {
     events.push(new InsurancePlz.MajorEvent(list[i]));

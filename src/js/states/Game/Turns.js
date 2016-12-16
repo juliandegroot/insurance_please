@@ -4,9 +4,9 @@ InsurancePlz.GameState.startTurn = function() {
         this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\n", 'Close');
         this.popup.addButton("Let's begin!", this.closePopup, this);
     } else {
-        let text = "THE NEWS\n";
+        var text = "THE NEWS\n";
         for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
-            let newsitem = this.gameProgress.newsarray[i];
+            var newsitem = this.gameProgress.newsarray[i];
             text += newsitem.body + "\n\n";
         }
         this.popup = new Popup("Turn " + this.gameProgress.turn + " News", text);

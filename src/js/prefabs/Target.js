@@ -172,14 +172,14 @@ InsurancePlz.Target.prototype.canBeUpgraded = function(){
 };
 
 InsurancePlz.Target.prototype.upgradeSecurity = function(){
-  let keys = [];
+  var keys = [];
   for (var key in this.data.securityVector){
     if (this.data.securityVector[key]===0){
       keys.push(key);
     }
   }
   if (keys.length>0){
-    let rand = keys[Math.floor(Math.random()*keys.length)];
+    var rand = keys[Math.floor(Math.random()*keys.length)];
     console.log(this.data.name + " upgraded security " + rand);
     this.data.securityVector[rand]=1;
     return true;

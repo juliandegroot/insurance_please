@@ -26,7 +26,7 @@ InsurancePlz.MinorEvent.prototype.getWeight = function() {
 * @returns {Object[]} events - A list of all minor event objects found in the given JSON.
 */
 function createMinorEventsFromJSON(eventJSON){
-  let list = JSON.parse(eventJSON).events;
+  var list = JSON.parse(eventJSON).events;
   var events = [];
   for (i = 0; i < list.length; i++) {
     events.push(new InsurancePlz.MinorEvent(list[i]));

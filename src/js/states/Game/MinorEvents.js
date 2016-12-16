@@ -3,7 +3,7 @@
  * Decides which event to trigger using a roulette system based on the weights of each event.
  */
 InsurancePlz.GameState.triggerMinorEvent = function() {
-    let roulette = [];
+    var roulette = [];
     for (var i = 0; i < this.minorEventList.length; i++) {
         console.log(this.minorEventList[i]);
         for (var j = 0; j < this.minorEventList[i].getWeight(); j++) {
@@ -19,7 +19,7 @@ InsurancePlz.GameState.triggerMinorEvent = function() {
  */
 InsurancePlz.GameState.triggerMinorEvent_security_upgrade = function() {
     console.log("Security upgraded");
-    let list = [];
+    var list = [];
     for (var i = 0; i < this.targets.children.length; i++) {
         if (this.targets.children[i].canBeUpgraded()) {
             list.push(i);
