@@ -87,7 +87,7 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
     var scorestyle = {
         color: 'red',
         // temp font, need to find font for commercial use
-        font: '15px HackerFont',
+        font: '15px ZrNic',
         fill: '#f00',
         align: 'left',
         wordWrap: true,

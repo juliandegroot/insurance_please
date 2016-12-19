@@ -38,7 +38,7 @@ function Popup(headline, text, panelname) {
     //Headline style
     var headlineStyle = {
         color: 'white',
-        font: '24px HackerFont',
+        font: '24px ZrNic',
         fill: '#fff',
         align: 'center'
     };
@@ -55,7 +55,7 @@ function Popup(headline, text, panelname) {
     //Text style
     var textStyle = {
         color: 'white',
-        font: '14px HackerFont',
+        font: '14px ZrNic',
         fill: '#fff',
         align: 'left',
         wordWrap: true,

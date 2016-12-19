@@ -11,8 +11,8 @@ InsurancePlz.GameState = {
 
         this.gameProgress = {
             "turn": 1,
-            "actionPoints": 20,
-            "actionPointsMax": 20,
+            "actionPoints": 40,
+            "actionPointsMax": 40,
             "score": 0,
             "attackstack": [],
             "index": 0,
@@ -45,7 +45,7 @@ InsurancePlz.GameState = {
         var style = {
             color: 'white',
             // temp font, need to find font for commercial use
-            font: '15px HackerFont',
+            font: '15px ZrNic',
             fill: '#fff',
             align: 'left',
             wordWrap: true,
@@ -54,7 +54,7 @@ InsurancePlz.GameState = {
         var scorestyle = {
             color: 'red',
             // temp font, need to find font for commercial use
-            font: '15px HackerFont',
+            font: '14px ZrNic',
             fill: '#f00',
             align: 'left',
             wordWrap: true,
@@ -63,7 +63,7 @@ InsurancePlz.GameState = {
         var acpointsstyle = {
             color: 'yellow',
             // temp font, need to find font for commercial use
-            font: '15px HackerFont',
+            font: '17px ZrNic',
             fill: '#f0f',
             align: 'left',
             wordWrap: true,
@@ -72,7 +72,7 @@ InsurancePlz.GameState = {
         var stackstyle = {
             color: 'yellow',
             // temp font, need to find font for commercial use
-            font: '15px HackerFont',
+            font: '15px ZrNic',
             fill: '#ffff00',
             align: 'left',
             wordWrap: true,
@@ -81,7 +81,7 @@ InsurancePlz.GameState = {
         var secmstyle = {
             color: 'yellow',
             // temp font, need to find font for commercial use
-            font: '13px HackerFont',
+            font: '15px ZrNic',
             fill: '#ffff00',
             align: 'left',
             wordWrap: true,
@@ -93,8 +93,8 @@ InsurancePlz.GameState = {
         //newspanel area
         this.newspanel = this.add.sprite(640, 0, 'newspanel');
         this.newspanelLabel = this.add.text(644, 15, '', style);
-        this.securedpanelLabel = this.add.text(644, 100, '', secmstyle);
-        this.vulnerablepanelLabel = this.add.text(770, 100, '', secmstyle);
+        //this.securedpanelLabel = this.add.text(644, 100, '', secmstyle);
+        this.vulnerablepanelLabel = this.add.text(644, 90, '', secmstyle);
 
         //scoreboard logo
 
