@@ -1,7 +1,7 @@
 InsurancePlz.GameState.startTurn = function() {
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.length == 0) {
-        this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual no how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
+        this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
         this.popup.addButton("Let's begin!", this.closePopup, this);
     } else {
         var text = "THE NEWS\n";

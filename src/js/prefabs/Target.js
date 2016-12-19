@@ -22,7 +22,7 @@ InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 InsurancePlz.Target.prototype.touch = function () {
     //shows target info in news panel:
 
-    var news = "Targetname: " + this.data.name + "\nDamge: $" + this.data.damage + "\nVulnerabilities: \n";
+    var news = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
     var secured = this.getSecuredString();
     var vulnerabilities = this.getVulnerableString();
 
