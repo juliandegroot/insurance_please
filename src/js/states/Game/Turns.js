@@ -15,7 +15,7 @@ InsurancePlz.GameState.startTurn = function () {
     }
 };
 
-InsurancePlz.GameState.endTurn = function() {
+InsurancePlz.GameState.endTurn = function () {
     this.flushAttackStack(); // buttons on the right in panel
     this.executeAttacks() // we are executing our attacks
     this.clearAttackStack(); // clear stacked attack array
@@ -30,7 +30,7 @@ InsurancePlz.GameState.endTurn = function() {
     if (this.gameProgress.turn > 10) {
         this.endGame();
     } else {
-    startruntimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, this.startTurn, this);
+        startruntimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, this.startTurn, this);
         //this.startTurn();
     }
 };
