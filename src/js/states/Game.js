@@ -118,6 +118,9 @@ InsurancePlz.GameState = {
         this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
         this.endturntext = this.add.text(715, 470, 'End turn', style);
         this.stackboxtext = this.add.text(650, 330, '', style);
+        
+        //how-to-play, information button
+        this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
 
         //group of stacked attack buttons:
         this.stackedattacks = this.add.group();
