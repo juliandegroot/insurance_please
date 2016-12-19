@@ -185,7 +185,7 @@ InsurancePlz.GameState.executeAttacks = function() {
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
-        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName());
+        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName(), target);
     }
 };
 

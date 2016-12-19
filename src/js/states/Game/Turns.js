@@ -20,8 +20,8 @@ InsurancePlz.GameState.endTurn = function() {
     this.executeAttacks() // we are executing our attacks
     this.clearAttackStack(); // clear stacked attack array
     this.setAllButtonxAvailable(); // all button positions can be taken again
-    this.triggerMajorEvent();
-    this.triggerMinorEvent();
+    //this.triggerMajorEvent();
+    //this.triggerMinorEvent();
     this.gameProgress.index = 0;
     this.gameProgress.turn++;
     this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
@@ -30,7 +30,7 @@ InsurancePlz.GameState.endTurn = function() {
     if (this.gameProgress.turn > 10) {
         this.endGame();
     } else {
-        this.startTurn();
+        //this.startTurn();
     }
 };
 

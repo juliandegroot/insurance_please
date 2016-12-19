@@ -132,7 +132,7 @@ InsurancePlz.Target.prototype.getName = function () {
     return this.data.name;
 };
 
-InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackname, targetname) {
+InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackname, targetname, targetobject) {
     //console.log("D.dmage: attack vector: ");
     //console.log(atkvec);
     //console.log("D.dmage: target secvector: ");
@@ -187,9 +187,16 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     console.log("Company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
 
     if (company_damage_suffered > 0) {
-      this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
+        var sufferedTargetTween = this.game.add.tween(targetobject);
+        sufferedTargetTween.to({
+            tint: 0xFF0000 // flicker to red
+        }, 500);
+        sufferedTargetTween.onComplete.add(function () {
+            targetobject.tint = 0xFFFFFF; // back to normal tint
+        }, this);
+        sufferedTargetTween.start();
+        this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
     }
-
     this.data.damage = this.data.damage + company_damage_suffered;
     //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
     //TODO random damage range that determines what effects are chosen for the news sheet
