@@ -6,7 +6,7 @@ InsurancePlz.MenuState = {
         //Title style
         var titleStyle = {
             color: 'white',
-            font: '48px HackerFont',
+            font: '48px ZrNic',
             fill: '#fff',
             align: 'center',
             wordWrapWidth: 440

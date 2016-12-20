@@ -87,7 +87,7 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
     var scorestyle = {
         color: 'red',
         // temp font, need to find font for commercial use
-        font: '15px HackerFont',
+        font: '15px ZrNic',
         fill: '#f00',
         align: 'left',
         wordWrap: true,
@@ -185,7 +185,7 @@ InsurancePlz.GameState.executeAttacks = function() {
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
-        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName());
+        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName(), target);
     }
 };
 

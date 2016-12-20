@@ -19,11 +19,11 @@ InsurancePlz.PreloadState = {
         this.load.image('popuppanel', 'assets/images/popuppanel.png');
         this.load.image('europe', 'assets/images/attackmap.png');
         this.load.image('company', 'assets/images/building.png');
-        this.load.image('hackdamage', 'assets/images/hackdamage.png');
+
 
         //make sure all images are equal in size (150x161) to prevent anchor and scaling issues
         this.load.image('drivebydownload', 'assets/images/drivebydownload.png');
-        this.load.image('ddos_attack', 'assets/images/ddos_attack.png');
+        //this.load.image('ddos_attack', 'assets/images/ddos_attack.png');
         this.load.image('freefoundusbstick', 'assets/images/freefoundusbstick.png');
         this.load.image('popup', 'assets/images/popup.png');
         this.load.image('roguewifi', 'assets/images/roguewifi.png');
@@ -33,7 +33,7 @@ InsurancePlz.PreloadState = {
 
         //for the attack stack images:
         this.load.image('drivebydownload_small', 'assets/images/drivebydownload_small.png');
-        this.load.image('ddos_attack_small', 'assets/images/ddos_attack_small.png');
+        //this.load.image('ddos_attack_small', 'assets/images/ddos_attack_small.png');
         this.load.image('freefoundusbstick_small', 'assets/images/freefoundusbstick_small.png');
         this.load.image('popup_small', 'assets/images/popup_small.png');
         this.load.image('roguewifi_small', 'assets/images/roguewifi_small.png');
