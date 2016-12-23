@@ -20,12 +20,18 @@ InsurancePlz.GameState.endTurn = function () {
     this.executeAttacks() // we are executing our attacks
     this.clearAttackStack(); // clear stacked attack array
     this.setAllButtonxAvailable(); // all button positions can be taken again
-    this.triggerMajorEvent();
-    this.triggerMinorEvent();
     this.gameProgress.index = 0;
     this.gameProgress.turn++;
     this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
     this.refreshStats(); // update stats
+
+    //Trigger a minor event every turn
+    this.triggerMinorEvent();
+    //Trigger a major event every 5th turn
+    if (this.gameProgress.turn%5===2){
+        this.triggerMajorEvent();
+    }
+
     console.log('It is now turn: ' + this.gameProgress.turn);
     if (this.gameProgress.turn > 10) {
         this.endGame();
