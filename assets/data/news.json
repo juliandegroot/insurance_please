@@ -1,31 +1,43 @@
 {
  "headlines": {
    "general": [
-     "Company %c victim of cyber attack.",
-     "%c attacked yesterday by %a."
+     "Company %CN victim of cyber attack.",
+     "%CN attacked yesterday by %a."
    ],
    "usb": [
-     "%c victim of cyber attack after uncareful handling of usb.",
-     "usb headline 1, %c.",
-     "usb headline 2, %d."
+     	"USB-stick used to attack %CN.",
+     	"%CN attacked by USB-stick.",
+     	"%CN attacked using a USB-stick"
    ],
    "pw": [
-     "Password related headline."
+	"Stolen passwords used to attack %CN.",
+	"%CN attacked due to stolen passwords.",
+	"%CN attacked using stolen passwords."
    ],
    "download": [
-     "Download related headline."
+	"Infected downloads used to attack %CN.",
+	"%CN attacked by infected downloads.",
+	"%CN attacked using infected downloads."
    ],
    "popup": [
-     "Popup related headline 1."
+	"Pop-up used to attack %CN.",
+	"%CN attacked by pop-up.",
+	"%CN attacked using a pop-up."
    ],
    "wifi": [
-     "WiFi related headline 1."
+	"Fake Wi-fi network used to attack %CN.",
+	"%CN attacked by fake wifi network.",
+	"%CN attacked using a fake wifi network."
    ],
    "phishing": [
-     "Phising related headline 1."
+	"Phising mails used to attack %CN.",
+	"%CN attacked by phising mails.",
+	"%CN attacked using phising mails."
    ],
    "social": [
-     "Social engineering headline 1."
+	"Social Engineering used to attack %CN.",
+	"%CN attacked through social engineering.",
+	"%CN attacked using social engineering."
    ]
  },
  "intro": {
@@ -34,27 +46,39 @@
      "Another general introduction sentence."
    ],
    "usb": [
-     "usb intro 1, %c.",
-     "usb intro 2, %d.",
-     "usb intro 3, %a."
+	"Hackers spreaded infected USB sticks. They distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC. Via this USB-stick the hackers could spread a virus within the company. ",
+	"Hackers distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC. Via this USB-stick the hackers could spread a virus within the company. ",
+	"An employee of the financial department pluged-in an infected, free USB-stick."
    ],
    "pw": [
-
+	"Hackers stole various passwords of employees.",
+	"The passwords of multiple employees of the customer relations department were stolen by the hackers.",
+	"."
    ],
    "download": [
-
+	".",
+	".",
+	"."
    ],
    "popup": [
-
+	"Hackers designed an infected pop-up in order to enter the company. One of the employees on the customer service department opened this pop-up.",
+	"An employee of the financial department clicked on an infected pop-up.",
+	"A pop-up with malicious content showed up on websites visited by employees in the financial department. One of the employees reportedly clicked on the pop-up by accident."
    ],
    "wifi": [
-
+	"The hackers set-up a fake wifi network. Multiple employees of the legal department conencted to this network.",
+	"Hackers found a new victim, %CN is attacked via a fake wifi-network.",
+	"A rogue wifi-network was setup, and employees of the service department were unaware that this was not safe."
    ],
    "phishing": [
-
+	"Hackers have targeted %CN by using phishing emails.",
+	"The hackers used spoofing as a mean to trick personell of the financial department to install certain security measures.  A pixel-perfect counterfeit of a corporate email made it very hard to distinguis from a real one.",
+	"Using phishing emails, the hackers tricked the legal department into providing valueable information, like social security numbers, tax ID and bank account numbers."
    ],
    "social": [
-
+	".",
+	".",
+	"."
    ]
  },
  "attack": {
@@ -64,7 +88,7 @@
    ],
    "usb": [
      "usb attack 1, %d.",
-     "usb attack 2, %c.",
+     "usb attack 2, %CN.",
      "usb attack 3, %a."
    ],
    "pw": [
@@ -87,7 +111,7 @@
    ]
  },
  "damage": [
-   "The damage for %c was %d.",
-   "The damage at %c consisted of %d."
+   "The damage for %CN was %d.",
+   "The damage at %CN consisted of %d."
  ]
 }
