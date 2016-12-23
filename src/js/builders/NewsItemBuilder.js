@@ -36,7 +36,71 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsItems = function(infoArray) {
 InsurancePlz.NewsItemBuilder.prototype.generateNewsItem = function(eventInformation) {
   var newsitem = {};
   // TODO: create the actual news, nows still waiting for the requirements
+  newsitem.headline = this.generateHeadline(eventInformation);
+  newsitem.body = this.generateNewsBody(eventInformation);
   return newsitem;
+}
+
+/**
+ * Create a random headline based on the event information.
+ * @param {Object} eventInformation - The information on the event.
+ * @return {String} - The generated headline.
+ */
+InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformation) {
+  var headlines = this.newsSnippets.headlines.general.concat(
+    this.newsSnippets.headlines[eventInformation.attackID]);
+  return this.replaceAllTags(this.chooseRandomString(headlines), eventInformation);
+}
+
+/**
+ * Generate a random news body based on the event information.
+ * @param {Object} eventInformation - The information on the event.
+ * @return {String} - The generated news body.
+ */
+InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformation) {
+  var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
+  var attack = this.chooseCategorySentence("attack", eventInformation.attackID);
+  var body  = intro + " " + attack;
+  return this.replaceAllTags(body, eventInformation);
+}
+
+/**
+ * Choose a random sentence from a category. The sentences chosen from are the general entry
+ * for that category combined with the entries for the specified id for the category.
+ * @param {String} category - The category to draw sentences from.
+ * @param {String} id - The id to combine with the general entries.
+ */
+InsurancePlz.NewsItemBuilder.prototype.chooseCategorySentence = function(category, id) {
+  // TODO: null check on category and id
+  var options = this.newsSnippets[category].general.concat(
+    this.newsSnippets[category][id]
+  );
+  return this.chooseRandomString(options);
+}
+
+
+/**
+ * Choose a random String from the array of Strings.
+ * @param {Array} array - The array of strings to choose from.
+ * @return {String} - The random chosen string.
+ */
+InsurancePlz.NewsItemBuilder.prototype.chooseRandomString = function(array) {
+  // TODO: length == 0 check?
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+/**
+ * Replace all the tags in the provided string with the information of the attack event.
+ * @param {String} string - String in which all the tags should be replaced.
+ * @param {Object} eventInformation - The object with the information of the event.
+ * @return {String} - The string with all tags replaced with the event information.
+ */
+InsurancePlz.NewsItemBuilder.prototype.replaceAllTags = function(string, eventInformation) {
+  string = this.replaceCompanyTag(string, eventInformation.companyName);
+  string = this.replaceAttackTag(string, eventInformation.attackName);
+  string = this.replaceDamageTag(string, eventInformation.damage);
+  string = this.replaceReductionTag(string, eventInformation.reduction);
+  return string;
 }
 
 /**
