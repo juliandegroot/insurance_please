@@ -2,57 +2,113 @@
   "events": [
     //Flat security events
     {
-      "key" : "global_nobyod",
+      "key" : "global_sec_nobyod",
       "headline" : "Global nobyod",
       "text" : "All companies now have nobyod security.",
       "weight" : 1
     },
     {
-      "key" : "global_pwman",
+      "key" : "global_sec_pwman",
       "headline" : "Global pwman",
       "text" : "All companies now have pwman security.",
       "weight" : 1
     },
     {
-      "key" : "global_websec",
+      "key" : "global_sec_websec",
       "headline" : "Global websec",
       "text" : "All companies now have websec security.",
       "weight" : 1
     },
     {
-      "key" : "global_autoup",
+      "key" : "global_sec_autoup",
       "headline" : "Global autoup",
       "text" : "All companies now have autoup security.",
       "weight" : 1
     },
     {
-      "key" : "global_firewall",
+      "key" : "global_sec_firewall",
       "headline" : "Global firewall",
       "text" : "All companies now have firewall security.",
       "weight" : 1
     },
     {
-      "key" : "global_stafftrain",
+      "key" : "global_sec_stafftrain",
       "headline" : "Global stafftrain",
       "text" : "All companies now have stafftrain security.",
       "weight" : 1
     },
     {
-      "key" : "global_riskaudit",
+      "key" : "global_sec_riskaudit",
       "headline" : "Global riskaudit",
       "text" : "All companies now have riskaudit security.",
       "weight" : 1
     },
     {
-      "key" : "global_techadvice",
+      "key" : "global_sec_techadvice",
       "headline" : "Global techadvice",
       "text" : "All companies now have techadvice security.",
       "weight" : 1
     },
     {
-      "key" : "global_servicecon",
+      "key" : "global_sec_servicecon",
       "headline" : "Global servicecon",
       "text" : "All companies now have servicecon security.",
+      "weight" : 1
+    },
+    
+    //Flat vulnerability events
+    {
+      "key" : "global_vuln_nobyod",
+      "headline" : "Global nobyod",
+      "text" : "All companies now have nobyod vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_pwman",
+      "headline" : "Global pwman",
+      "text" : "All companies now have pwman vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_websec",
+      "headline" : "Global websec",
+      "text" : "All companies now have websec vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_autoup",
+      "headline" : "Global autoup",
+      "text" : "All companies now have autoup vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_firewall",
+      "headline" : "Global firewall",
+      "text" : "All companies now have firewall vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_stafftrain",
+      "headline" : "Global stafftrain",
+      "text" : "All companies now have stafftrain vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_riskaudit",
+      "headline" : "Global riskaudit",
+      "text" : "All companies now have riskaudit vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_techadvice",
+      "headline" : "Global techadvice",
+      "text" : "All companies now have techadvice vulnerability.",
+      "weight" : 1
+    },
+    {
+      "key" : "global_vuln_servicecon",
+      "headline" : "Global servicecon",
+      "text" : "All companies now have servicecon vulnerability.",
       "weight" : 1
     }
   ]
