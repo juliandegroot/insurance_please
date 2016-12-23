@@ -26,9 +26,6 @@ InsurancePlz.GameState.triggerMajorEvent = function() {
     }
 };
 
-InsurancePlz.GameState.triggerMajorEvent_global_iot = function() {
-    this.globalSecurityUpgrade("iot");
-};
 InsurancePlz.GameState.triggerMajorEvent_global_nobyod = function() {
     this.globalSecurityUpgrade("nobyod");
 };

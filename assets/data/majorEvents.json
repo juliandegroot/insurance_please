@@ -1,11 +1,6 @@
 {
   "events": [
-    {
-      "key" : "global_iot",
-      "headline" : "Global IOT",
-      "text" : "All companies now have IOT security.",
-      "weight" : 1
-    },
+    //Flat security events
     {
       "key" : "global_nobyod",
       "headline" : "Global nobyod",
