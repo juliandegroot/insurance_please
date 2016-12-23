@@ -1,6 +1,5 @@
 {
   "events": [
-    //Flat security events
     {
       "key" : "global_sec_nobyod",
       "headline" : "Global nobyod",
@@ -56,7 +55,6 @@
       "weight" : 1
     },
     
-    //Flat vulnerability events
     {
       "key" : "global_vuln_nobyod",
       "headline" : "Global nobyod",
