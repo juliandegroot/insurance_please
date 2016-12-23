@@ -194,7 +194,7 @@ InsurancePlz.GameState.executeAttacks = function() {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
         // TODO: change to actual ID
-        var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), "usb", attack.getName(), target.getName(), target);
+        var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.id, attack.getName(), target.getName(), target);
         if (info.damage > 0) {
           events.push(info);
         }

@@ -11,6 +11,7 @@ InsurancePlz.Attack = function(state, data) {
     this.secvector = this.data.securityVector;
     this.points = this.data.points;
     this.impact = this.data.impact;
+    this.id = data.id;
 
     //listen for input
     this.inputEnabled = true;
