@@ -52,6 +52,8 @@ InsurancePlz.PreloadState = {
         this.load.text('minor_events', 'assets/data/minorEvents.json');
         this.load.text('major_events', 'assets/data/majorEvents.json');
 
+        this.load.text('news', 'assets/data/news.json');
+
     },
     create: function() {
         this.state.start('Menu');

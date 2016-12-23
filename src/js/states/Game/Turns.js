@@ -17,7 +17,11 @@ InsurancePlz.GameState.startTurn = function () {
 
 InsurancePlz.GameState.endTurn = function () {
     this.flushAttackStack(); // buttons on the right in panel
-    this.executeAttacks() // we are executing our attacks
+    var events = this.executeAttacks() // we are executing our attacks
+
+    this.gameProgress.newsarray = this.gameProgress.newsarray.concat(this.newsbuilder.generateNewsItems(events));
+
+
     this.clearAttackStack(); // clear stacked attack array
     this.setAllButtonxAvailable(); // all button positions can be taken again
     this.gameProgress.index = 0;
