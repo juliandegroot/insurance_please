@@ -28,7 +28,7 @@ InsurancePlz.GameState.endTurn = function () {
     //Trigger a minor event every turn
     this.triggerMinorEvent();
     //Trigger a major event every 5th turn
-    if (this.gameProgress.turn%5===0){
+    if (this.gameProgress.turn%5===2){
         this.triggerMajorEvent();
     }
 

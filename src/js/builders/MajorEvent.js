@@ -2,8 +2,8 @@ var InsurancePlz = InsurancePlz || {};
 
 InsurancePlz.MajorEvent = function(data) {
     this.key = data.key;
-    this.headline = data.headline;
-    this.text = data.text;
+    this.headlines = data.headlines;
+    this.texts = data.texts;
     this.weight = data.weight;
     //Sets up a link to the function that executes this event.
     this.execute = new Function("InsurancePlz.GameState.triggerMajorEvent_" + this.key + "()");
@@ -14,8 +14,8 @@ InsurancePlz.MajorEvent = function(data) {
  */
 InsurancePlz.MajorEvent.prototype.getNews = function() {
     return {
-        "headline": this.headline,
-        "body": this.text
+        "headline": this.headlines[Math.floor(Math.random()*this.headlines.length)],
+        "body": this.texts[Math.floor(Math.random()*this.texts.length)]
     };
 };
 

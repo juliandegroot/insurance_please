@@ -1,12 +1,12 @@
 {
-  "events": [
-    {
-      "key" : "security_upgrade",
-      "weight" : 3
-    },
-    {
-      "key" : "impact_upgrade",
-      "weight" : 1
-    }
-  ]
+	"events": [
+		{
+			"key": "security_upgrade",
+			"weight": 3
+		},
+		{
+			"key": "impact_upgrade",
+			"weight": 1
+		}
+	]
 }
