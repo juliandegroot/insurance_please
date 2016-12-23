@@ -1,4 +1,5 @@
 var InsurancePlz = InsurancePlz || {};
+var reg = {};
 
 /**
  * The base GameState object contains only the base Phaser functions.
@@ -11,8 +12,8 @@ InsurancePlz.GameState = {
 
         this.gameProgress = {
             "turn": 1,
-            "actionPoints": 40,
-            "actionPointsMax": 40,
+            "actionPoints": 10,
+            "actionPointsMax": 10,
             "score": 0,
             "attackstack": [],
             "index": 0,
@@ -54,16 +55,16 @@ InsurancePlz.GameState = {
         var scorestyle = {
             color: 'red',
             // temp font, need to find font for commercial use
-            font: '14px ZrNic',
+            font: '30px ZrNic',
             fill: '#f00',
-            align: 'left',
+            align: 'right',
             wordWrap: true,
             wordWrapWidth: 256
         };
         var acpointsstyle = {
             color: 'yellow',
             // temp font, need to find font for commercial use
-            font: '17px ZrNic',
+            font: '30px ZrNic',
             fill: '#f0f',
             align: 'left',
             wordWrap: true,
@@ -76,7 +77,7 @@ InsurancePlz.GameState = {
             fill: '#ffff00',
             align: 'left',
             wordWrap: true,
-            wordWrapWidth: 256
+            wordWrapWidth: 50
         };
         var secmstyle = {
             color: 'yellow',
@@ -101,12 +102,10 @@ InsurancePlz.GameState = {
         //loading the map with targets and attacks
         this.createMap();
 
-        this.damagelogo = this.add.sprite(0, 0, 'hackdamage');
-        this.damagelogo.scale.setTo(0.1);
         //overlay scoreboard text
-        hackingdamageText = this.game.add.text(480, 30, '', scorestyle);
+        hackingdamageText = this.game.add.text(250, 10, '', scorestyle);
         //actionpoints text
-        actionpointsText = this.game.add.text(480, 10, '', acpointsstyle);
+        actionpointsText = this.game.add.text(10, 10, '', acpointsstyle);
         stackText1 = this.game.add.text(650, 350, '', stackstyle);
         stackText2 = this.game.add.text(700, 350, '', stackstyle);
         stackText3 = this.game.add.text(750, 350, '', stackstyle);
@@ -116,7 +115,7 @@ InsurancePlz.GameState = {
 
         //end turn button and start of game
         this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
-        this.endturntext = this.add.text(715, 470, 'End turn', style);
+        this.endturntext = this.add.text(715, 470, 'Execute Attacks', style);
         this.stackboxtext = this.add.text(650, 330, '', style);
         
         //how-to-play, information button
@@ -127,6 +126,10 @@ InsurancePlz.GameState = {
 
         //start turn:
         this.startTurn();
+        
+        //modal setup:
+        reg.modal = new gameModal(this.game);
+        this.createModals();
     }
 };
 
@@ -149,8 +152,8 @@ InsurancePlz.GameState.refreshStats = function() {
         }
     }
     this.gameProgress.score = total;
-    hackingdamageText.text = "$ " + this.gameProgress.score + "\nDamage total";
-    actionpointsText.text = "A.points: " + this.gameProgress.actionPoints;
+    hackingdamageText.text = "$ " + this.gameProgress.score + " Damage";
+    actionpointsText.text = "Attackpoints: " + this.gameProgress.actionPoints;
 };
 
 InsurancePlz.GameState.closePopup = function() {
