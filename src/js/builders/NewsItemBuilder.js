@@ -23,6 +23,7 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsItems = function(infoArray) {
   for (var i = 0; i < infoArray.length; i++) {
     res.push(this.generateNewsItem(infoArray[i]));
   }
+  console.log(res)
   return res;
 }
 
@@ -58,8 +59,9 @@ InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformat
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformation) {
   var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
-  var attack = this.chooseCategorySentence("attack", eventInformation.attackID);
-  var body  = intro + " " + attack;
+  console.log(intro)
+  // var attack = this.chooseCategorySentence("attack", eventInformation.attackID);
+  var body = intro + " " + this.chooseDamageSentence();
   return this.replaceAllTags(body, eventInformation);
 }
 
@@ -77,6 +79,10 @@ InsurancePlz.NewsItemBuilder.prototype.chooseCategorySentence = function(categor
   return this.chooseRandomString(options);
 }
 
+// TODO: this might change depending on the stories.
+InsurancePlz.NewsItemBuilder.prototype.chooseDamageSentence = function() {
+  return this.chooseRandomString(this.newsSnippets.damage);
+}
 
 /**
  * Choose a random String from the array of Strings.
@@ -108,7 +114,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceAllTags = function(string, eventIn
  * @param {String} companyName - The company name to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceCompanyTag = function(string, companyName) {
-  return string.replace(new RegExp("%c", 'g'), companyName);
+  return string.replace(new RegExp("%CN", 'g'), companyName);
 }
 
 /**
