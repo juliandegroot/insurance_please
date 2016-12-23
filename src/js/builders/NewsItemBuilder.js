@@ -4,10 +4,9 @@ var InsurancePlz = InsurancePlz || {};
  * Builder class which can create news items based on provided information.
  * Needs a reference to the main game and the news snippets from which the
  * news items can be build.
- * @param {Object} state - Reference to the main game Object.
  * @param {String} newsJSON - A JSON String containing all the news snippets.
  */
-InsurancePlz.NewsItemBuilder = function(state, newsJSON) {
+InsurancePlz.NewsItemBuilder = function(newsJSON) {
   this.newsSnippets = newsJSON;
 }
 

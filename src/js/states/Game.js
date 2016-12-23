@@ -38,6 +38,8 @@ InsurancePlz.GameState = {
         this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
         this.majorEventList = createMajorEventsFromJSON(this.game.cache.getText('major_events'));
         this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
+
+        this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
         //console.log(this.attackDataList);
     },
     create: function() {
@@ -117,7 +119,7 @@ InsurancePlz.GameState = {
         this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
         this.endturntext = this.add.text(715, 470, 'Execute Attacks', style);
         this.stackboxtext = this.add.text(650, 330, '', style);
-        
+
         //how-to-play, information button
         this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
 
@@ -126,7 +128,7 @@ InsurancePlz.GameState = {
 
         //start turn:
         this.startTurn();
-        
+
         //modal setup:
         reg.modal = new gameModal(this.game);
         this.createModals();
