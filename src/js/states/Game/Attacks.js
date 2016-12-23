@@ -189,11 +189,17 @@ InsurancePlz.GameState.clearAttackStack = function() {
 InsurancePlz.GameState.executeAttacks = function() {
     // for each target and attack combination in the attackstack array:
     //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
+    var events = [];
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
-        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName(), target);
+        // TODO: change to actual ID
+        var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), "usb", attack.getName(), target.getName(), target);
+        if (info.damage > 0) {
+          events.push(info);
+        }
     }
+    return events;
 };
 
 /**

@@ -54,7 +54,7 @@ InsurancePlz.Target.prototype.touch = function () {
             console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
             this.state.clearAttackSelection(); // deselect attack
 
-        } 
+        }
         else {
             console.log("Already stacked or attackstack is full! (max 5)");
             this.state.clearAttackSelection(); // deselect attack
@@ -133,7 +133,7 @@ InsurancePlz.Target.prototype.getName = function () {
     return this.data.name;
 };
 
-InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackname, targetname, targetobject) {
+InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackid, attackname, targetname, targetobject) {
     //console.log("D.dmage: attack vector: ");
     //console.log(atkvec);
     //console.log("D.dmage: target secvector: ");
@@ -196,12 +196,22 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
             targetobject.tint = 0xFFFFFF; // back to normal tint
         }, this);
         sufferedTargetTween.start();
-        this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
+        // TODO: remove this?
+        // this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
     }
     this.data.damage = this.data.damage + company_damage_suffered;
     //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
     //TODO random damage range that determines what effects are chosen for the news sheet
+    var res = {
+      attackID: attackid,
+      attackName: attackname,
+      companyName: targetname,
+      damage: company_damage_suffered,
+      // TODO: this should be the actual thing, currently a placeholder
+      reduction: "TemporaryReduction"
+    }
 
+    return res;
 };
 
 InsurancePlz.Target.prototype.canBeUpgraded = function(){
