@@ -52,7 +52,8 @@ InsurancePlz.GameState.createMap = function() {
     //create attack instances
     this.attacks = this.add.group();
     var attack;
-    this.attackMapData.attacks.forEach(function(attackData) {
+    var attackData = JSON.parse(this.game.cache.getText('attacks'));
+    attackData.attacks.forEach(function(attackData) {
         attack = new InsurancePlz.Attack(this, attackData);
         this.attacks.add(attack);
     }, this);
@@ -60,7 +61,7 @@ InsurancePlz.GameState.createMap = function() {
 
 
 /**
- * showHowToPlay creates an information button and fills it with tips and general 
+ * showHowToPlay creates an information button and fills it with tips and general
  * information regarding security measures to the player gets an idea what attacks to
  * align for maximum effect.
  */
