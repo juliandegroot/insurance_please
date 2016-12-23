@@ -22,12 +22,12 @@ InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 InsurancePlz.Target.prototype.touch = function () {
     //shows target info in news panel:
 
-    var news = this.data.name + "\n" + this.data.category + "\nDamge: " + this.data.damage + "\nSecurity Measures: \n";
+    var news = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
     var secured = this.getSecuredString();
     var vulnerabilities = this.getVulnerableString();
 
     this.state.newspanelLabel.text = news;
-    this.state.securedpanelLabel.text = secured;
+    //this.state.securedpanelLabel.text = secured;
     this.state.vulnerablepanelLabel.text = vulnerabilities;
 
     //are we selecting anything?
@@ -44,7 +44,7 @@ InsurancePlz.Target.prototype.touch = function () {
         for (var key in secvector) { // i.e. "iot":1
             //console.log("Attack" + attackid + " will try bypass sec. measure " + secvector[key] + " for Tar_id: " + this.data.id + " detected");
         }
-        if (((this.state.gameProgress.actionPoints - attackweightpoints) >= 0) && (this.state.alreadyStackedForTarget(targetid, attackid) == false)) {
+        if ((this.state.enoughPoints(attackweightpoints) == true) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
             //while attack points last and selected attack does not let us drop below 0:
             //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
             // and cannot stack same tar/attack combination more than once
@@ -54,8 +54,9 @@ InsurancePlz.Target.prototype.touch = function () {
             console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
             this.state.clearAttackSelection(); // deselect attack
 
-        } else {
-            console.log("Cannot stack, not enough points or already stacked");
+        } 
+        else {
+            console.log("Already stacked or attackstack is full! (max 5)");
             this.state.clearAttackSelection(); // deselect attack
         }
     }
@@ -76,13 +77,47 @@ InsurancePlz.Target.prototype.getSecuredString = function () {
 
 InsurancePlz.Target.prototype.getVulnerableString = function () {
     var secvector = this.data.securityVector; // the target's security vector object
-    var string = "Vulnerable:\n";
+    var string = "";
+    var description = "";
     for (var key in secvector) { // getting the actual array
         if (secvector[key] == 0) {
-            string = string + key + "\n";
-            //console.log(string);
+            switch (key) {
+            case "iot":
+                string = string + "- IoT devices unprotected\n";
+                break;
+            case "nobyod":
+                string = string + "- Employees can bring their own device\n";
+                break;
+            case "pwman":
+                string = string + "- No password management\n";
+                break;
+            case "websec":
+                string = string + "- Email or web security devices missing\n";
+                break;
+            case "autoup":
+                string = string + "- No automatic software updating\n";
+                break;
+            case "firewall":
+                string = string + "- Firewall not up to date\n";
+                break;
+            case "stafftrain":
+                string = string + "- Staff is not well-trained (cyberaware)\n";
+                break;
+            case "riskaudit":
+                string = string + "- Risk assessment issues\n";
+                break;
+
+            case "techadvice":
+                string = string + "- Tech-advice on soft- & hardware missing\n";
+                break;
+
+            case "serviceon":
+                string = string + "- Proper service contracts missing\n";
+                break;
+            }
         }
     }
+    //console.log(string);
     return string;
 };
 
@@ -98,7 +133,7 @@ InsurancePlz.Target.prototype.getName = function () {
     return this.data.name;
 };
 
-InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackname, targetname) {
+InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackname, targetname, targetobject) {
     //console.log("D.dmage: attack vector: ");
     //console.log(atkvec);
     //console.log("D.dmage: target secvector: ");
@@ -141,7 +176,7 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
         }
     }
 
-    var hacker_damage_inflicted = attackstrength * 100000;
+    var hacker_damage_inflicted = Math.round(attackstrength * 100000);
     var company_damage_suffered = hacker_damage_inflicted * (1-reducfactor);
 
 
@@ -149,13 +184,20 @@ InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attack
     console.log(effecton);
     console.log("Damage reduc factor: " + reducfactor);
     console.log(damageavoidedon);
-    console.log("Hacker has done $" + attackstrength * 100000 + " in damage")
+    console.log("Hacker has done $" + Math.round(attackstrength * 100000) + " in damage")
     console.log("Company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
 
     if (company_damage_suffered > 0) {
-      this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
+        var sufferedTargetTween = this.game.add.tween(targetobject);
+        sufferedTargetTween.to({
+            tint: 0xFF0000 // flicker to red
+        }, 500);
+        sufferedTargetTween.onComplete.add(function () {
+            targetobject.tint = 0xFFFFFF; // back to normal tint
+        }, this);
+        sufferedTargetTween.start();
+        this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
     }
-
     this.data.damage = this.data.damage + company_damage_suffered;
     //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
     //TODO random damage range that determines what effects are chosen for the news sheet

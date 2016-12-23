@@ -6,8 +6,9 @@ var InsurancePlz = InsurancePlz || {};
  * @constructor
  * @param {String} headline - The headline of the popup. Will currently go out of bounds at more than ~25 characters.
  * @param {Number} text - The content of the popup.
+ * @param {String} panelname - The name of the sprite to use as background for the panel
  */
-function Popup(headline, text) {
+function Popup(headline, text, panelname) {
     //Create group to hold the sprites
     this.group = InsurancePlz.game.add.group();
     //Create array to hold the buttons
@@ -28,16 +29,16 @@ function Popup(headline, text) {
 
     //Create popup panel
     this.panel = InsurancePlz.game.add.sprite(
-        InsurancePlz.game.world.centerX,
-        InsurancePlz.game.world.centerY,
-        'popuppanel'
+    InsurancePlz.game.world.centerX,
+    InsurancePlz.game.world.centerY,
+    panelname
     );
     this.panel.anchor.setTo(0.5);
 
     //Headline style
     var headlineStyle = {
         color: 'white',
-        font: '24px HackerFont',
+        font: '24px ZrNic',
         fill: '#fff',
         align: 'center'
     };
@@ -54,7 +55,7 @@ function Popup(headline, text) {
     //Text style
     var textStyle = {
         color: 'white',
-        font: '14px HackerFont',
+        font: '14px ZrNic',
         fill: '#fff',
         align: 'left',
         wordWrap: true,
@@ -131,4 +132,13 @@ Popup.prototype.organizeButtons = function() {
  */
 Popup.prototype.destroy = function() {
     this.group.destroy();
+}
+
+
+/**
+ * Sets a different panel sprite
+ * @param {string} spritename - name of the asset.
+ */
+Popup.prototype.setPanel = function(spritename) {
+
 }

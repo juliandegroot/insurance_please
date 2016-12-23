@@ -86,7 +86,7 @@
             "id": 4,
             "asset": "company",
             "text": "Bad bank",
-            "name": "ROBOBANK",
+            "name": "ROBO BANK",
             "category": "Banking",
             "securityVector": {
                 "iot":0,
@@ -113,7 +113,7 @@
             "id": 5,
             "asset": "company",
             "text": "This company is bad",
-            "name": "LameManBrothers",
+            "name": "Lema Brothers",
             "category": "Banking",
             "securityVector": {
                 "iot":1,

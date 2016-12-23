@@ -81,13 +81,15 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
     this.setButtonxTaken(newx); // set previously given out button position as taken
     //this.stackbutton.input.enabled = false;
     this.stackbutton.targetid = target.getID();
+    this.stackbutton.targetname = target.getName();
     this.stackbutton.attackpoints = attack.getPoints();
     this.stackbutton.attackid = attack.getID();
     this.stackbutton.xcoord = newx;
+    var newy = this.stackbutton.y;
     var scorestyle = {
         color: 'red',
         // temp font, need to find font for commercial use
-        font: '15px HackerFont',
+        font: '15px ZrNic',
         fill: '#f00',
         align: 'left',
         wordWrap: true,
@@ -100,26 +102,31 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
     this.stackboxtext.text = 'Stacked Attacks:';
 
     if (newx == 650) {
-        stackText1.text = this.stackbutton.targetid;
+        stackText1.y = newy + 45;
+        stackText1.text = this.stackbutton.targetname;
     }
     if (newx == 700) {
-        stackText2.text = this.stackbutton.targetid;
+        stackText2.y = newy + 45;
+        stackText2.text = this.stackbutton.targetname;
     }
     if (newx == 750) {
-        stackText3.text = this.stackbutton.targetid;
+        stackText3.y = newy + 45;
+        stackText3.text = this.stackbutton.targetname;
     }
     if (newx == 800) {
-        stackText4.text = this.stackbutton.targetid;
+        stackText4.y = newy + 45;
+        stackText4.text = this.stackbutton.targetname;
     }
     if (newx == 850) {
-        stackText5.text = this.stackbutton.targetid;
+        stackText5.y = newy + 45;
+        stackText5.text = this.stackbutton.targetname;
     }
     this.game.world.bringToTop(stackText1);
     this.game.world.bringToTop(stackText2);
     this.game.world.bringToTop(stackText3);
     this.game.world.bringToTop(stackText4);
     this.game.world.bringToTop(stackText5);
-};
+    };
 
 InsurancePlz.GameState.removeFromStack = function(button) {
     console.log("button tid: " + button.targetid);
@@ -185,7 +192,7 @@ InsurancePlz.GameState.executeAttacks = function() {
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
-        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName());
+        target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.getName(), target.getName(), target);
     }
 };
 
@@ -224,6 +231,8 @@ InsurancePlz.GameState.alreadyStackedForTarget = function(target_id, attack_id) 
         var atk_id = attack.getID();
         if (tar_id == target_id && atk_id == attack_id) {
             console.log("Combination already stacked! Tar_id: " + tar_id + " Atk_id: " + atk_id);
+            this.showModalAlreadyStacketforTarget();
+            this.clearAttackSelection(); // deselect attack
             return true
         }
     }
@@ -240,4 +249,16 @@ InsurancePlz.GameState.showNews = function() {
         var newsitem = this.gameProgress.newsarray[i];
         console.log(newsitem);
     }
+};
+
+
+
+InsurancePlz.GameState.enoughPoints = function (attackweight) {
+    if (this.gameProgress.actionPoints - attackweight < 0) {
+        console.log("Cannot stack, not enough points : " + this.gameProgress.actionPoints + " " + attackweight);
+        this.showModalNotEnoughAttackPoints();
+        this.clearAttackSelection(); // deselect attack
+        return false;
+    }
+    return true;
 };
