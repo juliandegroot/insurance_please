@@ -42,8 +42,8 @@
  },
  "intro": {
    "general": [
-     "General introduction sentence.",
-     "Another general introduction sentence."
+     "Hackers attacked %CN succesfully. The consequences where rather large and %CN could not continue operation for the day.",
+     "%CN was target by hackers which attacked succesfully with %a. This resulted in down time for the entire day and is still continuing."
    ],
    "usb": [
 	"Hackers spreaded infected USB sticks. They distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC. Via this USB-stick the hackers could spread a virus within the company. ",
@@ -56,9 +56,9 @@
 	"."
    ],
    "download": [
-	".",
-	".",
-	"."
+	"Employees of the financial department aimed to download a new program, helping them with their bookings. What they didn't know was that the additional malware was downloaded.",
+	"With the so-called drive-by-downloads, hackers infiltrated %CN. It is unknown how and when this happened, although fingers are pointed at the strategy department.",
+	"A simple plugin caused major problems at %CN. Malicious malware was drive-by-downloaded unbeknownst of the employees."
    ],
    "popup": [
 	"Hackers designed an infected pop-up in order to enter the company. One of the employees on the customer service department opened this pop-up.",
@@ -76,9 +76,9 @@
 	"Using phishing emails, the hackers tricked the legal department into providing valueable information, like social security numbers, tax ID and bank account numbers."
    ],
    "social": [
-	".",
-	".",
-	"."
+	"One member of the board was psychologically manipulated into giving valuable passwords by social engineering, giving the hackers access to the complete system of %CN.",
+	"Multiple employees were manipulated into giving away very sensitive information, without them realizing what they have done.",
+	"Hackers used social engineering, where attacks take advantage of human vulnerabilities by using deception to trick targeted victims into performing harmful actions."
    ]
  },
  "attack": {
@@ -109,9 +109,11 @@
    "social": [
 
    ]
+
  },
  "damage": [
-   "The damage for %CN was %d.",
-   "The damage at %CN consisted of %d."
+	"The damage for %CN was no less than $%d.",
+	"The attack cost %CN $%d.",
+	"The damage for %CN consists of $%d."
  ]
 }
