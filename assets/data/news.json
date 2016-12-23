@@ -1,0 +1,93 @@
+{
+ "headlines": {
+   "general": [
+     "Company %c victim of cyber attack.",
+     "%c attacked yesterday by %a."
+   ],
+   "usb": [
+     "%c victim of cyber attack after uncareful handling of usb.",
+     "usb headline 1, %c.",
+     "usb headline 2, %d."
+   ],
+   "pw": [
+     "Password related headline."
+   ],
+   "download": [
+     "Download related headline."
+   ],
+   "popup": [
+     "Popup related headline 1."
+   ],
+   "wifi": [
+     "WiFi related headline 1."
+   ],
+   "phishing": [
+     "Phising related headline 1."
+   ],
+   "social": [
+     "Social engineering headline 1."
+   ]
+ },
+ "intro": {
+   "general": [
+     "General introduction sentence.",
+     "Another general introduction sentence."
+   ],
+   "usb": [
+     "usb intro 1, %c.",
+     "usb intro 2, %d.",
+     "usb intro 3, %a."
+   ],
+   "pw": [
+
+   ],
+   "download": [
+
+   ],
+   "popup": [
+
+   ],
+   "wifi": [
+
+   ],
+   "phishing": [
+
+   ],
+   "social": [
+
+   ]
+ },
+ "attack": {
+   "general": [
+     "General attack for some news item.",
+     "Another attack body sentence for general news item."
+   ],
+   "usb": [
+     "usb attack 1, %d.",
+     "usb attack 2, %c.",
+     "usb attack 3, %a."
+   ],
+   "pw": [
+
+   ],
+   "download": [
+
+   ],
+   "popup": [
+
+   ],
+   "wifi": [
+
+   ],
+   "phishing": [
+
+   ],
+   "social": [
+
+   ]
+ },
+ "damage": [
+   "The damage for %c was %d.",
+   "The damage at %c consisted of %d."
+ ]
+}
