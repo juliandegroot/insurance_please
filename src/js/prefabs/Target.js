@@ -44,7 +44,7 @@ InsurancePlz.Target.prototype.touch = function () {
         for (var key in secvector) { // i.e. "iot":1
             //console.log("Attack" + attackid + " will try bypass sec. measure " + secvector[key] + " for Tar_id: " + this.data.id + " detected");
         }
-        if (((this.state.gameProgress.actionPoints - attackweightpoints) >= 0) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
+        if ((this.state.enoughPoints(attackweightpoints) == true) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
             //while attack points last and selected attack does not let us drop below 0:
             //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
             // and cannot stack same tar/attack combination more than once
@@ -54,8 +54,9 @@ InsurancePlz.Target.prototype.touch = function () {
             console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
             this.state.clearAttackSelection(); // deselect attack
 
-        } else {
-            console.log("Cannot stack, not enough points, already stacked or attackstack is full! (max 5)");
+        } 
+        else {
+            console.log("Already stacked or attackstack is full! (max 5)");
             this.state.clearAttackSelection(); // deselect attack
         }
     }

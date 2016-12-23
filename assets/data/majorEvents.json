@@ -9,25 +9,25 @@
     {
       "key" : "global_nobyod",
       "headline" : "Global nobyod",
-      "text" : "All companies now have nobyod security.",
+      "text" : "All companies now have a good device policy.",
       "weight" : 1
     },
     {
       "key" : "global_pwman",
       "headline" : "Global pwman",
-      "text" : "All companies now have pwman security.",
+      "text" : "All companies now have proper password management.",
       "weight" : 1
     },
     {
       "key" : "global_websec",
       "headline" : "Global websec",
-      "text" : "All companies now have websec security.",
+      "text" : "All companies now have email and websecurity.",
       "weight" : 1
     },
     {
       "key" : "global_autoup",
       "headline" : "Global autoup",
-      "text" : "All companies now have autoup security.",
+      "text" : "All companies now have automatic software updating enabled.",
       "weight" : 1
     },
     {
@@ -39,25 +39,25 @@
     {
       "key" : "global_stafftrain",
       "headline" : "Global stafftrain",
-      "text" : "All companies now have stafftrain security.",
+      "text" : "All companies now have their staff properly trained.",
       "weight" : 1
     },
     {
       "key" : "global_riskaudit",
       "headline" : "Global riskaudit",
-      "text" : "All companies now have riskaudit security.",
+      "text" : "All companies now have proper risk assessment and audit.",
       "weight" : 1
     },
     {
       "key" : "global_techadvice",
       "headline" : "Global techadvice",
-      "text" : "All companies now have techadvice security.",
+      "text" : "All companies now have gained tech-advice on soft- and hardware.",
       "weight" : 1
     },
     {
       "key" : "global_servicecon",
       "headline" : "Global servicecon",
-      "text" : "All companies now have servicecon security.",
+      "text" : "All companies now have proper service contracts.",
       "weight" : 1
     }
   ]
