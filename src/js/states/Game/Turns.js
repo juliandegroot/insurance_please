@@ -1,4 +1,9 @@
-InsurancePlz.GameState.startTurn = function() {
+/**
+ * Starts the next turn.
+ * This will cause a game start message to show if it is the first turn,
+ * or the news popup to be displayed when on later turns.
+ */
+ InsurancePlz.GameState.startTurn = function() {
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.length == 0) {
         this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
@@ -15,6 +20,12 @@ InsurancePlz.GameState.startTurn = function() {
     }
 };
 
+/**
+ * Ends the current turn.
+ * This means all stacked attacks will be executed and the stack cleared afterwards.
+ * Events and new for the next round is generated.
+ * If the conditions are met, the game will be ended.
+ */
 InsurancePlz.GameState.endTurn = function() {
     this.flushAttackStack(); // buttons on the right in panel
     var events = this.executeAttacks() // we are executing our attacks
@@ -45,6 +56,11 @@ InsurancePlz.GameState.endTurn = function() {
     }
 };
 
+/**
+ * Ends the current game.
+ * For now, this means an unremovable popup will be created,
+ * preventing the player from taking further actions.
+ */
 InsurancePlz.GameState.endGame = function() {
     this.popup = new Popup("Congratulations!", "You have reached the end of the.game!", 'popuppanel');
 };

@@ -2,7 +2,8 @@ var InsurancePlz = InsurancePlz || {};
 var reg = {};
 
 /**
- * The base GameState object contains only the base Phaser functions.
+ * The base GameState Prototype contains only the base Phaser functions.
+ * Its prototype is extended upon by numerous files within the 'Game' folder.
  */
 InsurancePlz.GameState = {
     init: function() {

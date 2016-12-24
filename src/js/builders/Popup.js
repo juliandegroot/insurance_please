@@ -132,7 +132,6 @@ Popup.prototype.destroy = function() {
     this.group.destroy();
 }
 
-
 /**
  * Sets a different panel sprite
  * @param {string} spritename - name of the asset.

@@ -1,6 +1,9 @@
 var InsurancePlz = InsurancePlz || {};
 
-//loading the game assets
+/**
+ * Prototype responsible for loading all assets. While this is in progress,
+ * a loading bar will be displayed to players.
+ */
 InsurancePlz.PreloadState = {
     preload: function() {
         //show loading screen

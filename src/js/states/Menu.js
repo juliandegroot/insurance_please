@@ -1,6 +1,9 @@
 var InsurancePlz = InsurancePlz || {};
 
-//loading the game assets
+/**
+ * Prototype responsible for operating the main menu.
+ * For now, the only option is to start the game.
+ */
 InsurancePlz.MenuState = {
     create: function() {
         //Title style
