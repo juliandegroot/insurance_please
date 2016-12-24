@@ -41,9 +41,6 @@ InsurancePlz.Target.prototype.touch = function() {
         var attackweightpoints = this.state.selectedAttack.data.points;
         var targetid = this.data.id;
         var attackid = this.state.selectedAttack.data.id;
-        for (var key in secvector) { // i.e. "iot":1
-            //console.log("Attack" + attackid + " will try bypass sec. measure " + secvector[key] + " for Tar_id: " + this.data.id + " detected");
-        }
         if ((this.state.enoughPoints(attackweightpoints) == true) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
             //while attack points last and selected attack does not let us drop below 0:
             //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
@@ -68,7 +65,6 @@ InsurancePlz.Target.prototype.getSecuredString = function() {
     for (var key in secvector) { // getting the actual array
         if (secvector[key] == 1) {
             string = string + key + "\n";
-            //console.log(string);
         }
     }
     return string;
@@ -116,7 +112,6 @@ InsurancePlz.Target.prototype.getVulnerableString = function() {
             }
         }
     }
-    //console.log(string);
     return string;
 };
 
@@ -133,10 +128,6 @@ InsurancePlz.Target.prototype.getName = function() {
 };
 
 InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attackid, attackname, targetname, targetobject) {
-    //console.log("D.dmage: attack vector: ");
-    //console.log(atkvec);
-    //console.log("D.dmage: target secvector: ");
-    //console.log(this.data.securityVector);
 
     var weights = { //constant attack weights
         "iot": 1,
@@ -231,7 +222,6 @@ InsurancePlz.Target.prototype.upgradeSecurity = function() {
     }
     if (keys.length > 0) {
         var rand = keys[Math.floor(Math.random() * keys.length)];
-        console.log(this.data.name + " upgraded security " + rand);
         this.data.securityVector[rand] = 1;
         return true;
     } else {

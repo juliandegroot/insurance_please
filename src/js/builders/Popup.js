@@ -120,10 +120,8 @@ Popup.prototype.addButton = function(text, callback, context) {
  */
 Popup.prototype.organizeButtons = function() {
     var startPoint = -(this.buttons[0].width * this.buttons.length + this.offset * (this.buttons.length - 1)) / 2;
-    console.log(startPoint);
     for (var i = 0; i < this.buttons.length; i++) {
         this.buttons[i].x = startPoint + this.offset * i + this.buttons[0].width * (i + 0.5);
-        console.log(this.buttons[i].x);
     }
 }
 

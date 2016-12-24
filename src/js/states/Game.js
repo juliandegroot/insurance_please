@@ -140,10 +140,8 @@ InsurancePlz.GameState.refreshStats = function() {
     for (var k in this.attackMapData.targets) { // getting the actual array
         for (var l in this.attackMapData.targets[k]) {
             if (l == "damage") {
-                //console.log("l: " +this.attackMapData.targets[k][l]);
                 total = total + this.attackMapData.targets[k][l];
             }
-            //total = total + k
         }
     }
     this.gameProgress.score = total;

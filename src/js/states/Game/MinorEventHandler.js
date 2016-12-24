@@ -5,7 +5,6 @@
 InsurancePlz.GameState.triggerMinorEvent = function() {
     var roulette = [];
     for (var i = 0; i < this.minorEventList.length; i++) {
-        console.log(this.minorEventList[i]);
         for (var j = 0; j < this.minorEventList[i].getWeight(); j++) {
             roulette.push(i);
         }
@@ -18,7 +17,6 @@ InsurancePlz.GameState.triggerMinorEvent = function() {
  * @returns {Boolean} success - True or false depending on whether an upgradable target was found.
  */
 InsurancePlz.GameState.triggerMinorEvent_security_upgrade = function() {
-    console.log("Security upgraded");
     var list = [];
     for (var i = 0; i < this.targets.children.length; i++) {
         if (this.targets.children[i].canBeUpgraded()) {
@@ -37,7 +35,6 @@ InsurancePlz.GameState.triggerMinorEvent_security_upgrade = function() {
  * Increases the impact of a random target by 1.
  */
 InsurancePlz.GameState.triggerMinorEvent_impact_upgrade = function() {
-    console.log("Impact upgraded");
     this.targets.children[Math.floor(Math.random() * this.targets.children.length)].data.impact++;
     return true;
 };
