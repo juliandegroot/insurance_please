@@ -126,13 +126,12 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
     this.game.world.bringToTop(stackText3);
     this.game.world.bringToTop(stackText4);
     this.game.world.bringToTop(stackText5);
-    };
+};
 
 InsurancePlz.GameState.removeFromStack = function(button) {
     console.log("button tid: " + button.targetid);
     console.log(button.attackid);
-    var i = this.gameProgress.attackstack.length;
-    while (i--) {
+    for (var i = 0; i < this.gameProgress.attackstack.length) {
         var targetid = this.gameProgress.attackstack[i][0].getID();
         var attackid = this.gameProgress.attackstack[i][1].getID();
         //console.log(targetid);
@@ -166,8 +165,7 @@ InsurancePlz.GameState.removeFromStack = function(button) {
 };
 
 InsurancePlz.GameState.flushAttackStack = function() {
-    var i = this.gameProgress.attackstack.length;
-    while (i--) {
+    for (var i = 0; i < this.gameProgress.attackstack.length) {
         //console.log("destroying " + i);
         this.stackedattacks.children[i].destroy();
     }
@@ -196,7 +194,7 @@ InsurancePlz.GameState.executeAttacks = function() {
         // TODO: change to actual ID
         var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.id, attack.getName(), target.getName(), target);
         if (info.damage > 0) {
-          events.push(info);
+            events.push(info);
         }
     }
     return events;
@@ -259,7 +257,7 @@ InsurancePlz.GameState.showNews = function() {
 
 
 
-InsurancePlz.GameState.enoughPoints = function (attackweight) {
+InsurancePlz.GameState.enoughPoints = function(attackweight) {
     if (this.gameProgress.actionPoints - attackweight < 0) {
         console.log("Cannot stack, not enough points : " + this.gameProgress.actionPoints + " " + attackweight);
         this.showModalNotEnoughAttackPoints();

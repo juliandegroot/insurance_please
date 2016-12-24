@@ -14,7 +14,7 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
     var targets = targetData;
     var finalTargets = [];
 
-    for (i = 0; i < targetNumber; i++) {
+    for (var i = 0; i < targetNumber; i++) {
         // Choose a random target from the remaining targets.
         var j = Math.floor(Math.random() * targets.length);
         var target = targets[j];
@@ -34,8 +34,9 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
  * createMap creates the map part of the game: it reads in the targets, attacks
  * and assigns them to a possition in the UI.
  */
-InsurancePlz.GameState.createMap = function () {
-    this.attackMapData = JSON.parse(this.game.cache.getText(this.playerData.attackmap));
+InsurancePlz.GameState.createMap = function() {
+    //TODO: This function uses both a this.targets and a var targets? Rather confusing.
+    this.attackMapData = JSON.parse(this.game.cache.getText('europe'));
     var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
 
     this.attackMapData.targets = targets;
@@ -44,7 +45,7 @@ InsurancePlz.GameState.createMap = function () {
     //create target instances
     this.targets = this.add.group();
     var target;
-    targets.forEach(function (targetData) {
+    targets.forEach(function(targetData) {
         target = new InsurancePlz.Target(this, targetData);
 
         var stylif = {

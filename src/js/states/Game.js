@@ -5,11 +5,7 @@ var reg = {};
  * The base GameState object contains only the base Phaser functions.
  */
 InsurancePlz.GameState = {
-    init: function(playerData) {
-        this.playerData = playerData ? playerData : {};
-        // player starts out with attackmap europe:
-        this.playerData.attackmap = this.playerData.attackmap ? this.playerData.attackmap : 'europe';
-
+    init: function() {
         this.gameProgress = {
             "turn": 1,
             "actionPoints": 10,
@@ -34,13 +30,9 @@ InsurancePlz.GameState = {
             "newsarray": []
         };
 
-        //TODO: These JSON's should be removed from the cache afterwards.
-        this.attackDataList = createAttacksFromJSON(this.game.cache.getText('attacks'));
         this.majorEventList = createMajorEventsFromJSON(this.game.cache.getText('major_events'));
         this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
-
         this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
-        //console.log(this.attackDataList);
     },
     create: function() {
         //attackpanel area
@@ -104,6 +96,7 @@ InsurancePlz.GameState = {
         //loading the map with targets and attacks
         this.createMap();
 
+        //A bunch of ugly globals here. Stack should be changed to an array of sorts.
         //overlay scoreboard text
         hackingdamageText = this.game.add.text(250, 10, '', scorestyle);
         //actionpoints text

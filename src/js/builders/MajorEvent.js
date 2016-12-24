@@ -14,8 +14,8 @@ InsurancePlz.MajorEvent = function(data) {
  */
 InsurancePlz.MajorEvent.prototype.getNews = function() {
     return {
-        "headline": this.headlines[Math.floor(Math.random()*this.headlines.length)],
-        "body": this.texts[Math.floor(Math.random()*this.texts.length)]
+        "headline": this.headlines[Math.floor(Math.random() * this.headlines.length)],
+        "body": this.texts[Math.floor(Math.random() * this.texts.length)]
     };
 };
 

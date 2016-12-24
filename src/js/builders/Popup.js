@@ -29,9 +29,9 @@ function Popup(headline, text, panelname) {
 
     //Create popup panel
     this.panel = InsurancePlz.game.add.sprite(
-    InsurancePlz.game.world.centerX,
-    InsurancePlz.game.world.centerY,
-    panelname
+        InsurancePlz.game.world.centerX,
+        InsurancePlz.game.world.centerY,
+        panelname
     );
     this.panel.anchor.setTo(0.5);
 
@@ -140,5 +140,5 @@ Popup.prototype.destroy = function() {
  * @param {string} spritename - name of the asset.
  */
 Popup.prototype.setPanel = function(spritename) {
-
+    //TODO: Empty definition?
 }

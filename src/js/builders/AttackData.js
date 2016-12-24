@@ -8,7 +8,6 @@ InsurancePlz.AttackData = function(name, securityVector, spriteTag) {
     //console.log('AttackData created: {' + this.name + ',' + this.securityVector + ',' + this.sprite + '}');
 }
 
-// TODO: is this needed?
 InsurancePlz.AttackData.prototype = Object.create(Phaser.Sprite.prototype);
 InsurancePlz.AttackData.prototype.constructor = InsurancePlz.AttackData;
 

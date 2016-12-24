@@ -1,4 +1,4 @@
-InsurancePlz.GameState.startTurn = function () {
+InsurancePlz.GameState.startTurn = function() {
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || this.gameProgress.newsarray.length == 0) {
         this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
@@ -15,7 +15,7 @@ InsurancePlz.GameState.startTurn = function () {
     }
 };
 
-InsurancePlz.GameState.endTurn = function () {
+InsurancePlz.GameState.endTurn = function() {
     this.flushAttackStack(); // buttons on the right in panel
     var events = this.executeAttacks() // we are executing our attacks
 
@@ -32,7 +32,7 @@ InsurancePlz.GameState.endTurn = function () {
     //Trigger a minor event every turn
     this.triggerMinorEvent();
     //Trigger a major event every 5th turn
-    if (this.gameProgress.turn%5===2){
+    if (this.gameProgress.turn % 5 === 2) {
         this.triggerMajorEvent();
     }
 
@@ -46,5 +46,5 @@ InsurancePlz.GameState.endTurn = function () {
 };
 
 InsurancePlz.GameState.endGame = function() {
-    this.popup = new Popup("Congratulations!", "You have reached the end of the.game!",'popuppanel');
+    this.popup = new Popup("Congratulations!", "You have reached the end of the.game!", 'popuppanel');
 };
