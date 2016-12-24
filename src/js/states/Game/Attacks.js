@@ -131,7 +131,7 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
 InsurancePlz.GameState.removeFromStack = function(button) {
     console.log("button tid: " + button.targetid);
     console.log(button.attackid);
-    for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
+    for (var i = this.gameProgress.attackstack.length-1; i >= 0; i--) {
         var targetid = this.gameProgress.attackstack[i][0].getID();
         var attackid = this.gameProgress.attackstack[i][1].getID();
         //console.log(targetid);
@@ -165,7 +165,7 @@ InsurancePlz.GameState.removeFromStack = function(button) {
 };
 
 InsurancePlz.GameState.flushAttackStack = function() {
-    for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
+    for (var i = this.gameProgress.attackstack.length-1; i >= 0; i--) {
         //console.log("destroying " + i);
         this.stackedattacks.children[i].destroy();
     }
