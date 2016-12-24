@@ -1,0 +1,16 @@
+@font-face {
+	font-family: ZrNic;
+	src: url('assets/fonts/zrnic_rg.ttf');
+}
+
+body {
+	background-color: black;
+	padding: 0px;
+	margin: 0px;
+}
+
+.fontPreload {
+	font-family: ZrNic;
+	position:absolute;
+	left:-100px;
+}
