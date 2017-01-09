@@ -8,7 +8,6 @@
             "name": "Gouden Kruis",
             "category": "Insurance",
             "securityVector": {
-                "iot":1,
                 "nobyod":1,
                 "pwman":1,
                 "websec":1,
@@ -35,7 +34,6 @@
             "name": "EvilCorp",
             "category": "Tech",
             "securityVector": {
-                "iot":0,
                 "nobyod":0,
                 "pwman":0,
                 "websec":1,
@@ -62,7 +60,6 @@
             "name": "OCHMEA",
             "category": "Insurance",
             "securityVector": {
-                "iot":1,
                 "nobyod":1,
                 "pwman":0,
                 "websec":0,
@@ -89,7 +86,6 @@
             "name": "ROBO BANK",
             "category": "Banking",
             "securityVector": {
-                "iot":0,
                 "nobyod":0,
                 "pwman":0,
                 "websec":0,
@@ -116,7 +112,6 @@
             "name": "Lema Brothers",
             "category": "Banking",
             "securityVector": {
-                "iot":1,
                 "nobyod":0,
                 "pwman":1,
                 "websec":0,
