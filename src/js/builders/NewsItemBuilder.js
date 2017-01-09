@@ -23,7 +23,6 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsItems = function(infoArray) {
     for (var i = 0; i < infoArray.length; i++) {
         res.push(this.generateNewsItem(infoArray[i]));
     }
-    console.log(res)
     return res;
 }
 
@@ -59,8 +58,6 @@ InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformat
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformation) {
     var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
-    console.log(intro)
-        // var attack = this.chooseCategorySentence("attack", eventInformation.attackID);
     var body = intro + " " + this.chooseDamageSentence();
     return this.replaceAllTags(body, eventInformation);
 }
