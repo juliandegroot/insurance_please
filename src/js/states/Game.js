@@ -6,7 +6,7 @@ var reg = {};
  * Its prototype is extended upon by numerous files within the 'Game' folder.
  */
 InsurancePlz.GameState = {
-    init: function() {
+    init: function () {
         this.gameProgress = {
             "turn": 1,
             "actionPoints": 10,
@@ -35,7 +35,7 @@ InsurancePlz.GameState = {
         this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
         this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
     },
-    create: function() {
+    create: function () {
         //attackpanel area
         this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
         var style = {
@@ -116,6 +116,9 @@ InsurancePlz.GameState = {
 
         //how-to-play, information button
         this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
+        
+        //back-to-main-menu button
+        this.backtomenubtn = this.add.button(650, 400, 'howtoplay', this.askBackToMenu, this);
 
         //group of stacked attack buttons:
         this.stackedattacks = this.add.group();
@@ -126,6 +129,23 @@ InsurancePlz.GameState = {
         //modal setup:
         reg.modal = new gameModal(this.game);
         this.createModals();
+        console.log("this shit: " + this.gameProgress.actionPoints);
+
+        //tutorial things:
+
+        /*in the following for-loop we iterate over the visible items and
+        give attackpoints equal to that of the points needed of the visible attack, in round 1 that will be only points for 1 attack and in round 2 points for exactly those 2 attacks .. */
+        if (InsurancePlz.isTutorial) {
+            var points_to_spend = 0;
+            for (var i = 0, len = this.attacks.children.length; i < len; i++) {
+                if (this.attacks.children[i].visible == true) {
+                    points_to_spend = points_to_spend + this.attacks.children[i].getPoints();
+                    console.log(this.attacks.children[i].getPoints());
+                }
+            }
+            this.gameProgress.actionPoints = points_to_spend;
+            this.refreshStats();
+        }
     }
 };
 

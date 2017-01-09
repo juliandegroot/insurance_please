@@ -18,6 +18,23 @@
         this.popup.addButton("Close", this.closePopup, this);
         this.gameProgress.newsarray = [];
     }
+    // 
+    if (this.gameProgress.turn == 2) {
+        this.attacks.children[1].inputEnabled = true;
+        this.attacks.children[1].visible = true;
+    }
+
+    // determine amount atckpnts available based on visible attacks (tut-mode)
+    if (InsurancePlz.isTutorial) { // were in tutorial mode now
+        var points_to_spend = 0;
+        for (var i = 0, len = this.attacks.children.length; i < len; i++) {
+            if (this.attacks.children[i].visible == true) { 
+                points_to_spend = points_to_spend + this.attacks.children[i].getPoints();
+            }
+        }
+        this.gameProgress.actionPoints = points_to_spend;
+        this.refreshStats();
+    }
 };
 
 /**
@@ -37,7 +54,9 @@ InsurancePlz.GameState.endTurn = function() {
     this.setAllButtonxAvailable(); // all button positions can be taken again
     this.gameProgress.index = 0;
     this.gameProgress.turn++;
-    this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
+    if (InsurancePlz.isTutorial == false) { // if were in tutorial mode we limit points
+        this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
+    }
     this.refreshStats(); // update stats
 
     //Trigger a minor event every turn
@@ -48,6 +67,9 @@ InsurancePlz.GameState.endTurn = function() {
     }
 
     console.log('It is now turn: ' + this.gameProgress.turn);
+    if ((this.gameProgress.turn > 2) && (InsurancePlz.isTutorial)) {
+        starttuttimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, this.endTutorial, this);
+    }
     if (this.gameProgress.turn > 10) {
         this.endGame();
     } else {
@@ -64,3 +86,19 @@ InsurancePlz.GameState.endTurn = function() {
 InsurancePlz.GameState.endGame = function() {
     this.popup = new Popup("Congratulations!", "You have reached the end of the.game!", 'popuppanel');
 };
+
+/**
+ * Ends the tutorial.
+ */
+InsurancePlz.GameState.endTutorial = function () {
+    this.popup = new Popup("Congratulations!", "You have reached the end of the tutorial", 'popuppanel');
+    this.popup.addButton("Close", this.loadMenu, this);
+};
+
+/**
+* Loads the menu.
+*/
+InsurancePlz.GameState.loadMenu = function () {
+    this.state.start('Menu')
+};
+

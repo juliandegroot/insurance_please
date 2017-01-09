@@ -34,7 +34,7 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
  * createMap creates the map part of the game: it reads in the targets, attacks
  * and assigns them to a possition in the UI.
  */
-InsurancePlz.GameState.createMap = function() {
+InsurancePlz.GameState.createMap = function () {
     //TODO: This function uses both a this.targets and a var targets? Rather confusing.
     this.attackMapData = JSON.parse(this.game.cache.getText('europe'));
     var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
@@ -45,7 +45,7 @@ InsurancePlz.GameState.createMap = function() {
     //create target instances
     this.targets = this.add.group();
     var target;
-    targets.forEach(function(targetData) {
+    targets.forEach(function (targetData) {
         target = new InsurancePlz.Target(this, targetData);
 
         var stylif = {
@@ -69,7 +69,10 @@ InsurancePlz.GameState.createMap = function() {
     this.attacks = this.add.group();
     var attack;
     var attackData = JSON.parse(this.game.cache.getText('attacks'));
-    attackData.attacks.forEach(function(attackData) {
+    var tutamountattacks = 1;
+    attackData.attacks.forEach(function (attackData) {
+
+        //if (tutamountattacks < 2) { // no more than 1 attack available in tutorial mode round 1
         attack = new InsurancePlz.Attack(this, attackData);
 
         var stylie = {
@@ -82,8 +85,16 @@ InsurancePlz.GameState.createMap = function() {
         attack.addChild(label_score); // add it as child to the original instance
         this.game.world.bringToTop(label_score); // put it on top of the actual sprite
         this.attacks.add(attack);
+        //}
+        if (InsurancePlz.isTutorial) { // were in tutorial mode now
+            for (var i = 0, len = this.attacks.children.length; i < len; i++) {
+                if (i > 0) { // all attacks except the first one are made invisible
+                    this.attacks.children[i].inputEnabled = false;
+                    this.attacks.children[i].visible = false;
+                }
+            }
+        }
     }, this);
-
 };
 
 
@@ -95,6 +106,15 @@ InsurancePlz.GameState.createMap = function() {
 InsurancePlz.GameState.showHowToPlay = function() {
     this.popup = new Popup("Hackers Manual", "Companies are able to secure themselves in various ways by taking security measures:\n1. IoT protected devices: provides strong protection against all except password stealing and social engineering.\n2. No BYOD-policy: provides strong protection against all except password stealing and social engineering.\n3. Password management: provides strong protection against password stealing and social engineering.\n4. Email or web security devices: provides strong protection against all except usb-leaks, password stealing and social engineering..\n5. Auto-software-update on all devices: provides strong protection against almost every attack except password stealing and social engineering.\n6. Firewall updating: provides strong protection against almost every attack except password stealing and social engineering.\n7. Staff training (cyberaware): protects mildly against all attacks.\n8. Risk assessment & audit: protects mildly against all attacks.\n9. Technical advice on hard- and software risks: protects mildly against all attacks.\n10. Service contract (SLA) with IT-specialists: protects mildly against all attacks. ", 'howtoplaypanel');
     this.popup.addButton("Let's hack", this.closePopup, this);
+};
+
+/**
+ * askBackToMenu creates a popup with the question if the player wants to return to the main menu
+ */
+InsurancePlz.GameState.askBackToMenu = function() {
+    this.popup = new Popup("Return to the main menu?", "Pay attention, if you click yes all progress will be lost. If you click no you return to the game", 'howtoplaypanel');
+    this.popup.addButton("No", this.closePopup, this);
+    this.popup.addButton("Yes", this.loadMenu, this);
 };
 
 InsurancePlz.GameState.createModals = function() {
