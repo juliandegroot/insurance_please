@@ -130,7 +130,6 @@ InsurancePlz.Target.prototype.getName = function() {
 InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attackid, attackname, targetname, targetobject) {
 
     var weights = { //constant attack weights
-        "iot": 1,
         "nobyod": 1,
         "pwman": 1,
         "websec": 1,
@@ -141,17 +140,20 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
         "techadvice": 0.2,
         "serviceon": 0.2
     }
+    
     var dweights = { //constant defense weights
         "insurance": 0.25,
         "backup": 0.25,
         "offline": 0.25,
         "infra": 0.25
     }
+
     var attackstrength = 0;
     var reducfactor = 0;
     var effecton = [];
     var damageavoidedon = [];
 
+    // Get the reduction effects and factor.
     for (var key in dweights) {
         if (this.data.damagecontrol[key] === 1) {
             damageavoidedon.push(key);
@@ -159,6 +161,7 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
         }
     }
 
+    // Get the damage effects and factor.
     for (var i = 0; i < atkvec.length; i++) {
         if (this.data.securityVector[atkvec[i]] === 0) {
             effecton.push(atkvec[i]);
@@ -167,15 +170,11 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
     }
 
     var hacker_damage_inflicted = Math.round(attackstrength * 100000);
-    var company_damage_suffered = hacker_damage_inflicted * (1 - reducfactor);
-
-
-    console.log("Attackstrength: " + attackstrength);
-    console.log(effecton);
-    console.log("Damage reduc factor: " + reducfactor);
-    console.log(damageavoidedon);
-    console.log("Hacker has done $" + Math.round(attackstrength * 100000) + " in damage")
-    console.log("Company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
+    var company_damage_suffered = hacker_damage_inflicted * (1 - reducfactor) * (1 + (0.5-Math.random())/10);
+    // Cleanliness rounding
+    console.log(company_damage_suffered);
+    company_damage_suffered = company_damage_suffered - company_damage_suffered%100;
+    console.log(company_damage_suffered);
 
     if (company_damage_suffered > 0) {
         var sufferedTargetTween = this.game.add.tween(targetobject);
@@ -186,24 +185,22 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
             targetobject.tint = 0xFFFFFF; // back to normal tint
         }, this);
         sufferedTargetTween.start();
-        // TODO: remove this?
-        // this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
     }
+
     this.data.damage = this.data.damage + company_damage_suffered;
-    //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
-    //TODO random damage range that determines what effects are chosen for the news sheet
     var res = {
         attackID: attackid,
         attackName: attackname,
         companyName: targetname,
-        damage: company_damage_suffered,
-        // TODO: this should be the actual thing, currently a placeholder
-        reduction: "TemporaryReduction"
+        damage: company_damage_suffered
     }
 
     return res;
 };
 
+/**
+ * @returns {Boolean} - Returns true if this target has any security set to 0.
+ */
 InsurancePlz.Target.prototype.canBeUpgraded = function() {
     for (var k in this.data.securityVector) {
         if (this.data.securityVector[k][1] === 0) {
@@ -213,6 +210,10 @@ InsurancePlz.Target.prototype.canBeUpgraded = function() {
     return false;
 };
 
+/**
+ * Sets a random security to 1.
+ * @returns {Boolean} - True if something could be upgraded. False otherwise.
+ */
 InsurancePlz.Target.prototype.upgradeSecurity = function() {
     var keys = [];
     for (var key in this.data.securityVector) {
