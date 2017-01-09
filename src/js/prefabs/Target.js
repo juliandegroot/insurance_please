@@ -172,10 +172,9 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
     var hacker_damage_inflicted = Math.round(attackstrength * 100000);
     var company_damage_suffered = hacker_damage_inflicted * (1 - reducfactor) * (1 + (0.5-Math.random())/10);
     // Cleanliness rounding
-    console.log(company_damage_suffered);
     company_damage_suffered = company_damage_suffered - company_damage_suffered%100;
-    console.log(company_damage_suffered);
 
+    // Display graphic when damage is dealt
     if (company_damage_suffered > 0) {
         var sufferedTargetTween = this.game.add.tween(targetobject);
         sufferedTargetTween.to({
@@ -187,7 +186,10 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
         sufferedTargetTween.start();
     }
 
+    // Keeping count of total damage done
     this.data.damage = this.data.damage + company_damage_suffered;
+
+    // Data that needs to be returned for generating the news
     var res = {
         attackID: attackid,
         attackName: attackname,
