@@ -129,8 +129,6 @@ InsurancePlz.GameState.stackAttack = function(target, attack, sprite) {
 };
 
 InsurancePlz.GameState.removeFromStack = function(button) {
-    console.log("button tid: " + button.targetid);
-    console.log(button.attackid);
     for (var i = this.gameProgress.attackstack.length-1; i >= 0; i--) {
         var targetid = this.gameProgress.attackstack[i][0].getID();
         var attackid = this.gameProgress.attackstack[i][1].getID();
@@ -153,7 +151,6 @@ InsurancePlz.GameState.removeFromStack = function(button) {
             if (button.xcoord == 850) {
                 stackText5.text = '';
             }
-            //console.log("bli");console.log(this.gameProgress.attackstack);
             button.destroy();
             this.gameProgress.actionPoints += button.attackpoints;
             this.refreshStats();
@@ -166,7 +163,6 @@ InsurancePlz.GameState.removeFromStack = function(button) {
 
 InsurancePlz.GameState.flushAttackStack = function() {
     for (var i = this.gameProgress.attackstack.length-1; i >= 0; i--) {
-        //console.log("destroying " + i);
         this.stackedattacks.children[i].destroy();
     }
     this.stackboxtext.text = '';
@@ -186,12 +182,10 @@ InsurancePlz.GameState.clearAttackStack = function() {
 
 InsurancePlz.GameState.executeAttacks = function() {
     // for each target and attack combination in the attackstack array:
-    //console.log("the attack stack:");console.log(this.gameProgress.attackstack);
     var events = [];
     for (var i = 0; i < this.gameProgress.attackstack.length; i++) {
         var target = this.gameProgress.attackstack[i][0];
         var attack = this.gameProgress.attackstack[i][1];
-        // TODO: change to actual ID
         var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.id, attack.getName(), target.getName(), target);
         if (info.damage > 0) {
             events.push(info);
@@ -254,8 +248,6 @@ InsurancePlz.GameState.showNews = function() {
         console.log(newsitem);
     }
 };
-
-
 
 InsurancePlz.GameState.enoughPoints = function(attackweight) {
     if (this.gameProgress.actionPoints - attackweight < 0) {

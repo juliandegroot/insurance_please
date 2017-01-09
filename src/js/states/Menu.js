@@ -47,10 +47,6 @@ InsurancePlz.MenuState = {
         this.playtext = this.add.text(this.game.world.centerX,
             this.game.world.centerY - 128, 'Play', menuStyle);
         this.playtext.anchor.setTo(0.5);
-
-        //Uncomment to skip menu for testing
-        //this.state.start('Game');
-
     },
     startGame: function() {
         this.state.start('Game');

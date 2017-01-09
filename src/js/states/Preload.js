@@ -23,7 +23,6 @@ InsurancePlz.PreloadState = {
         this.load.image('europe', 'assets/images/attackmap.png');
         this.load.image('company', 'assets/images/building.png');
 
-
         //make sure all images are equal in size (150x161) to prevent anchor and scaling issues
         this.load.image('drivebydownload', 'assets/images/drivebydownload.png');
         this.load.image('freefoundusbstick', 'assets/images/freefoundusbstick.png');
@@ -52,9 +51,7 @@ InsurancePlz.PreloadState = {
         this.load.text('attacks', 'assets/data/attacks.json');
         this.load.text('minor_events', 'assets/data/minorEvents.json');
         this.load.text('major_events', 'assets/data/majorEvents.json');
-
         this.load.text('news', 'assets/data/news.json');
-
     },
     create: function() {
         this.state.start('Menu');
