@@ -48,12 +48,11 @@ InsurancePlz.MenuState = {
             this.game.world.centerY - 128, 'Play', menuStyle);
         this.playtext.anchor.setTo(0.5);
 
-        this.infodisplay = new InsurancePlz.TargetInfoDisplay(this.game, this.game.world, 50, 50);
-
         this.btn = this.add.button(this.game.world.centerX, this.game.world.centerY, 'button', function() {
           this.infodisplay.toggle();
         }, this);
 
+        this.infodisplay = new InsurancePlz.TargetInfoDisplay(this.game, this.game.world, this.btn.x + this.btn.width + 5, this.btn.y + this.btn.height / 2);
     },
     startGame: function() {
         this.state.start('Game');
