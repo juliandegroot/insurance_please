@@ -1,5 +1,8 @@
 var InsurancePlz = InsurancePlz || {};
 
+/**
+ * TODO: documentation. (0,0) point of the element is the point of the arrow!
+ */
 InsurancePlz.TargetInfoDisplay = function(game, parent, x, y) {
   Phaser.Group.call(this, game, parent);
 
@@ -14,7 +17,7 @@ InsurancePlz.TargetInfoDisplay = function(game, parent, x, y) {
   };
 
   this.x = x;
-  this.y = y;
+  this.y = y - this.options.height/2;
 
   this.graphics = game.add.graphics(0, 0);
   this.graphics.visible = this.visible;
