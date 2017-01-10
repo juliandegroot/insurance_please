@@ -1,6 +1,6 @@
 var InsurancePlz = InsurancePlz || {};
 
-InsurancePlz.TargetInfoDisplay = function(game, parent) {
+InsurancePlz.TargetInfoDisplay = function(game, parent, x, y) {
   Phaser.Group.call(this, game, parent);
 
   this.options = {
@@ -13,13 +13,16 @@ InsurancePlz.TargetInfoDisplay = function(game, parent) {
     style: { font: "bold 16px Arial", fill: "#fff", boundsAlignH: "left", boundsAlignV: "center", wordWrap: true }
   };
 
+  this.x = x;
+  this.y = y;
+
   this.graphics = game.add.graphics(0, 0);
   this.graphics.visible = this.visible;
   this.add(this.graphics);
   this.drawGraphics();
 
   this.drawText(game);
-  this.text.parent = parent;
+  this.add(this.text);
 }
 
 InsurancePlz.TargetInfoDisplay.prototype = Object.create(Phaser.Group.prototype);
