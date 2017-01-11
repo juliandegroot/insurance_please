@@ -32,10 +32,13 @@ InsurancePlz.TargetInfoDisplay.prototype = Object.create(Phaser.Group.prototype)
 InsurancePlz.TargetInfoDisplay.prototype.constructor = InsurancePlz.TargetInfoDisplay;
 
 /**
- * TODO: write the documentation
+ * Update the information that the display shows based on the provided target.
+ * Changes the text to the target name, damage and vulnerable security measures.
+ * @param {Object} target - The target to base the information on.
  */
-InsurancePlz.TargetInfoDisplay.prototype.setSecurityMeasures = function(measures) {
-
+InsurancePlz.TargetInfoDisplay.prototype.updateInfo = function(target) {
+  var vulnerabilities = this.getVulnerableString();
+  this.text.text = "Targetname: " + target.data.name + "\nDamage: $" + target.data.damage + "\nVulnerabilities: \n" + vulnerabilities;
 }
 
 /**
