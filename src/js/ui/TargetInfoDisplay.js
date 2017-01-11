@@ -3,10 +3,10 @@ var InsurancePlz = InsurancePlz || {};
 /**
  * TODO: documentation. (0,0) point of the element is the point of the arrow!
  */
-InsurancePlz.TargetInfoDisplay = function(game, parent, x, y) {
+InsurancePlz.TargetInfoDisplay = function(game, parent, x, y, options) {
   Phaser.Group.call(this, game, parent);
 
-  this.options = {
+  this.options = options || {
     background: 0xFF3300,
     outline: 0x0000FF,
     height: 200,
@@ -70,7 +70,6 @@ InsurancePlz.TargetInfoDisplay.prototype.drawText = function(game) {
   this.text = game.add.text(0, 0, "This is a a a a a a a a a a a aa test string\n - test item\n - test item 2\n - test item 3\n", this.options.style);
   this.text.setTextBounds(this.options.arrow + this.options.padding, 0 + this.options.padding, this.options.width - this.options.padding*2 - this.options.arrow, this.options.height - this.options.padding*2);
   this.text.wordWrapWidth = this.options.width - this.options.padding*2 - this.options.arrow;
-  console.log(this.text.textBounds)
 }
 
 /**
