@@ -43,7 +43,7 @@ InsurancePlz.TargetInfoDisplay.prototype.updateInfo = function(target) {
 }
 
 /**
- * TODO: write the documentation
+ * Draw the graphics for the display. Consists of an outline and a background.
  */
 InsurancePlz.TargetInfoDisplay.prototype.drawGraphics = function() {
   // Draw the background
@@ -69,18 +69,13 @@ InsurancePlz.TargetInfoDisplay.prototype.drawGraphics = function() {
   this.graphics.lineTo(0, this.options.height / 2);
 }
 
-// TODO: the text bounds seems weird -> there should be much more space in the width
+/**
+ * Draw and set the text element parameters of the display.
+ */
 InsurancePlz.TargetInfoDisplay.prototype.drawText = function(game) {
   this.text = game.add.text(0, 0, "This is a a a a a a a a a a a aa test string\n - test item\n - test item 2\n - test item 3\n", this.options.style);
   this.text.setTextBounds(this.options.arrow + this.options.padding, 0 + this.options.padding, this.options.width - this.options.padding*2 - this.options.arrow, this.options.height - this.options.padding*2);
   this.text.wordWrapWidth = this.options.width - this.options.padding*2 - this.options.arrow;
-}
-
-/**
- * TODO: documentation
- */
-InsurancePlz.TargetInfoDisplay.prototype.isVisible = function() {
-  return this.visible;
 }
 
 /**
