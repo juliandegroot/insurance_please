@@ -76,7 +76,7 @@ InsurancePlz.TargetInfoDisplay.prototype.drawText = function(game) {
  * TODO: documentation
  */
 InsurancePlz.TargetInfoDisplay.prototype.isVisible = function() {
-  return this.graphics.visible;
+  return this.visible;
 }
 
 /**
@@ -84,8 +84,7 @@ InsurancePlz.TargetInfoDisplay.prototype.isVisible = function() {
  * the element is drawn on screen.
  */
 InsurancePlz.TargetInfoDisplay.prototype.show = function() {
-  this.graphics.visible = true;
-  this.text.visible = true;
+  this.visible = true;
 }
 
 /**
@@ -93,8 +92,7 @@ InsurancePlz.TargetInfoDisplay.prototype.show = function() {
  * element is not drawn on screen.
  */
 InsurancePlz.TargetInfoDisplay.prototype.hide = function() {
-  this.graphics.visible = false;
-  this.graphics.visible = false;
+  this.visible = false;
 }
 
 /**
@@ -102,6 +100,5 @@ InsurancePlz.TargetInfoDisplay.prototype.hide = function() {
  * hide, when invisible it is set to show.
  */
 InsurancePlz.TargetInfoDisplay.prototype.toggle = function() {
-  this.graphics.visible = !this.graphics.visible;
-  this.text.visible = !this.text.visible;
+  this.visible = !this.visible;
 }
