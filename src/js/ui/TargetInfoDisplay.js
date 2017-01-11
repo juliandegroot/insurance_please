@@ -20,12 +20,13 @@ InsurancePlz.TargetInfoDisplay = function(game, parent, x, y, options) {
   this.y = y - this.options.height/2;
 
   this.graphics = game.add.graphics(0, 0);
-  this.graphics.visible = this.visible;
   this.add(this.graphics);
   this.drawGraphics();
 
   this.drawText(game);
   this.add(this.text);
+
+  this.visible = false;
 }
 
 InsurancePlz.TargetInfoDisplay.prototype = Object.create(Phaser.Group.prototype);
