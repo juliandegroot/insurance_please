@@ -12,6 +12,7 @@ InsurancePlz.GameState = {
             "actionPoints": 10,
             "actionPointsMax": 10,
             "score": 0,
+            "roundscore": 0,
             "attackstack": [],
             "index": 0,
             "buttonstack": [
@@ -129,7 +130,6 @@ InsurancePlz.GameState = {
         //modal setup:
         reg.modal = new gameModal(this.game);
         this.createModals();
-        console.log("this shit: " + this.gameProgress.actionPoints);
 
         //tutorial things:
 
@@ -173,3 +173,21 @@ InsurancePlz.GameState.refreshStats = function() {
 InsurancePlz.GameState.closePopup = function() {
     this.popup.destroy();
 };
+
+InsurancePlz.GameState.closePopupAndGiveNews = function() {
+    this.popup.destroy();
+    this.startTurn();
+};
+
+InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
+    this.popup.destroy();
+    if (this.gameProgress.turn == 2) {
+        this.popup = new Popup("Go big or go home!", "Show your skills and execute multiple attacks at once!\n. Go ahead!", 'popuppanel');
+        this.popup.addButton("Continue", this.closePopup, this);
+    }
+    if (this.gameProgress.turn == 3) {
+        this.endTutorial();
+    }
+};
+
+

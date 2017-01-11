@@ -10,6 +10,7 @@
  */
 InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
     var targetNumber = attackMapData.numberOfTargets;
+    if (InsurancePlz.isTutorial) { targetNumber = 2; } // limit targets to practice on for tutorial
     var targetLocations = attackMapData.locations;
     var targets = targetData;
     var finalTargets = [];
@@ -37,8 +38,13 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
 InsurancePlz.GameState.createMap = function () {
     //TODO: This function uses both a this.targets and a var targets? Rather confusing.
     this.attackMapData = JSON.parse(this.game.cache.getText('europe'));
-    var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
-
+    if (InsurancePlz.isTutorial == false) {
+        var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
+    }
+    if (InsurancePlz.isTutorial) {
+        console.log("bla1")
+        var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('tutorialtargets')).targets);
+    }
     this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);

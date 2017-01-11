@@ -189,6 +189,7 @@ InsurancePlz.GameState.executeAttacks = function() {
         var info = target.doDamage(attack.getSecmeasure(), attack.getEffect(), attack.id, attack.getName(), target.getName(), target);
         if (info.damage > 0) {
             events.push(info);
+            this.gameProgress.roundscore = this.gameProgress.roundscore + info.damage; // check damage done per round for tutorial purpose
         }
     }
     return events;
