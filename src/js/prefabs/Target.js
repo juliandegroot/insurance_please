@@ -118,7 +118,7 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
     var damageAvoidedOn = [];
 
     // Get the damage effects and factor.
-    for (var key in aweights) {
+    for (var key in attack.secvector) {
         if (this.data.securityVector[key] === 0) {
             effectOn.push(attack.secvector[key]);
             attackStrength += aweights[key];
