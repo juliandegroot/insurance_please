@@ -28,7 +28,6 @@
  */
 InsurancePlz.GameState.endTurn = function() {
     var events = this.executeAttacks(); // we are executing our attacks
-    this.flushAttackStack(); // empty the attack stack and the corresponding buttons
 
     this.gameProgress.newsarray = this.gameProgress.newsarray.concat(this.newsbuilder.generateNewsItems(events));
 

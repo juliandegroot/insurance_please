@@ -98,7 +98,6 @@ InsurancePlz.GameState = {
 
         //attack stack label
         this.attackStack = [];
-        this.attackIndicators = [];
         this.attackStackLabel = this.add.text(650, 330, '', style);
 
         //start turn:

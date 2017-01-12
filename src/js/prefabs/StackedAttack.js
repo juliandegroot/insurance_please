@@ -8,7 +8,7 @@
 function StackedAttack(attack, target, position, game) {
     this.attack = attack;
     this.target = target;
-    this.button = game.add.button(this.getX(position), 350, attack.data.asset + "_small", game.clearAttack, game);
+    this.button = game.add.button(this.getX(position), 350, attack.data.asset + "_small", game.stackButton, game);
     var style = {
         color: 'yellow',
         // temp font, need to find font for commercial use

@@ -44,6 +44,36 @@ InsurancePlz.GameState.clearAttack = function(button) {
 };
 
 /**
+ * Callback function that removes the given attack from the attack stack.
+ * @param {Object} button - The attack stack button that was pressed and will be deleted.
+ */
+InsurancePlz.GameState.stackButton = function(button) {
+    for (var i = 0; i < this.attackStack.length; i++) {
+        if (this.attackStack[i].button === button) {
+            this.clearAttack(i);
+            return;
+        }
+    }
+};
+
+/**
+ * Callback function that removes the given attack from the attack stack.
+ * @param {Object} button - The attack stack butt++)on that was pressed and will be deleted.
+ */
+InsurancePlz.GameState.clearAttack = function(i) {
+    this.gameProgress.actionPoints += this.attackStack[i].attack.points;
+    this.attackStack[i].destroy();
+    this.attackStack.splice(i, 1);
+    if (this.attackStack.length === 0) {
+        this.attackStackLabel.text = '';
+    } else {
+        for (var j = 0; j < this.attackStack.length; j++) {
+            this.attackStack[j].reposition(j);
+        }
+    }
+};
+
+/**
  * Adds a StackedAttack to the attackStack.
  * This function also checks whether the conditions to add the attack to the stack have been met and will provide error messages accordingly.
  * @param {Object} attack - The attack to be added to the stack.
@@ -89,10 +119,10 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
  */
 InsurancePlz.GameState.flushAttackStack = function() {
     for (var i = 0; i < this.attackStack.length; i++) {
-        this.attackStack[i].destroy();
+        if (!this.attackStack[i].indicator.ending) {
+            this.clearAttack(i--)
+        }
     }
-    this.attackStack = [];
-    this.attackStackLabel.text = '';
 };
 
 /**
@@ -103,7 +133,6 @@ InsurancePlz.GameState.executeAttacks = function() {
     var news = [];
     for (var i = 0; i < this.attackStack.length; i++) {
         var item = this.attackStack[i].execute();
-        this.attackIndicators.push(this.attackStack[i].indicator);
         if (item.damage > 0) {
             news.push(item);
         }
@@ -129,16 +158,16 @@ InsurancePlz.GameState.alreadyStackedForTarget = function(target) {
  * Triggers an update for all attack indicator animations.
  */
 InsurancePlz.GameState.updateAttackIndicators = function() {
+    //Update the stack
     for (var i = 0; i < this.attackStack.length; i++) {
-        this.attackStack[i].update();
-    }
-    for (var i = 0; i < this.attackIndicators.length; i++) {
-        if (this.attackIndicators[i].hasEnded()) {
-            this.attackIndicators.splice(i, 1);
+        if (this.attackStack[i].indicator.hasEnded()) {
+            this.clearAttack(i--);
         } else {
-            this.attackIndicators[i].update();
+            this.attackStack[i].update();
         }
     }
+
+    //Update the selected attack
     if (this.selectedAttack !== undefined) {
         if (this.attackIndicator !== undefined) {
             this.attackIndicator.update();

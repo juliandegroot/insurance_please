@@ -41,8 +41,7 @@ Indicator.prototype.update = function() {
     if (this.ending) this.moveToTarget();
 
     //If graphics has been destroyed, stop
-    if (this.graphics === undefined ||
-        this.graphics.destroyPhase) return;
+    if (this.graphics === undefined) return;
 
     //Clearing existing shape
     this.graphics.clear();
