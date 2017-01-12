@@ -26,33 +26,9 @@ InsurancePlz.Target.prototype.touch = function() {
     this.state.vulnerablepanelLabel.text = this.getVulnerableString();
 
     //If no attack is selected, stop here
-    if (this.state.selectedAttack == null) return;
-
-    //If we don't have enough points to add that attack...
-    if (!this.state.enoughPoints(this.state.selectedAttack.data.points)){
-        reg.modal.showModal("not-enough-action-points");
-        this.state.clearAttackSelection();
-        return;
+    if (this.state.selectedAttack != null){
+        this.state.stackAttack(this.state.selectedAttack, this);
     }
-
-    //If the target already has an attack aimed at it...
-    if (this.state.alreadyStackedForTarget(this.data.id)){
-        reg.modal.showModal("already-stacked-for-target");
-        this.state.clearAttackSelection();
-        return;
-    }
-
-    //If we already have the maximum amount of attacks stacked...
-    if (this.state.attackStack.length >= this.state.gameProgress.maxAttacks){
-        reg.modal.showModal("stack-full");
-        this.state.clearAttackSelection();
-        return;
-    }
-
-    //If all requirements are met, we add the attack to the stack
-    this.state.stackAttack(this, this.state.selectedAttack);
-    this.state.clearAttackSelection();
-    this.state.refreshStats();
 };
 
 InsurancePlz.Target.prototype.getSecuredString = function() {

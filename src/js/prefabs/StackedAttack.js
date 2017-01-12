@@ -24,7 +24,7 @@ function StackedAttack(attack, target, position, game) {
 /**
  * Shorthand function for causing this attack to be executed.
  */
-StackedAttack.prototype.execute = function(){
+StackedAttack.prototype.execute = function() {
     return this.target.doDamage(this.attack);
 }
 
@@ -44,6 +44,10 @@ StackedAttack.prototype.destroy = function() {
     this.label.destroy();
 };
 
-StackedAttack.prototype.getX = function(position){
-    return 650+50*position;
+/**
+ * @params {Number} - The index of this stacked attack in the list.
+ * @returns {Number} - The X position for this index.
+ */
+StackedAttack.prototype.getX = function(position) {
+    return 650 + 50 * position;
 };
