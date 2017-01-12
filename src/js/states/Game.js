@@ -6,12 +6,13 @@ var reg = {};
  * Its prototype is extended upon by numerous files within the 'Game' folder.
  */
 InsurancePlz.GameState = {
-    init: function() {
+    init: function () {
         this.gameProgress = {
             "turn": 1,
             "actionPoints": 10,
             "actionPointsMax": 10,
             "score": 0,
+            "roundscore": 0,
             "attackstack": [],
             "index": 0,
             "buttonstack": [
@@ -35,7 +36,7 @@ InsurancePlz.GameState = {
         this.minorEventList = createMinorEventsFromJSON(this.game.cache.getText('minor_events'));
         this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
     },
-    create: function() {
+    create: function () {
         //attackpanel area
         this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
         var style = {
@@ -116,6 +117,9 @@ InsurancePlz.GameState = {
 
         //how-to-play, information button
         this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
+        
+        //back-to-main-menu button
+        this.backtomenubtn = this.add.button(650, 400, 'howtoplay', this.askBackToMenu, this);
 
         //group of stacked attack buttons:
         this.stackedattacks = this.add.group();
@@ -126,11 +130,19 @@ InsurancePlz.GameState = {
         //modal setup:
         reg.modal = new gameModal(this.game);
         this.createModals();
+
+        //tutorial things:
+
+        /*in the following for-loop we iterate over the visible items and
+        give attackpoints equal to that of the points needed of the visible attack, in round 1 that will be only points for 1 attack and in round 2 points for exactly those 2 attacks .. */
+        if (InsurancePlz.isTutorial) {
+            this.givePoints();
+        }
     }
 };
 
 /**
- * Below are a number of cuntions with no clear category.
+ * Below are a number of functions with no clear category.
  */
 InsurancePlz.GameState.updateNews = function(news) {
     this.newspanelLabel.text = news;
@@ -150,6 +162,41 @@ InsurancePlz.GameState.refreshStats = function() {
     actionpointsText.text = "Attackpoints: " + this.gameProgress.actionPoints;
 };
 
+/**
+ * Function to close current popup by destroying it.
+ */
 InsurancePlz.GameState.closePopup = function() {
     this.popup.destroy();
 };
+
+/**
+ * Function to close current popup and start a turn to give news
+ */
+InsurancePlz.GameState.closePopupAndGiveNews = function() {
+    this.popup.destroy();
+    this.startTurn();
+};
+
+/**
+ * Function to close current popup and follow execution of the endgame
+ */
+InsurancePlz.GameState.closePopup_endGame = function() {
+    this.popup.destroy();
+    this.endGame();
+};
+
+/**
+ * Function to close current popup and show tutorial roundinfo
+ */
+InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
+    this.popup.destroy();
+    if (this.gameProgress.turn == 2) {
+        this.popup = new Popup("Go big or go home!", "Show your skills and execute multiple attacks at once!\n. Go ahead!", 'popuppanel');
+        this.popup.addButton("Continue", this.closePopup, this);
+    }
+    if (this.gameProgress.turn == 3) { //end of the tutorial is reached
+        this.endTutorial();
+    }
+};
+
+
