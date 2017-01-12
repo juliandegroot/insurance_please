@@ -22,8 +22,7 @@ function StackedAttack(attack, target, position, game) {
     this.indicator = new Indicator({
         "source":this.attack,
         "target":this.target,
-        "sourceOffsetX":this.attack.width/2,
-        "targetOffsetY":this.target.height/2
+        "sourceOffsetX":this.attack.width/2
     }, game);
 }
 
@@ -62,7 +61,7 @@ StackedAttack.prototype.destroy = function() {
 };
 
 /**
- * @params {Number} - The index of this stacked attack in the list.
+ * @param {Number} - The index of this stacked attack in the list.
  * @returns {Number} - The X position for this index.
  */
 StackedAttack.prototype.getX = function(position) {
