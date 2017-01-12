@@ -136,21 +136,13 @@ InsurancePlz.GameState = {
         /*in the following for-loop we iterate over the visible items and
         give attackpoints equal to that of the points needed of the visible attack, in round 1 that will be only points for 1 attack and in round 2 points for exactly those 2 attacks .. */
         if (InsurancePlz.isTutorial) {
-            var points_to_spend = 0;
-            for (var i = 0, len = this.attacks.children.length; i < len; i++) {
-                if (this.attacks.children[i].visible == true) {
-                    points_to_spend = points_to_spend + this.attacks.children[i].getPoints();
-                    console.log(this.attacks.children[i].getPoints());
-                }
-            }
-            this.gameProgress.actionPoints = points_to_spend;
-            this.refreshStats();
+            this.givePoints();
         }
     }
 };
 
 /**
- * Below are a number of cuntions with no clear category.
+ * Below are a number of functions with no clear category.
  */
 InsurancePlz.GameState.updateNews = function(news) {
     this.newspanelLabel.text = news;
@@ -170,22 +162,39 @@ InsurancePlz.GameState.refreshStats = function() {
     actionpointsText.text = "Attackpoints: " + this.gameProgress.actionPoints;
 };
 
+/**
+ * Function to close current popup by destroying it.
+ */
 InsurancePlz.GameState.closePopup = function() {
     this.popup.destroy();
 };
 
+/**
+ * Function to close current popup and start a turn to give news
+ */
 InsurancePlz.GameState.closePopupAndGiveNews = function() {
     this.popup.destroy();
     this.startTurn();
 };
 
+/**
+ * Function to close current popup and follow execution of the endgame
+ */
+InsurancePlz.GameState.closePopup_endGame = function() {
+    this.popup.destroy();
+    this.endGame();
+};
+
+/**
+ * Function to close current popup and show tutorial roundinfo
+ */
 InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
     this.popup.destroy();
     if (this.gameProgress.turn == 2) {
         this.popup = new Popup("Go big or go home!", "Show your skills and execute multiple attacks at once!\n. Go ahead!", 'popuppanel');
         this.popup.addButton("Continue", this.closePopup, this);
     }
-    if (this.gameProgress.turn == 3) {
+    if (this.gameProgress.turn == 3) { //end of the tutorial is reached
         this.endTutorial();
     }
 };
