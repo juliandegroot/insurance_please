@@ -38,6 +38,7 @@ StackedAttack.prototype.update= function() {
  * Shorthand function for causing this attack to be executed.
  */
 StackedAttack.prototype.execute = function() {
+    this.indicator.execute();
     return this.target.doDamage(this.attack);
 }
 
@@ -55,7 +56,9 @@ StackedAttack.prototype.reposition = function(position) {
 StackedAttack.prototype.destroy = function() {
     this.button.destroy();
     this.label.destroy();
-    this.indicator.destroy();
+    if (!this.indicator.ending){
+        this.indicator.destroy();
+    }
 };
 
 /**

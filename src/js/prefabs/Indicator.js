@@ -27,6 +27,7 @@ function Indicator(data, game) {
     this.linePosition = 0;
     this.lineLength = this.getShapeLength();
     this.graphics = game.add.graphics(0, 0);
+    this.ending = false;
 
     //Draw the line
     this.update();
@@ -36,15 +37,23 @@ function Indicator(data, game) {
  * Updates the position of the indicator as necessary.
  */
 Indicator.prototype.update = function() {
-    if (this.graphics===null) return;
+    //If graphics is ending, move the source
+    if (this.ending) this.moveToTarget();
+
+    //If graphics has been destroyed, stop
+    if (this.graphics === undefined || 
+        this.graphics.destroyPhase) return;
+
     //Clearing existing shape
     this.graphics.clear();
+
     //Updating position
     this.linePosition-=this.lineSpeed;
     if (Math.abs(this.linePosition) >= this.lineLength){
         this.linePosition%=this.lineLength;
     }
 
+    //Setting up a few variables
     var x = this.getSourceX();
     var y = this.getSourceY();
     this.graphics.moveTo(x, y);
@@ -52,6 +61,8 @@ Indicator.prototype.update = function() {
     var totalDist = this.getDistance();
     var dist = this.getStartingOffset();
     var i = this.getStartingShape();
+
+    //Drawing the line
     while (dist < totalDist){
         dist = Math.min(dist + this.lineShape[i], totalDist);
         if (i++%2===1){
@@ -65,9 +76,28 @@ Indicator.prototype.update = function() {
         if (i>=this.lineShape.length) i%=this.lineShape.length;
     }
     this.graphics.endFill();
-    //this.graphics.destroy();
-    //this.graphics = null;
 };
+
+Indicator.prototype.execute = function(){
+    this.ending = true;
+    this.endSpeed = this.getDistance()/35;
+    this.source = {
+        "x":this.source.x + this.sourceOffsetX,
+        "y":this.source.y + this.sourceOffsetY
+    }
+    this.sourceOffsetX = 0;
+    this.sourceOffsetY = 0;
+}
+
+Indicator.prototype.moveToTarget = function(){
+    if (this.getDistance() < this.endSpeed){
+        this.destroy();
+    } else {
+        var angle = this.getAngle();
+        this.source.x -= this.endSpeed * Math.cos(angle);
+        this.source.y -= this.endSpeed * Math.sin(angle);
+    }
+}
 
 Indicator.prototype.setLineShape = function(shape){
     if (!Array.isArray(this.lineShape)){
@@ -142,6 +172,11 @@ Indicator.prototype.getDistance = function(){
     return Math.sqrt(Math.pow(this.getSourceX()-this.getTargetX(), 2) + Math.pow(this.getSourceY()-this.getTargetY(), 2));
 };
 
+Indicator.prototype.hasEnded = function(){
+    return this.graphics===undefined;
+};
+
 Indicator.prototype.destroy = function(){
     this.graphics.destroy();
+    this.graphics = undefined;
 };

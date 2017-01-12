@@ -48,7 +48,7 @@ InsurancePlz.GameState.endTurn = function() {
     if (this.gameProgress.turn > 10) {
         this.endGame();
     } else {
-        startruntimer = this.game.time.events.add(Phaser.Timer.SECOND * 2, this.startTurn, this);
+        startruntimer = this.game.time.events.add(Phaser.Timer.SECOND, this.startTurn, this);
         //this.startTurn();
     }
 };
