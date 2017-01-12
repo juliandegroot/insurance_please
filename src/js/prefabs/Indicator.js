@@ -7,23 +7,23 @@
  */
 function Indicator(data, game) {
     //Taking over all variables supplied
-    for (var key in data){
+    for (var key in data) {
         this[key] = data[key];
     }
 
     //Setting unset arguments
-    if (this.sourceOffsetX===undefined) this.sourceOffsetX  = 0;
-    if (this.sourceOffsetY===undefined) this.sourceOffsetY  = 0;
-    if (this.targetOffsetX===undefined) this.targetOffsetX  = 0;
-    if (this.targetOffsetY===undefined) this.targetOffsetY  = 0;
-    if (this.lineWidth===undefined)     this.lineWidth      = 5;
-    if (this.color===undefined)         this.color          = 0xFF0000;
-    if (this.alpha===undefined)         this.alpha          = 1;
-    if (this.lineShape===undefined)     this.lineShape      = "15 5";
-    if (this.lineSpeed===undefined)     this.lineSpeed      = 0.2;
+    if (this.sourceOffsetX  === undefined)  this.sourceOffsetX  = 0;
+    if (this.sourceOffsetY  === undefined)  this.sourceOffsetY  = 0;
+    if (this.targetOffsetX  === undefined)  this.targetOffsetX  = 0;
+    if (this.targetOffsetY  === undefined)  this.targetOffsetY  = 0;
+    if (this.lineWidth      === undefined)  this.lineWidth      = 5;
+    if (this.color          === undefined)  this.color          = 0xFF0000;
+    if (this.alpha          === undefined)  this.alpha          = 1;
+    if (this.lineShape      === undefined)  this.lineShape      = "15 5";
+    if (this.lineSpeed      === undefined)  this.lineSpeed      = 0.2;
 
     //Initializing remaining variables
-    if (!Array.isArray(this.lineShape)) this.lineShape      = this.processLineShape(this.lineShape);
+    if (!Array.isArray(this.lineShape)) this.lineShape = this.processLineShape(this.lineShape);
     this.linePosition = 0;
     this.lineLength = this.getShapeLength();
     this.graphics = game.add.graphics(0, 0);
@@ -41,16 +41,16 @@ Indicator.prototype.update = function() {
     if (this.ending) this.moveToTarget();
 
     //If graphics has been destroyed, stop
-    if (this.graphics === undefined || 
+    if (this.graphics === undefined ||
         this.graphics.destroyPhase) return;
 
     //Clearing existing shape
     this.graphics.clear();
 
     //Updating position
-    this.linePosition-=this.lineSpeed;
-    if (Math.abs(this.linePosition) >= this.lineLength){
-        this.linePosition%=this.lineLength;
+    this.linePosition -= this.lineSpeed;
+    if (Math.abs(this.linePosition) >= this.lineLength) {
+        this.linePosition %= this.lineLength;
     }
 
     //Setting up a few variables
@@ -63,9 +63,9 @@ Indicator.prototype.update = function() {
     var i = this.getStartingShape();
 
     //Drawing the line
-    while (dist < totalDist){
+    while (dist < totalDist) {
         dist = Math.min(dist + this.lineShape[i], totalDist);
-        if (i++%2===1){
+        if (i++ % 2 === 1) {
             this.graphics.lineStyle(0, 0, 0);
         } else {
             this.graphics.lineStyle(this.lineWidth, this.color, this.alpha);
@@ -73,24 +73,24 @@ Indicator.prototype.update = function() {
         var xv = dist * Math.cos(angle);
         var yv = dist * Math.sin(angle);
         this.graphics.lineTo(x - xv, y - yv);
-        if (i>=this.lineShape.length) i%=this.lineShape.length;
+        if (i >= this.lineShape.length) i %= this.lineShape.length;
     }
     this.graphics.endFill();
 };
 
-Indicator.prototype.execute = function(){
+Indicator.prototype.execute = function() {
     this.ending = true;
-    this.endSpeed = this.getDistance()/35;
+    this.endSpeed = this.getDistance() / 35;
     this.source = {
-        "x":this.source.x + this.sourceOffsetX,
-        "y":this.source.y + this.sourceOffsetY
+        "x": this.source.x + this.sourceOffsetX,
+        "y": this.source.y + this.sourceOffsetY
     }
     this.sourceOffsetX = 0;
     this.sourceOffsetY = 0;
 }
 
-Indicator.prototype.moveToTarget = function(){
-    if (this.getDistance() < this.endSpeed){
+Indicator.prototype.moveToTarget = function() {
+    if (this.getDistance() < this.endSpeed) {
         this.destroy();
     } else {
         var angle = this.getAngle();
@@ -99,84 +99,84 @@ Indicator.prototype.moveToTarget = function(){
     }
 }
 
-Indicator.prototype.setLineShape = function(shape){
-    if (!Array.isArray(this.lineShape)){
+Indicator.prototype.setLineShape = function(shape) {
+    if (!Array.isArray(this.lineShape)) {
         this.lineShape = this.processLineShape(shape);
     } else {
         this.lineLength = this.getShapeLength();
     }
 };
 
-Indicator.prototype.getShapeLength = function(){
+Indicator.prototype.getShapeLength = function() {
     var length = 0;
-    for (var i=0;i<this.lineShape.length;i++){
-        length+=this.lineShape[i];
+    for (var i = 0; i < this.lineShape.length; i++) {
+        length += this.lineShape[i];
     }
     return length;
 };
 
-Indicator.prototype.processLineShape = function(shape){
+Indicator.prototype.processLineShape = function(shape) {
     var spl = shape.split(" ");
     var shape = [];
-    for (var i=0;i<spl.length;i++){
+    for (var i = 0; i < spl.length; i++) {
         shape.push(parseInt(spl[i]));
     }
     return shape;
 };
 
-Indicator.prototype.getSourceX = function(){
+Indicator.prototype.getSourceX = function() {
     return this.source.x + this.sourceOffsetX;
 };
 
-Indicator.prototype.getSourceY = function(){
+Indicator.prototype.getSourceY = function() {
     return this.source.y + this.sourceOffsetY;
 };
 
-Indicator.prototype.getTargetX = function(){
+Indicator.prototype.getTargetX = function() {
     return this.target.x + this.targetOffsetX;
 };
 
-Indicator.prototype.getTargetY = function(){
+Indicator.prototype.getTargetY = function() {
     return this.target.y + this.targetOffsetY;
 };
 
-Indicator.prototype.getStartingShape = function(){
+Indicator.prototype.getStartingShape = function() {
     var dist = 0;
     var pos = Math.abs(this.linePosition);
-    for (var i=0;i<this.lineShape.length;i++){
-        dist+=this.lineShape[i];
-        if (pos < dist){
+    for (var i = 0; i < this.lineShape.length; i++) {
+        dist += this.lineShape[i];
+        if (pos < dist) {
             return i;
         }
     }
     return 0;
 };
 
-Indicator.prototype.getStartingOffset = function(){
+Indicator.prototype.getStartingOffset = function() {
     var dist = 0;
     var pos = Math.abs(this.linePosition);
-    for (var i=0;i<this.lineShape.length;i++){
-        dist+=this.lineShape[i];
-        if (pos < dist){
+    for (var i = 0; i < this.lineShape.length; i++) {
+        dist += this.lineShape[i];
+        if (pos < dist) {
             return pos - dist;
         }
     }
     return 0;
 };
 
-Indicator.prototype.getAngle = function(){
-    return Math.atan2(this.getSourceY()-this.getTargetY(), this.getSourceX()-this.getTargetX());
+Indicator.prototype.getAngle = function() {
+    return Math.atan2(this.getSourceY() - this.getTargetY(), this.getSourceX() - this.getTargetX());
 };
 
-Indicator.prototype.getDistance = function(){
-    return Math.sqrt(Math.pow(this.getSourceX()-this.getTargetX(), 2) + Math.pow(this.getSourceY()-this.getTargetY(), 2));
+Indicator.prototype.getDistance = function() {
+    return Math.sqrt(Math.pow(this.getSourceX() - this.getTargetX(), 2) + Math.pow(this.getSourceY() - this.getTargetY(), 2));
 };
 
-Indicator.prototype.hasEnded = function(){
-    return this.graphics===undefined;
+Indicator.prototype.hasEnded = function() {
+    return this.graphics === undefined;
 };
 
-Indicator.prototype.destroy = function(){
+Indicator.prototype.destroy = function() {
     this.graphics.destroy();
     this.graphics = undefined;
 };

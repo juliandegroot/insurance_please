@@ -128,28 +128,28 @@ InsurancePlz.GameState.alreadyStackedForTarget = function(target) {
 /**
  * Triggers an update for all attack indicator animations.
  */
-InsurancePlz.GameState.updateAttackIndicators = function(){
-    for (var i=0;i<this.attackStack.length;i++){
+InsurancePlz.GameState.updateAttackIndicators = function() {
+    for (var i = 0; i < this.attackStack.length; i++) {
         this.attackStack[i].update();
     }
-    for (var i=0;i<this.attackIndicators.length;i++){
-        if (this.attackIndicators[i].hasEnded()){
+    for (var i = 0; i < this.attackIndicators.length; i++) {
+        if (this.attackIndicators[i].hasEnded()) {
             this.attackIndicators.splice(i, 1);
         } else {
             this.attackIndicators[i].update();
         }
     }
-    if (this.selectedAttack!==undefined){
-        if (this.attackIndicator!==undefined){
+    if (this.selectedAttack !== undefined) {
+        if (this.attackIndicator !== undefined) {
             this.attackIndicator.update();
         } else {
             this.attackIndicator = new Indicator({
-                "source":this.selectedAttack,
-                "target":this.game.input,
-                "sourceOffsetX":this.selectedAttack.width/2
+                "source": this.selectedAttack,
+                "target": this.game.input,
+                "sourceOffsetX": this.selectedAttack.width / 2
             }, this);
         }
-    } else if (this.attackIndicator!==undefined){
+    } else if (this.attackIndicator !== undefined) {
         this.attackIndicator.destroy();
         this.attackIndicator = undefined;
     }
