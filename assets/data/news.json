@@ -126,6 +126,8 @@
   "damage": [
     "The damage for %CN was no less than %CDMG.",
     "The attack cost %CN %CDMG.",
-    "The damage for %CN consists of %CDMG."
+    "The damage for %CN consists of %CDMG.",
+    "The incident resulted in $%CDMG of damages for the company.",
+    "As a consequence of the hack %CN suffered $%CDMG in damages."
   ]
 }
