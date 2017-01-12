@@ -16,7 +16,7 @@ InsurancePlz.GameState.selectAttack = function(attack) {
  * Clears the selected attack and resets the alpha on all attack buttons.
  */
 InsurancePlz.GameState.clearAttackSelection = function() {
-    this.selectedAttack = null;
+    this.selectedAttack = undefined;
     this.attacks.setAll('alpha', 1);
 };
 
@@ -123,3 +123,26 @@ InsurancePlz.GameState.alreadyStackedForTarget = function(target) {
     }
     return false;
 };
+
+/**
+ * Triggers an update for all attack indicator animations.
+ */
+InsurancePlz.GameState.updateAttackIndicators = function(){
+    for (var i=0;i<this.attackStack.length;i++){
+        this.attackStack[i].update();
+    }
+    if (this.selectedAttack!==undefined){
+        if (this.attackIndicator!==undefined){
+            this.attackIndicator.update();
+        } else {
+            this.attackIndicator = new Indicator({
+                "source":this.selectedAttack,
+                "target":this.game.input,
+                "sourceOffsetX":this.selectedAttack.width/2
+            }, this);
+        }
+    } else if (this.attackIndicator!==undefined){
+        this.attackIndicator.destroy();
+        this.attackIndicator = undefined;
+    }
+}

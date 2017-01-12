@@ -19,7 +19,19 @@ function StackedAttack(attack, target, position, game) {
         wordWrapWidth: 50
     };
     this.label = game.add.text(this.getX(position), 395, target.data.name, style);
-    this.indicator = game.add.graphics(0, 0);
+    this.indicator = new Indicator({
+        "source":this.attack,
+        "target":this.target,
+        "sourceOffsetX":this.attack.width/2,
+        "targetOffsetY":this.target.height/2
+    }, game);
+}
+
+/**
+ * Updates any elements of this attack that need to be updated.
+ */
+StackedAttack.prototype.update= function() {
+    this.indicator.update();
 }
 
 /**
@@ -43,6 +55,7 @@ StackedAttack.prototype.reposition = function(position) {
 StackedAttack.prototype.destroy = function() {
     this.button.destroy();
     this.label.destroy();
+    this.indicator.destroy();
 };
 
 /**

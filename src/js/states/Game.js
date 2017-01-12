@@ -106,6 +106,9 @@ InsurancePlz.GameState = {
         //modal setup:
         reg.modal = new gameModal(this.game);
         this.createModals();
+    },
+    update: function(){
+        this.updateAttackIndicators();
     }
 };
 

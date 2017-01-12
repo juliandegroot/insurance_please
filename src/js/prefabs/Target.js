@@ -26,7 +26,7 @@ InsurancePlz.Target.prototype.touch = function() {
     this.state.vulnerablepanelLabel.text = this.getVulnerableString();
 
     //If no attack is selected, stop here
-    if (this.state.selectedAttack != null){
+    if (this.state.selectedAttack !== undefined){
         this.state.stackAttack(this.state.selectedAttack, this);
     }
 };
