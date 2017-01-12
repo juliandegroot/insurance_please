@@ -27,14 +27,11 @@
  * If the conditions are met, the game will be ended.
  */
 InsurancePlz.GameState.endTurn = function() {
-    this.flushAttackStack(); // buttons on the right in panel
-    var events = this.executeAttacks() // we are executing our attacks
+    var events = this.executeAttacks(); // we are executing our attacks
+    this.flushAttackStack(); // empty the attack stack and the corresponding buttons
 
     this.gameProgress.newsarray = this.gameProgress.newsarray.concat(this.newsbuilder.generateNewsItems(events));
 
-
-    this.clearAttackStack(); // clear stacked attack array
-    this.setAllButtonxAvailable(); // all button positions can be taken again
     this.gameProgress.index = 0;
     this.gameProgress.turn++;
     this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;

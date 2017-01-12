@@ -12,22 +12,7 @@ InsurancePlz.GameState = {
             "actionPoints": 10,
             "actionPointsMax": 10,
             "score": 0,
-            "attackstack": [],
-            "index": 0,
-            "buttonstack": [
-                [650, false],
-                [700, false],
-                [750, false],
-                [800, false],
-                [850, false]
-            ],
-            "textstack": [
-                [650, ''],
-                [700, ''],
-                [750, ''],
-                [800, ''],
-                [850, '']
-            ],
+            "maxAttacks": 5,
             "newsarray": []
         };
 
@@ -102,23 +87,18 @@ InsurancePlz.GameState = {
         hackingdamageText = this.game.add.text(250, 10, '', scorestyle);
         //actionpoints text
         actionpointsText = this.game.add.text(10, 10, '', acpointsstyle);
-        stackText1 = this.game.add.text(650, 350, '', stackstyle);
-        stackText2 = this.game.add.text(700, 350, '', stackstyle);
-        stackText3 = this.game.add.text(750, 350, '', stackstyle);
-        stackText4 = this.game.add.text(800, 350, '', stackstyle);
-        stackText5 = this.game.add.text(850, 350, '', stackstyle);
         this.refreshStats();
 
         //end turn button and start of game
         this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
         this.endturntext = this.add.text(715, 470, 'Execute Attacks', style);
-        this.stackboxtext = this.add.text(650, 330, '', style);
 
         //how-to-play, information button
         this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
 
-        //group of stacked attack buttons:
-        this.stackedattacks = this.add.group();
+        //attack stack label
+        this.attackStack = [];
+        this.attackStackLabel = this.add.text(650, 330, '', style);
 
         //start turn:
         this.startTurn();

@@ -100,7 +100,7 @@ InsurancePlz.GameState.showHowToPlay = function() {
 InsurancePlz.GameState.createModals = function() {
     //////// modal 1 ////////////
     reg.modal.createModal({
-        type: "modal1",
+        type: "not-enough-action-points",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
@@ -120,7 +120,7 @@ InsurancePlz.GameState.createModals = function() {
     });
     //////// modal 2 ////////////
     reg.modal.createModal({
-        type: "modal2",
+        type: "already-stacked-for-target",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
@@ -138,13 +138,24 @@ InsurancePlz.GameState.createModals = function() {
             offsetY: -50
         }, ]
     });
-};
-
-InsurancePlz.GameState.showModalNotEnoughAttackPoints = function() {
-    reg.modal.showModal("modal1");
-};
-
-
-InsurancePlz.GameState.showModalAlreadyStacketforTarget = function() {
-    reg.modal.showModal("modal2");
+    //////// modal 3 ////////////
+    reg.modal.createModal({
+        type: "stack-full",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: "graphics",
+            graphicColor: "0xffffff",
+            graphicWidth: 300,
+            graphicHeight: 300,
+            graphicRadius: 40
+        }, {
+            type: "text",
+            content: "Attack stack is full",
+            fontFamily: "Luckiest Guy",
+            fontSize: 22,
+            color: "0x1e1e1e",
+            offsetY: -50
+        }, ]
+    });
 };

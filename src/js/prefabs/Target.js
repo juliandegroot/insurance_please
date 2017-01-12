@@ -21,49 +21,44 @@ InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 
 InsurancePlz.Target.prototype.touch = function() {
     //shows target info in news panel:
+    this.state.newspanelLabel.text = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
+    //this.state.securedpanelLabel.text = this.getSecuredString();
+    this.state.vulnerablepanelLabel.text = this.getVulnerableString();
 
-    var news = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
-    var secured = this.getSecuredString();
-    var vulnerabilities = this.getVulnerableString();
+    //If no attack is selected, stop here
+    if (this.state.selectedAttack == null) return;
 
-    this.state.newspanelLabel.text = news;
-    //this.state.securedpanelLabel.text = secured;
-    this.state.vulnerablepanelLabel.text = vulnerabilities;
-
-    //are we selecting anything?
-    var selectedAttack = this.state.selectedAttack;
-
-    if (selectedAttack) {
-        //are there interactions? are they with the selected attack?
-        var seclevel = 2;
-        console.log("Number security levels: " + seclevel);
-        var secvector = this.state.selectedAttack.data.securityVector; // the attack's security vector object
-        var attackweightpoints = this.state.selectedAttack.data.points;
-        var targetid = this.data.id;
-        var attackid = this.state.selectedAttack.data.id;
-        if ((this.state.enoughPoints(attackweightpoints) == true) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
-            //while attack points last and selected attack does not let us drop below 0:
-            //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
-            // and cannot stack same tar/attack combination more than once
-            this.state.stackAttack(this, this.state.selectedAttack, this.state.selectedAttack.data.asset);
-            this.state.gameProgress.actionPoints = this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points;
-            this.state.refreshStats();
-            console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
-            this.state.clearAttackSelection(); // deselect attack
-
-        } else {
-            console.log("Already stacked or attackstack is full! (max 5)");
-            this.state.clearAttackSelection(); // deselect attack
-        }
+    //If we don't have enough points to add that attack...
+    if (!this.state.enoughPoints(this.state.selectedAttack.data.points)){
+        reg.modal.showModal("not-enough-action-points");
+        this.state.clearAttackSelection();
+        return;
     }
-    console.log("Current action points: " + this.state.gameProgress.actionPoints);
+
+    //If the target already has an attack aimed at it...
+    if (this.state.alreadyStackedForTarget(this.data.id)){
+        reg.modal.showModal("already-stacked-for-target");
+        this.state.clearAttackSelection();
+        return;
+    }
+
+    //If we already have the maximum amount of attacks stacked...
+    if (this.state.attackStack.length >= this.state.gameProgress.maxAttacks){
+        reg.modal.showModal("stack-full");
+        this.state.clearAttackSelection();
+        return;
+    }
+
+    //If all requirements are met, we add the attack to the stack
+    this.state.stackAttack(this, this.state.selectedAttack);
+    this.state.clearAttackSelection();
+    this.state.refreshStats();
 };
 
 InsurancePlz.Target.prototype.getSecuredString = function() {
-    var secvector = this.data.securityVector; // the target's security vector object
     var string = "Secured:\n";
-    for (var key in secvector) { // getting the actual array
-        if (secvector[key] == 1) {
+    for (var key in this.data.securityVector) { // getting the actual array
+        if (this.data.securityVector[key] === 1) {
             string = string + key + "\n";
         }
     }
@@ -71,15 +66,10 @@ InsurancePlz.Target.prototype.getSecuredString = function() {
 };
 
 InsurancePlz.Target.prototype.getVulnerableString = function() {
-    var secvector = this.data.securityVector; // the target's security vector object
     var string = "";
-    var description = "";
-    for (var key in secvector) { // getting the actual array
-        if (secvector[key] == 0) {
+    for (var key in this.data.securityVector) { // getting the actual array
+        if (this.data.securityVector[key] === 0) {
             switch (key) {
-                case "iot":
-                    string = string + "- IoT devices unprotected\n";
-                    break;
                 case "nobyod":
                     string = string + "- Employees can bring their own device\n";
                     break;
@@ -101,11 +91,9 @@ InsurancePlz.Target.prototype.getVulnerableString = function() {
                 case "riskaudit":
                     string = string + "- Risk assessment issues\n";
                     break;
-
                 case "techadvice":
                     string = string + "- Tech-advice on soft- & hardware missing\n";
                     break;
-
                 case "serviceon":
                     string = string + "- Proper service contracts missing\n";
                     break;
@@ -127,9 +115,9 @@ InsurancePlz.Target.prototype.getName = function() {
     return this.data.name;
 };
 
-InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attackid, attackname, targetname, targetobject) {
+InsurancePlz.Target.prototype.doDamage = function(attack) {
 
-    var weights = { //constant attack weights
+    var aweights = { //constant attack weights
         "nobyod": 1,
         "pwman": 1,
         "websec": 1,
@@ -148,40 +136,40 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
         "infra": 0.25
     }
 
-    var attackstrength = 0;
-    var reducfactor = 0;
-    var effecton = [];
-    var damageavoidedon = [];
+    var attackStrength = 0;
+    var reducFactor = 0;
+    var effectOn = [];
+    var damageAvoidedOn = [];
+
+    // Get the damage effects and factor.
+    for (var key in aweights) {
+        if (this.data.securityVector[key] === 0) {
+            effectOn.push(attack.secvector[key]);
+            attackStrength += aweights[key];
+        }
+    }
 
     // Get the reduction effects and factor.
     for (var key in dweights) {
         if (this.data.damagecontrol[key] === 1) {
-            damageavoidedon.push(key);
-            reducfactor += dweights[key];
+            damageAvoidedOn.push(key);
+            reducFactor += dweights[key];
         }
     }
 
-    // Get the damage effects and factor.
-    for (var i = 0; i < atkvec.length; i++) {
-        if (this.data.securityVector[atkvec[i]] === 0) {
-            effecton.push(atkvec[i]);
-            attackstrength += weights[atkvec[i]];
-        }
-    }
-
-    var hacker_damage_inflicted = Math.round(attackstrength * 100000);
-    var company_damage_suffered = hacker_damage_inflicted * (1 - reducfactor) * (1 + (0.5-Math.random())/10);
+    var hacker_damage_inflicted = Math.round(attackStrength * 100000);
+    var company_damage_suffered = hacker_damage_inflicted * (1 - reducFactor) * (1 + (0.5-Math.random())/10);
     // Cleanliness rounding
     company_damage_suffered = company_damage_suffered - company_damage_suffered%100;
 
     // Display graphic when damage is dealt
     if (company_damage_suffered > 0) {
-        var sufferedTargetTween = this.game.add.tween(targetobject);
+        var sufferedTargetTween = this.game.add.tween(this);
         sufferedTargetTween.to({
             tint: 0xFF0000 // flicker to red
         }, 500);
         sufferedTargetTween.onComplete.add(function() {
-            targetobject.tint = 0xFFFFFF; // back to normal tint
+            this.tint = 0xFFFFFF; // back to normal tint
         }, this);
         sufferedTargetTween.start();
     }
@@ -190,14 +178,12 @@ InsurancePlz.Target.prototype.doDamage = function(atkvec, effectiveness, attacki
     this.data.damage = this.data.damage + company_damage_suffered;
 
     // Data that needs to be returned for generating the news
-    var res = {
-        attackID: attackid,
-        attackName: attackname,
-        companyName: targetname,
-        damage: company_damage_suffered
-    }
-
-    return res;
+    return {
+        "attackID": attack.id,
+        "attackName": attack.data.name,
+        "companyName": this.data.name,
+        "damage": company_damage_suffered
+    };
 };
 
 /**
