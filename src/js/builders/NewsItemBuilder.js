@@ -129,7 +129,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceAttackTag = function(string, attac
  * @param {Number} damage - The damage amount to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceDamageTag = function(string, damage) {
-    return string.replace(new RegExp("%d", 'g'), damage);
+    return string.replace(new RegExp("%CDMG", 'g'), damage);
 }
 
 /**
