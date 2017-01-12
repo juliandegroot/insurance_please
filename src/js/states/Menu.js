@@ -47,14 +47,25 @@ InsurancePlz.MenuState = {
         this.playtext = this.add.text(this.game.world.centerX,
             this.game.world.centerY - 128, 'Play', menuStyle);
         this.playtext.anchor.setTo(0.5);
+        
+        //Draw tutorial button
+        this.tutbtn = this.add.button(this.game.world.centerX,
+            this.game.world.centerY - 30, 'button', this.startTutorial, this)
+        this.tutbtn.anchor.setTo(0.5);
 
-        this.btn = this.add.button(this.game.world.centerX, this.game.world.centerY, 'button', function() {
-          this.infodisplay.toggle();
-        }, this);
+        this.tuttext = this.add.text(this.game.world.centerX,
+            this.game.world.centerY - 28, 'Tutorial', menuStyle);
+        this.tuttext.anchor.setTo(0.5);
 
-        this.infodisplay = new InsurancePlz.TargetInfoDisplay(this.game, this.game.world, this.btn.x + this.btn.width + 5, this.btn.y + this.btn.height / 2);
+        //Uncomment to skip menu for testing
+        //this.state.start('Game');
     },
     startGame: function() {
         this.state.start('Game');
+        InsurancePlz.isTutorial = false; // global variabel to define normal game status
+    },
+    startTutorial: function() {
+        this.state.start('Game');
+        InsurancePlz.isTutorial = true; // global variable to define tutorial status
     }
 };

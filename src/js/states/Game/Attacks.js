@@ -135,6 +135,8 @@ InsurancePlz.GameState.executeAttacks = function() {
         var item = this.attackStack[i].execute();
         if (item.damage > 0) {
             news.push(item);
+            // check damage done per round for tutorial purpose
+            this.gameProgress.roundscore = this.gameProgress.roundscore + item.damage; 
         }
     }
     return news;
