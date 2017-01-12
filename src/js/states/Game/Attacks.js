@@ -41,7 +41,7 @@ InsurancePlz.GameState.clearAttack = function(button) {
             break;
         }
     }
-}
+};
 
 /**
  * Adds a StackedAttack to the attackStack.
@@ -82,7 +82,6 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
 
     this.clearAttackSelection();
     this.refreshStats();
-
 };
 
 /**

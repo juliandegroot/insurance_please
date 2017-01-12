@@ -19,6 +19,7 @@ function StackedAttack(attack, target, position, game) {
         wordWrapWidth: 50
     };
     this.label = game.add.text(this.getX(position), 395, target.data.name, style);
+    this.indicator = game.add.graphics(0, 0);
 }
 
 /**
