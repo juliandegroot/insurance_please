@@ -104,7 +104,7 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
         "techadvice": 0.2,
         "serviceon": 0.2
     }
-    
+
     var dweights = { //constant defense weights
         "insurance": 0.25,
         "backup": 0.25,
@@ -119,9 +119,9 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
 
     // Get the damage effects and factor.
     for (var key in attack.secvector) {
-        if (this.data.securityVector[key] === 0) {
+        if (this.data.securityVector[attack.secvector[key]] === 0) {
             effectOn.push(attack.secvector[key]);
-            attackStrength += aweights[key];
+            attackStrength += aweights[attack.secvector[key]];
         }
     }
 
