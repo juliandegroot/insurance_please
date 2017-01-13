@@ -58,7 +58,7 @@ InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformat
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformation) {
     var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
-    var body = intro + " " + this.chooseDamageSentence();
+    var body = intro + " " + this.chooseCategorySentence("effect", eventInformation.attackID) + this.chooseDamageSentence();
     return this.replaceAllTags(body, eventInformation);
 }
 
@@ -129,7 +129,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceAttackTag = function(string, attac
  * @param {Number} damage - The damage amount to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceDamageTag = function(string, damage) {
-    return string.replace(new RegExp("%d", 'g'), damage);
+    return string.replace(new RegExp("%CDMG", 'g'), damage);
 }
 
 /**
