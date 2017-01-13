@@ -59,9 +59,6 @@ InsurancePlz.GameState.endTurn = function() {
 
     this.gameProgress.index = 0;
     this.gameProgress.turn++;
-    if (InsurancePlz.isTutorial == false) { // if were in tutorial mode we limit points
-        this.gameProgress.actionPoints = this.gameProgress.actionPointsMax;
-    }
     this.refreshStats(); // update stats
 
     //Trigger a minor event every turn (outside tutorial mode)
