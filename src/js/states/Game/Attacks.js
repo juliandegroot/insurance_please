@@ -20,29 +20,6 @@ InsurancePlz.GameState.clearAttackSelection = function() {
     this.attacks.setAll('alpha', 1);
 };
 
-
-/**
- * Callback function that removes the given attack from the attack stack.
- * @param {Object} button - The attack stack button that was pressed and will be deleted.
- */
-InsurancePlz.GameState.clearAttack = function(button) {
-    for (var i = 0; i < this.attackStack.length; i++) {
-        if (this.attackStack[i].button === button) {
-            this.updateActionPoints(-this.attackStack[i].attack.points);
-            this.attackStack[i].destroy();
-            this.attackStack.splice(i, 1);
-            if (this.attackStack.length === 0) {
-                this.attackStackLabel.text = '';
-            } else {
-                for (var j = 0; j < this.attackStack.length; j++) {
-                    this.attackStack[j].reposition(j);
-                }
-            }
-            break;
-        }
-    }
-};
-
 /**
  * Callback function that removes the given attack from the attack stack.
  * @param {Object} button - The attack stack button that was pressed and will be deleted.
@@ -102,16 +79,14 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
     }
 
     //If all requirements are met, we add the attack to the stack
-    this.gameProgress.actionPoints -= attack.data.points;
+    this.updateActionPoints(-attack.data.points);
     this.attackStack.push(
         new StackedAttack(
             attack, target, this.attackStack.length, this
         )
     );
     this.attackStackLabel.text = 'Stacked Attacks:';
-
     this.clearAttackSelection();
-    this.refreshStats();
 };
 
 /**
