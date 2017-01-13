@@ -42,8 +42,7 @@
   },
   "intro": {
     "general": [
-      "General introduction sentence.",
-      "Another general introduction sentence."
+
     ],
     "usb": [
       "Hackers distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC.  This is not very surpising,  because there’s always the possibility of getting someone to connect an infected USB device – if we’ve learned anything from Mr. Robot and a certain university study it’s that if someone finds a USB device, they tend to plug it in. ",
@@ -83,8 +82,7 @@
   },
   "effect": {
     "general": [
-      "General effect for some news item.",
-      "Another effect body sentence for general news item."
+
     ],
     "usb": [
       "While normally one generally trusts free USB sticks, this one came with Ransomware called KillDisk. The KillDisk ransomware variant that targets Windows machines worked by encrypting each file via an AES-256 key, and then encrypting the AES keys with a public RSA-1028 key. When ransomware is used, typically extortion is used to retrieve money. The attackers asked to be paid in bitcoins.",
