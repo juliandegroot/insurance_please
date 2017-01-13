@@ -8,8 +8,9 @@ var InsurancePlz = InsurancePlz || {};
  * @params {Object} eventJSON - An Object containing the required data.
  */
 InsurancePlz.MinorEvent = function(data) {
-    this.key = data.key;
-    this.weight = data.weight;
+    for (var key in data){
+        this[key] = data[key];
+    }
     //Sets up a link to the function that executes this event.
     this.execute = new Function("InsurancePlz.GameState.triggerMinorEvent_" + this.key + "()");
 }
