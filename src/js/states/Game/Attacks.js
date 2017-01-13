@@ -28,7 +28,7 @@ InsurancePlz.GameState.clearAttackSelection = function() {
 InsurancePlz.GameState.clearAttack = function(button) {
     for (var i = 0; i < this.attackStack.length; i++) {
         if (this.attackStack[i].button === button) {
-            this.gameProgress.actionPoints += this.attackStack[i].attack.points;
+            this.updateActionPoints(-this.attackStack[i].attack.points);
             this.attackStack[i].destroy();
             this.attackStack.splice(i, 1);
             if (this.attackStack.length === 0) {
@@ -61,7 +61,7 @@ InsurancePlz.GameState.stackButton = function(button) {
  * @param {Object} button - The attack stack butt++)on that was pressed and will be deleted.
  */
 InsurancePlz.GameState.clearAttack = function(i) {
-    this.gameProgress.actionPoints += this.attackStack[i].attack.points;
+    this.updateActionPoints(this.attackStack[i].attack.points);
     this.attackStack[i].destroy();
     this.attackStack.splice(i, 1);
     if (this.attackStack.length === 0) {

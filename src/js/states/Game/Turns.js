@@ -5,6 +5,7 @@
  */
  InsurancePlz.GameState.startTurn = function () {
     this.gameProgress.roundscore = 0; //set points back to zero
+    this.updateActionPoints(this.gameProgress.actionPointsMax); //reset action points
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || ((this.gameProgress.newsarray.length == 0) && (this.gameProgress.turn == 1))) {
         // start of the game or start of the tutorial from here:
