@@ -124,6 +124,21 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
             attackStrength += aweights[attack.secvector[key]];
         }
     }
+    
+    //Introducing a learning-element for targets to secure what they have been attacked on
+    //After a target is attacked we introduce a 75% chance for it to update one of its security
+    //vector elements the attack just had effect on
+    if (effectOn.length > 0) { // as long as there actually are weaknesses
+        var totalweaknesses = effectOn.length;
+        var picked_weakness_index = Math.floor(Math.random() * totalweaknesses);
+        //console.log("totalw: " + totalweaknesses + " random index: " + picked_weakness_index);
+        //console.log(effectOn);
+        if (Math.random() >= 0.25) {
+            //console.log("Weakness picked: " + effectOn[picked_weakness_index]);
+            this.data.securityVector[effectOn[picked_weakness_index]] = 1; // there is now protection for this weakness
+            //console.log(this.data.name + " now protected for " + effectOn[picked_weakness_index]);
+        }
+    }
 
     // Get the reduction effects and factor.
     for (var key in dweights) {
@@ -158,7 +173,8 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
         "attackID": attack.id,
         "attackName": attack.data.name,
         "companyName": this.data.name,
-        "damage": company_damage_suffered
+        "damage": company_damage_suffered,
+        "effect_on": effectOn
     };
 };
 
