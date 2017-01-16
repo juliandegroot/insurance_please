@@ -14,12 +14,16 @@ InsurancePlz.InformationBox = function(game, x, y, options) {
     background: 0xFF3300,
     opacity: 1,
     outline: 0x0000FF,
-    outlineThickness: 2,
+    outlineThickness: 1,
     outlineOpacity: 1,
     width: opt.width,
     height: opt.height,
-    margin: 5
+    margin: 3
   }))
+
+  var pb = new InsurancePlz.ProgressBar(game, 10, 10, 9, 10);
+  pb.setProgress(5);
+  this.add(pb)
 }
 
 InsurancePlz.InformationBox.prototype = Object.create(Phaser.Group.prototype);
