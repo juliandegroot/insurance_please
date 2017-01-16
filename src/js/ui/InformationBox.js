@@ -7,7 +7,7 @@ InsurancePlz.InformationBox = function(game, x, y, options) {
 
   var opt = options || {
     width: 320,
-    height: 110
+    height: 120
   }
 
   this.add(new InsurancePlz.BackgroundBox(game, 0, 0, {
@@ -23,14 +23,14 @@ InsurancePlz.InformationBox = function(game, x, y, options) {
   // Define the text style
   var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
   // Add the elements for the available attack points
-  this.game.add.text(10, 5, "Available Attack Points:", style, this);
-  this.progressBar = new InsurancePlz.ProgressBar(game, 11, 45, 10, 10);
+  this.game.add.text(10, 10, "Available Attack Points:", style, this);
+  this.progressBar = new InsurancePlz.ProgressBar(game, 11, 50, 10, 10);
   this.progressBar.setProgress(5);
   this.add(this.progressBar)
-  this.progressText = this.game.add.text(315, 58, "10/10", style, this);
+  this.progressText = this.game.add.text(315, 63, "10/10", style, this);
   this.progressText.anchor = new Phaser.Point(1,0.5)
   // Add the damage text
-  this.damageText = this.game.add.text(10, 75, "Damage: $0", style, this);
+  this.damageText = this.game.add.text(10, 80, "Damage: $0", style, this);
 }
 
 InsurancePlz.InformationBox.prototype = Object.create(Phaser.Group.prototype);

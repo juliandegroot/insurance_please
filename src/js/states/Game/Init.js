@@ -126,9 +126,9 @@ InsurancePlz.GameState.askBackToMenu = function() {
 };
 
 InsurancePlz.GameState.createUI = function() {
-  new InsurancePlz.AttackBox(this.game, 0, 610);
+  new InsurancePlz.AttackBox(this.game, 0, 600);
   new InsurancePlz.ButtonBox(this.game, 960, 600);
-  new InsurancePlz.InformationBox(this.game, 640, 610);
+  new InsurancePlz.InformationBox(this.game, 640, 600);
 };
 
 InsurancePlz.GameState.createModals = function() {

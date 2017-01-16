@@ -7,7 +7,7 @@ InsurancePlz.AttackBox = function(game, x, y, options) {
 
   var opt = options || {
     width: 640,
-    height: 110
+    height: 120
   };
 
   this.add(new InsurancePlz.BackgroundBox(game, 0, 0, {
