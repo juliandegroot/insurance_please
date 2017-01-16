@@ -1,6 +1,6 @@
 var InsurancePlz = InsurancePlz || {};
 
-InsurancePlz.ButtonBox = function(game, state, x, y, options) {
+InsurancePlz.ButtonBox = function(game, x, y, options) {
   Phaser.Group.call(this, game);
   this.x = x;
   this.y = y;
