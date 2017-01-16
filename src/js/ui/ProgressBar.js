@@ -5,9 +5,9 @@ InsurancePlz.ProgressBar = function(game, x, y, progress, total, options) {
   this.progress = progress;
   this.total = total;
   this.options = options || {
-    background: 0xFF00FF,
-    bar: 0x00FFFF,
-    outline: 0x000000,
+    background: 0xD61212,
+    bar: 0x12AAD6,
+    outline: 0x131313 ,
     outlineThickness: 2,
     width: 240,
     height: 20
