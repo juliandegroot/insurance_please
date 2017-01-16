@@ -1,3 +1,5 @@
+var InsurancePlz = InsurancePlz || {};
+
 /**
  * Creates an array of target data. To each location in the AttackMapData a
  * random target is assigned. The target data array contains the original
@@ -121,6 +123,12 @@ InsurancePlz.GameState.askBackToMenu = function() {
     this.popup = new Popup("Return to the main menu?", "Pay attention, if you click yes all progress will be lost. If you click no you return to the game", 'howtoplaypanel');
     this.popup.addButton("No", this.closePopup, this);
     this.popup.addButton("Yes", this.loadMenu, this);
+};
+
+InsurancePlz.GameState.createUI = function() {
+  new InsurancePlz.AttackBox(this.game, 0, 610);
+  new InsurancePlz.ButtonBox(this.game, 960, 610);
+  new InsurancePlz.InformationBox(this.game, 640, 610);
 };
 
 InsurancePlz.GameState.createModals = function() {

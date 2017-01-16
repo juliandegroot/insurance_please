@@ -22,6 +22,7 @@ InsurancePlz.GameState = {
         this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
     },
     create: function () {
+        this.createUI();
         //attackpanel area
         this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
         var style = {
@@ -96,7 +97,7 @@ InsurancePlz.GameState = {
 
         //how-to-play, information button
         this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
-        
+
         //back-to-main-menu button
         this.backtomenubtn = this.add.button(650, 400, 'howtoplay', this.askBackToMenu, this);
 
