@@ -10,6 +10,7 @@
  */
 InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
     var targetNumber = attackMapData.numberOfTargets;
+    if (InsurancePlz.isTutorial) { targetNumber = 2; } // limit targets to practice on for tutorial
     var targetLocations = attackMapData.locations;
     var targets = targetData;
     var finalTargets = [];
@@ -34,18 +35,23 @@ InsurancePlz.GameState.createTargetData = function(attackMapData, targetData) {
  * createMap creates the map part of the game: it reads in the targets, attacks
  * and assigns them to a possition in the UI.
  */
-InsurancePlz.GameState.createMap = function() {
+InsurancePlz.GameState.createMap = function () {
     //TODO: This function uses both a this.targets and a var targets? Rather confusing.
     this.attackMapData = JSON.parse(this.game.cache.getText('europe'));
-    var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
-
+    if (InsurancePlz.isTutorial == false) {
+        var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
+    }
+    if (InsurancePlz.isTutorial) {
+        console.log("bla1")
+        var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('tutorialtargets')).targets);
+    }
     this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
     //create target instances
     this.targets = this.add.group();
     var target;
-    targets.forEach(function(targetData) {
+    targets.forEach(function (targetData) {
         target = new InsurancePlz.Target(this, targetData);
 
         var stylif = {
@@ -69,7 +75,10 @@ InsurancePlz.GameState.createMap = function() {
     this.attacks = this.add.group();
     var attack;
     var attackData = JSON.parse(this.game.cache.getText('attacks'));
-    attackData.attacks.forEach(function(attackData) {
+    var tutamountattacks = 1;
+    attackData.attacks.forEach(function (attackData) {
+
+        //if (tutamountattacks < 2) { // no more than 1 attack available in tutorial mode round 1
         attack = new InsurancePlz.Attack(this, attackData);
 
         var stylie = {
@@ -82,8 +91,16 @@ InsurancePlz.GameState.createMap = function() {
         attack.addChild(label_score); // add it as child to the original instance
         this.game.world.bringToTop(label_score); // put it on top of the actual sprite
         this.attacks.add(attack);
+        //}
+        if (InsurancePlz.isTutorial) { // were in tutorial mode now
+            for (var i = 0, len = this.attacks.children.length; i < len; i++) {
+                if (i > 0) { // all attacks except the first one are made invisible
+                    this.attacks.children[i].inputEnabled = false;
+                    this.attacks.children[i].visible = false;
+                }
+            }
+        }
     }, this);
-
 };
 
 
@@ -97,10 +114,19 @@ InsurancePlz.GameState.showHowToPlay = function() {
     this.popup.addButton("Let's hack", this.closePopup, this);
 };
 
+/**
+ * askBackToMenu creates a popup with the question if the player wants to return to the main menu
+ */
+InsurancePlz.GameState.askBackToMenu = function() {
+    this.popup = new Popup("Return to the main menu?", "Pay attention, if you click yes all progress will be lost. If you click no you return to the game", 'howtoplaypanel');
+    this.popup.addButton("No", this.closePopup, this);
+    this.popup.addButton("Yes", this.loadMenu, this);
+};
+
 InsurancePlz.GameState.createModals = function() {
     //////// modal 1 ////////////
     reg.modal.createModal({
-        type: "modal1",
+        type: "not-enough-action-points",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
@@ -120,7 +146,7 @@ InsurancePlz.GameState.createModals = function() {
     });
     //////// modal 2 ////////////
     reg.modal.createModal({
-        type: "modal2",
+        type: "already-stacked-for-target",
         includeBackground: true,
         modalCloseOnInput: true,
         itemsArr: [{
@@ -138,13 +164,24 @@ InsurancePlz.GameState.createModals = function() {
             offsetY: -50
         }, ]
     });
-};
-
-InsurancePlz.GameState.showModalNotEnoughAttackPoints = function() {
-    reg.modal.showModal("modal1");
-};
-
-
-InsurancePlz.GameState.showModalAlreadyStacketforTarget = function() {
-    reg.modal.showModal("modal2");
+    //////// modal 3 ////////////
+    reg.modal.createModal({
+        type: "stack-full",
+        includeBackground: true,
+        modalCloseOnInput: true,
+        itemsArr: [{
+            type: "graphics",
+            graphicColor: "0xffffff",
+            graphicWidth: 300,
+            graphicHeight: 300,
+            graphicRadius: 40
+        }, {
+            type: "text",
+            content: "Attack stack is full",
+            fontFamily: "Luckiest Guy",
+            fontSize: 22,
+            color: "0x1e1e1e",
+            offsetY: -50
+        }, ]
+    });
 };

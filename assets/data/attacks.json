@@ -7,7 +7,7 @@
           "points": 5,
           "x": 10,
           "y": 410,
-          "securityVector": ["nobyod"]
+          "securityVector": ["nobyod","stafftrain","riskaudit","techadvice","servicecon"]
    },
       {
           "id": "popup",
@@ -16,7 +16,7 @@
           "points": 6,
           "x": 100,
           "y": 410,
-          "securityVector": ["websec"]
+          "securityVector": ["websec","stafftrain","riskaudit","techadvice","servicecon"]
    },
       {
           "id": "wifi",
@@ -25,7 +25,7 @@
           "points": 6,
           "x": 190,
           "y": 410,
-          "securityVector": ["nobyod","firewall"]
+          "securityVector": ["nobyod","firewall","stafftrain","riskaudit","techadvice","servicecon"]
    },
       {
           "id": "phishing",
@@ -34,7 +34,7 @@
           "points": 6,
           "x": 280,
           "y": 410,
-          "securityVector": ["websec","firewall"]
+          "securityVector": ["websec","firewall","stafftrain","riskaudit","techadvice","servicecon"]
    },
       {
           "id": "pw",
@@ -43,7 +43,7 @@
           "points": 2,
           "x": 370,
           "y": 410,
-          "securityVector": ["pwman"]
+          "securityVector": ["pwman","stafftrain","riskaudit","techadvice","servicecon"]
    },
 
       {
@@ -53,7 +53,7 @@
           "points": 2,
           "x": 460,
           "y": 410,
-          "securityVector": ["pwman","autoup"]
+          "securityVector": ["pwman","autoup","stafftrain","riskaudit","techadvice","servicecon"]
    },
 
       {
@@ -63,7 +63,7 @@
           "points": 6,
           "x": 550,
           "y": 410,
-          "securityVector": ["websec","autoup","firewall"]
+          "securityVector": ["websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
    },
 
       {

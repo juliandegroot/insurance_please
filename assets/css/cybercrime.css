@@ -1,6 +1,6 @@
 @font-face {
 	font-family: ZrNic;
-	src: url('assets/fonts/zrnic_rg.ttf');
+	src: url('/assets/fonts/zrnic_rg.ttf');
 }
 
 body {
