@@ -1,6 +1,6 @@
 var InsurancePlz = InsurancePlz || {};
 
-InsurancePlz.ButtonBox = function(game, x, y, options) {
+InsurancePlz.ButtonBox = function(game, state, x, y, options) {
   Phaser.Group.call(this, game);
   this.x = x;
   this.y = y;
@@ -21,7 +21,7 @@ InsurancePlz.ButtonBox = function(game, x, y, options) {
     margin: 3
   }));
 
-  var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
+  var style = { font: "bold 24px Arial", fill: "#ffffff", align: "center" };
 
   var btn = game.add.button(200,10,'button_small', function() {console.log("help")})
   this.add(btn)
@@ -39,7 +39,7 @@ InsurancePlz.ButtonBox = function(game, x, y, options) {
   text.y = Math.floor(btn.y + btn.height / 2);
   this.add(text)
 
-  btn = game.add.button(20, 10, 'button_large', function() {console.log("attack")})
+  btn = game.add.button(20, 10, 'button_large', function() {console.log("attack") })
   this.add(btn);
   text = game.add.text(0, 0, "Execute\nAttacks", style);
   text.anchor.set(0.5);
