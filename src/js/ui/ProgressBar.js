@@ -9,7 +9,7 @@ InsurancePlz.ProgressBar = function(game, x, y, progress, total, options) {
     bar: 0x00FFFF,
     outline: 0x000000,
     outlineThickness: 2,
-    width: 200,
+    width: 240,
     height: 20
   };
   this.redrawGraphics();
