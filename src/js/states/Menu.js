@@ -26,7 +26,7 @@ InsurancePlz.MenuState = {
         //Draw background
         this.background = this.add.graphics(0, 0);
         this.background.beginFill(0x000000);
-        this.background.drawRect(0, 0, 1000, 1000);
+        this.background.drawRect(0, 0, 1280, 720);
         this.background.endFill();
 
         //Draw panel
@@ -47,7 +47,7 @@ InsurancePlz.MenuState = {
         this.playtext = this.add.text(this.game.world.centerX,
             this.game.world.centerY - 128, 'Play', menuStyle);
         this.playtext.anchor.setTo(0.5);
-        
+
         //Draw tutorial button
         this.tutbtn = this.add.button(this.game.world.centerX,
             this.game.world.centerY - 30, 'button', this.startTutorial, this)
