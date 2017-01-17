@@ -51,7 +51,7 @@ InsurancePlz.TargetInfoDisplay.prototype.updateInfo = function(target) {
     this.options.height = Math.max(target.getNumberOfVulnerabilities() * 40, 50);
     // this.text.text = "Targetname: " + target.data.name + "\nDamage: $" + target.data.damage + "\nVulnerabilities: \n" + target.getVulnerableString();
     this.text.text = "Vulnerabilities:\n" + target.getVulnerableString();
-    this.setPosition(target.x + target.width, target.y + target.height / 2);
+    this.setPosition(target.x + target.width, target.y);
     this.game.world.bringToTop(this);
     this.graphics.clear();
     this.drawGraphics();
