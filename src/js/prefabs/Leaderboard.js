@@ -195,7 +195,7 @@ Leaderboard.prototype.generateSkeletonTexture = function(){
     var texture = panel.generateTexture();
     panel.destroy();
     return texture;
-}
+};
 
 /**
  * Draws and initializes the control buttons of this Leaderboard.
@@ -295,7 +295,7 @@ Leaderboard.prototype.previousPage = function(){
  */
 Leaderboard.prototype.formatScore = function(c) {
     return '$' + c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 /**
  * @returns {Number} - The number of pages this leaderboard has to display.
