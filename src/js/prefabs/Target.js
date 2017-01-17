@@ -199,3 +199,17 @@ InsurancePlz.Target.prototype.upgradeSecurity = function() {
         return false;
     }
 };
+
+/**
+ * Get the number of vulnerabilities of the target.
+ * @return {Number} - The number of vulnerabilities
+ */
+InsurancePlz.Target.prototype.getNumberOfVulnerabilities = function() {
+  var res = 0;
+  for (var key in this.data.securityVector) {
+    if (this.data.securityVector[key] === 0) {
+      res += 1;
+    }
+  }
+  return res;
+};
