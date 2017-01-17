@@ -31,17 +31,6 @@ InsurancePlz.StackBox = function(game, x, y, options) {
         0xFF0000
     ]
 
-    //create data
-    var style = {
-        color: 'white',
-        // temp font, need to find font for commercial use
-        font: '15px ZrNic',
-        fill: '#fff',
-        align: 'left',
-        wordWrap: true,
-        wordWrapWidth: 256
-    };
-    this.label = game.add.text(650, 330, '', style);
     this.stack = [];
 };
 
@@ -71,7 +60,6 @@ InsurancePlz.StackBox.prototype.clearAttack = function(i) {
     this.stack[i].destroy();
     this.stack.splice(i, 1);
     if (this.stack.length === 0) {
-        this.label.text = '';
     } else {
         for (var j = 0; j < this.stack.length; j++) {
             this.stack[j].reposition(j);
@@ -100,7 +88,6 @@ InsurancePlz.StackBox.prototype.stackAttack = function(attack, target) {
             )
         );
     }
-    this.label.text = 'Stacked Attacks:';
 };
 
 /**
