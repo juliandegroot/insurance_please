@@ -79,10 +79,6 @@ InsurancePlz.GameState = {
         this.createMap();
         this.refreshStats();
 
-        //attack stack label
-        this.attackStack = [];
-        this.attackStackLabel = this.add.text(650, 330, '', style);
-
         //start turn:
         this.startTurn();
 

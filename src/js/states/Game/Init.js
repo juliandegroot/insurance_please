@@ -98,6 +98,7 @@ InsurancePlz.GameState.createUI = function() {
   this.attackBox = new InsurancePlz.AttackBox(this.game, 0, 600);
   this.informationBox = new InsurancePlz.InformationBox(this.game, 640, 600);
   this.buttonBox = new InsurancePlz.ButtonBox(this.game, 960, 600);
+  this.stackBox = new InsurancePlz.StackBox(this.game, 1020, 543);
 };
 
 InsurancePlz.GameState.createModals = function() {

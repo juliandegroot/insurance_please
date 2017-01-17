@@ -21,36 +21,6 @@ InsurancePlz.GameState.clearAttackSelection = function() {
 };
 
 /**
- * Callback function that removes the given attack from the attack stack.
- * @param {Object} button - The attack stack button that was pressed and will be deleted.
- */
-InsurancePlz.GameState.stackButton = function(button) {
-    for (var i = 0; i < this.attackStack.length; i++) {
-        if (this.attackStack[i].button === button) {
-            this.clearAttack(i);
-            return;
-        }
-    }
-};
-
-/**
- * Callback function that removes the given attack from the attack stack.
- * @param {Object} button - The attack stack butt++)on that was pressed and will be deleted.
- */
-InsurancePlz.GameState.clearAttack = function(i) {
-    this.updateActionPoints(this.attackStack[i].attack.points);
-    this.attackStack[i].destroy();
-    this.attackStack.splice(i, 1);
-    if (this.attackStack.length === 0) {
-        this.attackStackLabel.text = '';
-    } else {
-        for (var j = 0; j < this.attackStack.length; j++) {
-            this.attackStack[j].reposition(j);
-        }
-    }
-};
-
-/**
  * Adds a StackedAttack to the attackStack.
  * This function also checks whether the conditions to add the attack to the stack have been met and will provide error messages accordingly.
  * @param {Object} attack - The attack to be added to the stack.
@@ -65,14 +35,14 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
     }
 
     //If the target already has an attack aimed at it...
-    if (this.alreadyStackedForTarget(target.data.id)) {
+    if (this.stackBox.alreadyStackedForTarget(target.data.id)) {
         reg.modal.showModal("already-stacked-for-target");
         this.clearAttackSelection();
         return;
     }
 
     //If we already have the maximum amount of attacks stacked...
-    if (this.attackStack.length >= this.gameProgress.maxAttacks) {
+    if (this.stackBox.isFull()) {
         reg.modal.showModal("stack-full");
         this.clearAttackSelection();
         return;
@@ -80,24 +50,8 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
 
     //If all requirements are met, we add the attack to the stack
     this.updateActionPoints(-attack.data.points);
-    this.attackStack.push(
-        new StackedAttack(
-            attack, target, this.attackStack.length, this
-        )
-    );
-    this.attackStackLabel.text = 'Stacked Attacks:';
+    this.stackBox.stackAttack(attack, target);
     this.clearAttackSelection();
-};
-
-/**
- * Removes all attacks from the attack stack and cleans up elements accordingly.
- */
-InsurancePlz.GameState.flushAttackStack = function() {
-    for (var i = 0; i < this.attackStack.length; i++) {
-        if (!this.attackStack[i].indicator.ending) {
-            this.clearAttack(i--)
-        }
-    }
 };
 
 /**
@@ -118,31 +72,9 @@ InsurancePlz.GameState.executeAttacks = function() {
 };
 
 /**
- * Function to check if given target already has an attack targetted at it.
- * @param {Number} target - the target id as shown in targets.json
- * @returns {Boolean} - True if its already in the stack, otherwise false
- */
-InsurancePlz.GameState.alreadyStackedForTarget = function(target) {
-    for (var i = 0; i < this.attackStack.length; i++) {
-        if (this.attackStack[i].target.data.id === target) {
-            return true;
-        }
-    }
-    return false;
-};
-
-/**
  * Triggers an update for all attack indicator animations.
  */
 InsurancePlz.GameState.updateAttackIndicators = function() {
-    //Update the stack
-    for (var i = 0; i < this.attackStack.length; i++) {
-        if (this.attackStack[i].indicator.hasEnded()) {
-            this.clearAttack(i--);
-        } else {
-            this.attackStack[i].update();
-        }
-    }
 
     //Update the selected attack
     if (this.selectedAttack !== undefined) {
@@ -159,4 +91,4 @@ InsurancePlz.GameState.updateAttackIndicators = function() {
         this.attackIndicator.destroy();
         this.attackIndicator = undefined;
     }
-}
+};
