@@ -264,7 +264,7 @@ Leaderboard.prototype.drawEntries = function(){
         var style = pos%2===0 ? evenstyle : oddstyle;
         this.entries.add(this.game.make.text(this.textOffset, pos*this.entryHeight, "#" + (i+1), style));
         this.entries.add(this.game.make.text(0.15 * this.entryWidth + this.textOffset, pos*this.entryHeight, this.data[i].n, style));
-        this.entries.add(this.game.make.text(0.7 * this.entryWidth + this.textOffset, pos*this.entryHeight, this.formatScore(this.data[i].s), style));
+        this.entries.add(this.game.make.text(0.7 * this.entryWidth + this.textOffset, pos*this.entryHeight, formatCash(this.data[i].s), style));
         pos++;
     }
 };
@@ -287,14 +287,6 @@ Leaderboard.prototype.previousPage = function(){
         this.page--;
         this.display();
     }
-};
-
-/**
- * @params {Number} c - A number to format in typical cash format.
- * @returns {String} - A string representation of the number with $ and comma's added appropriately.
- */
-Leaderboard.prototype.formatScore = function(c) {
-    return '$' + c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 /**

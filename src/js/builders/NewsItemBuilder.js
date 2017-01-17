@@ -100,7 +100,7 @@ InsurancePlz.NewsItemBuilder.prototype.chooseRandomString = function(array) {
 InsurancePlz.NewsItemBuilder.prototype.replaceAllTags = function(string, eventInformation) {
     string = this.replaceCompanyTag(string, eventInformation.companyName);
     string = this.replaceAttackTag(string, eventInformation.attackName);
-    string = this.replaceDamageTag(string, eventInformation.damage);
+    string = this.replaceDamageTag(string, formatCash(eventInformation.damage));
     string = this.replaceReductionTag(string, eventInformation.reduction);
     return string;
 }

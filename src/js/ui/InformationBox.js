@@ -44,7 +44,7 @@ InsurancePlz.InformationBox.prototype.constructor = InsurancePlz.InformationBox;
  * @param {Number} amount - The amount to show in the box
  */
 InsurancePlz.InformationBox.prototype.updateDamage = function(amount) {
-    this.damageText.text = "Damage: " + this.formatScore(amount);
+    this.damageText.text = "Damage: " + formatCash(amount);
 }
 
 /**
@@ -54,12 +54,4 @@ InsurancePlz.InformationBox.prototype.updateDamage = function(amount) {
 InsurancePlz.InformationBox.prototype.updateAttackPoints = function(attackPoints) {
     this.progressBar.setProgress(attackPoints);
     this.progressText.text = attackPoints + "/10";
-}
-
-/**
- * @params {Number} c - A number to format in typical cash format.
- * @returns {String} - A string representation of the number with $ and comma's added appropriately.
- */
-InsurancePlz.InformationBox.prototype.formatScore = function(c) {
-    return '$' + c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

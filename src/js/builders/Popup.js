@@ -26,7 +26,7 @@ function Popup(headline, text, panelname, btnText, callback, context) {
 
     // Initialize variables
     this.page = 0;
-    this.offset = 15;
+    this.offset = 20;
 
     this.display();
 }
@@ -61,14 +61,14 @@ Popup.prototype.display = function(){
     //Headline style
     var headlineStyle = {
         color: 'white',
-        font: '24px ZrNic',
+        font: '28px ZrNic',
         fill: '#fff',
         align: 'center'
     };
 
     //Headline text. Can be changed to also use anchor(0.5) to center vertically
     this.headlineLabel = this.panel.addChild(InsurancePlz.game.make.text(
-        0, -this.panel.height / 2 + this.offset,
+        0, (-this.panel.height + this.offset) / 2,
         this.getHeadline(),
         headlineStyle
     ));
@@ -77,7 +77,7 @@ Popup.prototype.display = function(){
     //Text style
     var textStyle = {
         color: 'white',
-        font: '14px ZrNic',
+        font: '18px ZrNic',
         fill: '#fff',
         align: 'left',
         wordWrap: true,

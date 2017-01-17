@@ -18,15 +18,16 @@
             this.popup.addButton("Let's begin!", this.closePopup, this);
         }
     } else { // we are beyond round 1 and therefore start off by showing the news
-        var text = [];
+        var headlines = [];
+        var texts = [];
         for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
             if (this.gameProgress.newsarray[i].body!=""){
-                text.push(this.gameProgress.newsarray[i].body);
-                console.log(this.gameProgress.newsarray[i].body);
+                headlines.push(this.gameProgress.newsarray[i].headline);
+                texts.push(this.gameProgress.newsarray[i].body);
             }
         }
-        if (text.length!==0){
-            this.popup = new Popup("Turn " + this.gameProgress.turn + " News", text, 'popuppanel');
+        if (texts.length!==0){
+            this.popup = new Popup(headlines, texts, 'popuppanel');
             if (InsurancePlz.isTutorial) { // if tutorial mode is on:
                 this.popup.addButton("Close", this.closePopup_showTutorialRoundinfo, this);
             } else if (this.gameProgress.turn > this.gameProgress.maxTurns) { // higher than endround?

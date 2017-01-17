@@ -166,3 +166,12 @@ InsurancePlz.GameState.updateActionPoints = function(amount){
     this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
     this.refreshStats();
 };
+
+/**
+ * Global utility function for formatting cash.
+ * @params {Number} c - A number to format in typical cash format.
+ * @returns {String} - A string representation of the number with $ and comma's added appropriately.
+ */
+function formatCash(c) {
+    return '$' + c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
