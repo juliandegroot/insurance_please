@@ -22,6 +22,11 @@ InsurancePlz.MenuState = {
             align: 'center',
             wordWrapWidth: 440
         };
+        //Play intro (menu) music
+        //var music = new Phaser.Sound(this.game, 'menumusic',1,true);
+        this.menumusic = this.add.audio('menumusic');
+        this.menumusic.loop = true;
+        this.menumusic.play();
 
         //Draw background
         this.background = this.add.graphics(0, 0);
@@ -61,11 +66,14 @@ InsurancePlz.MenuState = {
         //this.state.start('Game');
     },
     startGame: function() {
+        this.menumusic.stop() // stop menu music
         this.state.start('Game');
         InsurancePlz.isTutorial = false; // global variabel to define normal game status
     },
     startTutorial: function() {
+        this.menumusic.stop() // stop menu music
         this.state.start('Game');
         InsurancePlz.isTutorial = true; // global variable to define tutorial status
     }
 };
+

@@ -69,6 +69,11 @@ InsurancePlz.GameState = {
             wordWrap: true,
             wordWrapWidth: 256
         };
+        
+        //Play gameplay audio
+        this.playmusic = this.add.audio('playmusic');
+        this.playmusic.loop = true;
+        this.playmusic.play();
 
         this.attackpanelLabel = this.add.text(10, 400, '', style);
 
@@ -89,6 +94,9 @@ InsurancePlz.GameState = {
         //actionpoints text
         actionpointsText = this.game.add.text(10, 10, '', acpointsstyle);
         this.refreshStats();
+        
+        //button to switch audio on/off
+        this.audiobtn = this.add.button(600, 10, 'sound', this.musicSwitch, this);
 
         //end turn button and start of game
         this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
@@ -189,4 +197,14 @@ InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
 InsurancePlz.GameState.updateActionPoints = function(amount){
     this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
     this.refreshStats();
+};
+
+
+InsurancePlz.GameState.musicSwitch = function(){
+    if (this.sound.mute == true) {
+        this.sound.mute = false;
+    }
+    else {
+        this.sound.mute = true;
+    }
 };
