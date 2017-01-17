@@ -23,11 +23,12 @@ InsurancePlz.StackBox = function(game, x, y, options) {
     }));
 
     this.colors = [
-        0xFF0000,
+        0xFFFF00,
         0x00FF00,
         0x0000FF,
         0xFF00FF,
-        0x00FFFF
+        0x00FFFF,
+        0xFF0000
     ]
 
     //create data
@@ -85,11 +86,20 @@ InsurancePlz.StackBox.prototype.clearAttack = function(i) {
  * @param {Object} target - The target of the attack.
  */
 InsurancePlz.StackBox.prototype.stackAttack = function(attack, target) {
-    this.stack.push(
-        new StackedAttack(
-            attack, target, this.stack.length, this.colors.pop(), this.game, this.stackButton, this
-        )
-    );
+    //If the attack indicator exists, use its color.
+    if (InsurancePlz.GameState.attackIndicator!=null){
+        this.stack.push(
+            new StackedAttack(
+                attack, target, this.stack.length, InsurancePlz.GameState.attackIndicator.color, this.game, this.stackButton, this
+            )
+        );
+    } else {
+        this.stack.push(
+            new StackedAttack(
+                attack, target, this.stack.length, this.colors.pop(), this.game, this.stackButton, this
+            )
+        );
+    }
     this.label.text = 'Stacked Attacks:';
 };
 

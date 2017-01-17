@@ -52,6 +52,10 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
     this.updateActionPoints(-attack.data.points);
     this.stackBox.stackAttack(attack, target);
     this.clearAttackSelection();
+
+    //Erase indicator to avoid the re-addition of the same color
+    this.attackIndicator.destroy();
+    this.attackIndicator = undefined;
 };
 
 /**
@@ -75,7 +79,6 @@ InsurancePlz.GameState.executeAttacks = function() {
  * Triggers an update for all attack indicator animations.
  */
 InsurancePlz.GameState.updateAttackIndicators = function() {
-
     //Update the selected attack
     if (this.selectedAttack !== undefined) {
         if (this.attackIndicator !== undefined) {
@@ -84,10 +87,12 @@ InsurancePlz.GameState.updateAttackIndicators = function() {
             this.attackIndicator = new Indicator({
                 "source": this.selectedAttack,
                 "target": this.game.input,
-                "sourceOffsetX": this.selectedAttack.width / 2
+                "sourceOffsetX": this.selectedAttack.width / 2,
+                "color": this.stackBox.colors.pop()
             }, this);
         }
     } else if (this.attackIndicator !== undefined) {
+        this.stackBox.colors.push(this.attackIndicator.color);
         this.attackIndicator.destroy();
         this.attackIndicator = undefined;
     }
