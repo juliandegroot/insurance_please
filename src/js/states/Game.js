@@ -194,8 +194,12 @@ InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
  * Grants the given amount of action points and refreshes the UI.
  * Does not allow more than the maximum amount of action points to be gained.
  */
-InsurancePlz.GameState.updateActionPoints = function(amount){
-    this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
+InsurancePlz.GameState.updateActionPoints = function (amount) {
+    if (InsurancePlz.isTutorial == false) {
+        this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
+    } else {
+        this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.givePoints()), 0);
+    }
     this.refreshStats();
 };
 
