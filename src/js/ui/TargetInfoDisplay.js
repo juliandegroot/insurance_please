@@ -3,14 +3,15 @@ var InsurancePlz = InsurancePlz || {};
 /**
  * TODO: documentation. (0,0) point of the element is the point of the arrow!
  */
-InsurancePlz.TargetInfoDisplay = function(game, parent, x, y, options) {
-    Phaser.Group.call(this, game, parent);
+InsurancePlz.TargetInfoDisplay = function(game, x, y, options) {
+    Phaser.Group.call(this, game);
 
     this.options = options || {
-        background: 0xFF3300,
-        outline: 0x0000FF,
+        background: 0x262626,
+        outline: 0xBBFA28,
+        outlineThickness: 2,
         height: 200,
-        width: 150,
+        width: 250,
         arrow: 5,
         padding: 5,
         style: {
@@ -32,7 +33,9 @@ InsurancePlz.TargetInfoDisplay = function(game, parent, x, y, options) {
     this.drawText(game);
     this.add(this.text);
 
-    this.visible = false;
+    this.visible = true;
+    this.game = game;
+    this.target = null;
 }
 
 InsurancePlz.TargetInfoDisplay.prototype = Object.create(Phaser.Group.prototype);
@@ -44,7 +47,21 @@ InsurancePlz.TargetInfoDisplay.prototype.constructor = InsurancePlz.TargetInfoDi
  * @param {Object} target - The target to base the information on.
  */
 InsurancePlz.TargetInfoDisplay.prototype.updateInfo = function(target) {
-    this.text.text = "Targetname: " + target.data.name + "\nDamage: $" + target.data.damage + "\nVulnerabilities: \n" + this.getVulnerableString();
+    this.target = target;
+    // this.text.text = "Targetname: " + target.data.name + "\nDamage: $" + target.data.damage + "\nVulnerabilities: \n" + target.getVulnerableString();
+    this.text.text = "Vulnerabilities:\n" + target.getVulnerableString();
+    this.setPosition(target.x + target.width, target.y + target.height / 2);
+    this.game.world.bringToTop(this);
+}
+
+/**
+ * Set the position of the info display to the specified coordinates.
+ * @param {Number} x - The x position
+ * @param {Number} y - The y position
+ */
+InsurancePlz.TargetInfoDisplay.prototype.setPosition = function(x, y) {
+  this.x = x;
+  this.y = y - this.options.height / 2;
 }
 
 /**
@@ -63,7 +80,7 @@ InsurancePlz.TargetInfoDisplay.prototype.drawGraphics = function() {
     this.graphics.lineTo(0, this.options.height / 2);
     this.graphics.endFill();
     // Draw the outline
-    this.graphics.lineStyle(2, this.options.outline, 1);
+    this.graphics.lineStyle(this.options.outlineThickness, this.options.outline, 1);
     this.graphics.moveTo(0, this.options.height / 2);
     this.graphics.lineTo(this.options.arrow, this.options.height / 2 - this.options.arrow);
     this.graphics.lineTo(this.options.arrow, 0);

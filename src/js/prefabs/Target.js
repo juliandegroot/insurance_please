@@ -28,6 +28,11 @@ InsurancePlz.Target.prototype.touch = function() {
     //If no attack is selected, stop here
     if (this.state.selectedAttack !== undefined){
         this.state.stackAttack(this.state.selectedAttack, this);
+    } else if (this != this.state.targetInfo.target) {
+        this.state.targetInfo.updateInfo(this);
+        this.state.targetInfo.show();
+    } else {
+        this.state.targetInfo.toggle();
     }
 };
 
