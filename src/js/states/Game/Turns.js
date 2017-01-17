@@ -81,7 +81,6 @@ InsurancePlz.GameState.endTurn = function() {
     }
     // roundscore is zero! and tutorial mode on , pass to next round is NOT ok (player needs feedback)
     if ((this.gameProgress.roundscore == 0) && (InsurancePlz.isTutorial)) {
-        console.log("newfwefwefwefd");
         this.gameProgress.turn--; //no round increase
         this.popup = new Popup("That's not good!", "You have done no damage. Try again by clicking on a target and looking at vulnerabilities", 'popuppanel');
         this.popup.addButton("Close", this.closePopup, this);
