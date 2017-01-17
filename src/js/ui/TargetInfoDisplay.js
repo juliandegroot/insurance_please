@@ -11,7 +11,7 @@ InsurancePlz.TargetInfoDisplay = function(game, x, y, options) {
         outline: 0xBBFA28,
         outlineThickness: 2,
         height: 200,
-        width: 250,
+        width: 300,
         arrow: 5,
         padding: 5,
         style: {
@@ -33,7 +33,7 @@ InsurancePlz.TargetInfoDisplay = function(game, x, y, options) {
     this.drawText(game);
     this.add(this.text);
 
-    this.visible = true;
+    this.visible = false;
     this.game = game;
     this.target = null;
 }

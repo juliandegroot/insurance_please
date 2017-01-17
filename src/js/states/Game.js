@@ -23,7 +23,6 @@ InsurancePlz.GameState = {
         this.newsbuilder = new InsurancePlz.NewsItemBuilder(JSON.parse(this.game.cache.getText('news')));
     },
     create: function () {
-        this.createUI();
         var style = {
             color: 'white',
             // temp font, need to find font for commercial use
@@ -70,14 +69,19 @@ InsurancePlz.GameState = {
             wordWrapWidth: 256
         };
 
+        // TODO: actually remove
         //newspanel area
         this.newspanel = this.add.sprite(640, 0, 'newspanel');
         this.newspanelLabel = this.add.text(644, 15, '', style);
         //this.securedpanelLabel = this.add.text(644, 100, '', secmstyle);
         this.vulnerablepanelLabel = this.add.text(644, 90, '', secmstyle);
+        this.newspanel.visible = false;
+        this.newspanelLabel.visible = false
+        this.vulnerablepanelLabel.visible = false;
 
         //loading the map with targets and attacks
         this.createMap();
+        this.createUI();
         this.refreshStats();
 
         //start turn:

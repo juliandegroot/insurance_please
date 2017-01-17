@@ -50,6 +50,8 @@ InsurancePlz.GameState.createMap = function () {
     this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
+    this.background.height = 600;
+    this.background.width = 1280;
     //create target instances
     this.targets = this.add.group();
     var target;
