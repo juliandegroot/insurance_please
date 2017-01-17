@@ -58,6 +58,10 @@ InsurancePlz.PreloadState = {
         this.load.image('button_small', 'assets/images/button_small.png');
         this.load.image('button_large', 'assets/images/button_large.png');
 
+        //leaderboard assets
+        this.load.image('page-prev', 'assets/images/page-prev.png');
+        this.load.image('page-next', 'assets/images/page-next.png');
+
     },
     create: function() {
         this.state.start('Menu');

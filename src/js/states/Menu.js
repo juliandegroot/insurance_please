@@ -57,6 +57,15 @@ InsurancePlz.MenuState = {
             this.game.world.centerY - 28, 'Tutorial', menuStyle);
         this.tuttext.anchor.setTo(0.5);
 
+        //Draw leaderboard button
+        this.leaderboardBtn = this.add.button(this.game.world.centerX,
+            this.game.world.centerY + 70, 'button', this.showLeaderboard, this)
+        this.leaderboardBtn.anchor.setTo(0.5);
+
+        this.leaderboardText = this.add.text(this.game.world.centerX,
+            this.game.world.centerY + 72, 'Leaderboard', menuStyle);
+        this.leaderboardText.anchor.setTo(0.5);
+
         //Uncomment to skip menu for testing
         //this.state.start('Game');
     },
@@ -67,5 +76,8 @@ InsurancePlz.MenuState = {
     startTutorial: function() {
         this.state.start('Game');
         InsurancePlz.isTutorial = true; // global variable to define tutorial status
+    },
+    showLeaderboard: function() {
+        new Leaderboard([], this.game);
     }
 };
