@@ -32,6 +32,7 @@ InsurancePlz.Target.prototype.touch = function() {
         this.state.targetInfo.updateInfo(this);
         this.state.targetInfo.show();
     } else {
+        this.state.targetInfo.updateInfo(this);
         this.state.targetInfo.toggle();
     }
 };
