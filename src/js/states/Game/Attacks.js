@@ -64,8 +64,8 @@ InsurancePlz.GameState.stackAttack = function(attack, target) {
  */
 InsurancePlz.GameState.executeAttacks = function() {
     var news = [];
-    for (var i = 0; i < this.attackStack.length; i++) {
-        var item = this.attackStack[i].execute();
+    for (var i = 0; i < this.stackBox.stack.length; i++) {
+        var item = this.stackBox.stack[i].execute();
         if (item.damage > 0) {
             news.push(item);
             // check damage done per round for tutorial purpose
