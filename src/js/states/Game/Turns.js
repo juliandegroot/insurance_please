@@ -18,20 +18,22 @@
             this.popup.addButton("Let's begin!", this.closePopup, this);
         }
     } else { // we are beyond round 1 and therefore start off by showing the news
-        var text = "THE NEWS\n";
+        var text = [];
         for (var i = 0; i < this.gameProgress.newsarray.length; i++) {
-            var newsitem = this.gameProgress.newsarray[i];
-            text += newsitem.body + "\n";
+            if (this.gameProgress.newsarray[i].body!=""){
+                text.push(this.gameProgress.newsarray[i].body);
+                console.log(this.gameProgress.newsarray[i].body);
+            }
         }
-        this.popup = new Popup("Turn " + this.gameProgress.turn + " News", text, 'popuppanel');
-        if (InsurancePlz.isTutorial == true) { // if tutorial mode is on:
-            this.popup.addButton("Close", this.closePopup_showTutorialRoundinfo, this); //close and give roundinfo popup
-        } else { // no tutorial mode
-            if (this.gameProgress.turn > 10) { // higher than endround?
-                this.popup.addButton("Close", this.closePopup_endGame, this); //close and give endgame popup
-            } // normal round
-            else { this.popup.addButton("Close", this.closePopup, this); } //close
-            
+        if (text.length!==0){
+            this.popup = new Popup("Turn " + this.gameProgress.turn + " News", text, 'popuppanel');
+            if (InsurancePlz.isTutorial) { // if tutorial mode is on:
+                this.popup.addButton("Close", this.closePopup_showTutorialRoundinfo, this);
+            } else if (this.gameProgress.turn > this.gameProgress.maxTurns) { // higher than endround?
+                this.popup.addButton("Close", this.closePopup_endGame, this);
+            } else { //normal round
+                this.popup.addButton("Close", this.closePopup, this);
+            }
         }
         this.gameProgress.newsarray = [];
     }
