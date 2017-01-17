@@ -50,6 +50,8 @@ InsurancePlz.GameState.createMap = function () {
     this.attackMapData.targets = targets;
 
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
+    this.background.height = 600;
+    this.background.width = 1280;
     //create target instances
     this.targets = this.add.group();
     var target;
@@ -99,6 +101,8 @@ InsurancePlz.GameState.createUI = function() {
   this.informationBox = new InsurancePlz.InformationBox(this.game, 640, 600);
   this.buttonBox = new InsurancePlz.ButtonBox(this.game, 960, 600);
   this.stackBox = new InsurancePlz.StackBox(this.game, 1020, 543);
+  this.targetInfo = new InsurancePlz.TargetInfoDisplay(this.game, 1000,500)
+
 };
 
 InsurancePlz.GameState.createModals = function() {
