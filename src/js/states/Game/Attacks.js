@@ -5,6 +5,7 @@
 InsurancePlz.GameState.selectAttack = function(attack) {
     if (this.selectedAttack != attack) {
         this.clearAttackSelection();
+        this.destroyAttackIndicator();
         this.selectedAttack = attack;
         this.selectedAttack.alpha = 0.5;
     } else {
@@ -92,6 +93,17 @@ InsurancePlz.GameState.updateAttackIndicators = function() {
             }, this);
         }
     } else if (this.attackIndicator !== undefined) {
+        this.stackBox.colors.push(this.attackIndicator.color);
+        this.attackIndicator.destroy();
+        this.attackIndicator = undefined;
+    }
+};
+
+/**
+ * Destroys the attack indicator and returns the color to the list of available colors.
+ */
+InsurancePlz.GameState.destroyAttackIndicator = function() {
+    if (this.attackIndicator!==undefined){
         this.stackBox.colors.push(this.attackIndicator.color);
         this.attackIndicator.destroy();
         this.attackIndicator = undefined;
