@@ -35,10 +35,10 @@
         }
         this.gameProgress.newsarray = [];
     }
-    if (this.gameProgress.turn == 2) {
+    if (this.gameProgress.turn == 2 && InsurancePlz.isTutorial) {
         // show a second attack to practice stacking:
-        this.attacks.children[1].inputEnabled = true;
-        this.attacks.children[1].visible = true;
+        this.attackBox.attacks.children[1].inputEnabled = true;
+        this.attackBox.attacks.children[1].visible = true;
     }
 
     // determine amount atckpnts available based on visible attacks (tut-mode)
@@ -96,7 +96,6 @@ InsurancePlz.GameState.endTurn = function() {
     if ((this.gameProgress.roundscore > 0) && (InsurancePlz.isTutorial == false)) {
         startruntimer = this.game.time.events.add(Phaser.Timer.SECOND, this.closePopupAndGiveNews, this);
     }
-    //this.startTurn();
 
 };
 
@@ -130,9 +129,9 @@ InsurancePlz.GameState.loadMenu = function () {
 */
 InsurancePlz.GameState.givePoints = function () {
     var points_to_spend = 0;
-    for (var i = 0, len = this.attacks.children.length; i < len; i++) {
-        if (this.attacks.children[i].visible == true) {
-            points_to_spend = points_to_spend + this.attacks.children[i].getPoints();
+    for (var i = 0, len = this.attackBox.attacks.children.length; i < len; i++) {
+        if (this.attackBox.attacks.children[i].visible == true) {
+            points_to_spend = points_to_spend + this.attackBox.attacks.children[i].getPoints();
         }
     }
     this.gameProgress.actionPoints = points_to_spend;

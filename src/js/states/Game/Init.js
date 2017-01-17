@@ -72,37 +72,6 @@ InsurancePlz.GameState.createMap = function () {
 
         this.targets.add(target);
     }, this);
-
-    //create attack instances
-    this.attacks = this.add.group();
-    var attack;
-    var attackData = JSON.parse(this.game.cache.getText('attacks'));
-    var tutamountattacks = 1;
-    attackData.attacks.forEach(function (attackData) {
-
-        //if (tutamountattacks < 2) { // no more than 1 attack available in tutorial mode round 1
-        attack = new InsurancePlz.Attack(this, attackData);
-
-        var stylie = {
-            font: "35px Arial",
-            fill: "#ff0000"
-        };
-        var label_score = this.game.add.text(10, -30, attackData.points + " points", stylie); // adding attackweights/points as labels above the sprite
-        label_score.stroke = '#000000'; // give it a black outline (stroke)
-        label_score.strokeThickness = 6;
-        attack.addChild(label_score); // add it as child to the original instance
-        this.game.world.bringToTop(label_score); // put it on top of the actual sprite
-        this.attacks.add(attack);
-        //}
-        if (InsurancePlz.isTutorial) { // were in tutorial mode now
-            for (var i = 0, len = this.attacks.children.length; i < len; i++) {
-                if (i > 0) { // all attacks except the first one are made invisible
-                    this.attacks.children[i].inputEnabled = false;
-                    this.attacks.children[i].visible = false;
-                }
-            }
-        }
-    }, this);
 };
 
 
@@ -126,9 +95,9 @@ InsurancePlz.GameState.askBackToMenu = function() {
 };
 
 InsurancePlz.GameState.createUI = function() {
-  new InsurancePlz.AttackBox(this.game, 0, 600);
-  new InsurancePlz.InformationBox(this.game, 640, 600);
-  new InsurancePlz.ButtonBox(this.game, 960, 600);
+  this.attackBox = new InsurancePlz.AttackBox(this.game, 0, 600);
+  this.informationBox = new InsurancePlz.InformationBox(this.game, 640, 600);
+  this.buttonBox = new InsurancePlz.ButtonBox(this.game, 960, 600);
 };
 
 InsurancePlz.GameState.createModals = function() {

@@ -17,7 +17,7 @@ InsurancePlz.GameState.selectAttack = function(attack) {
  */
 InsurancePlz.GameState.clearAttackSelection = function() {
     this.selectedAttack = undefined;
-    this.attacks.setAll('alpha', 1);
+    this.attackBox.resetAlpha();
 };
 
 /**

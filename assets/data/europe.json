@@ -1,10 +1,10 @@
 {
-  "background": "europe",
-  "numberOfTargets": 4,
-  "locations": [
-    [290, 160],
-    [490, 260],
-    [450, 140],
-    [160, 290]
-  ]
+    "background": "europe",
+    "numberOfTargets": 4,
+    "locations": [
+        [290, 160],
+        [490, 260],
+        [450, 140],
+        [160, 290]
+    ]
 }

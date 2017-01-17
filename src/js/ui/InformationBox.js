@@ -1,36 +1,39 @@
 var InsurancePlz = InsurancePlz || {};
 
 InsurancePlz.InformationBox = function(game, x, y, options) {
-  Phaser.Group.call(this, game);
-  this.x = x;
-  this.y = y;
+    Phaser.Group.call(this, game);
+    this.x = x;
+    this.y = y;
 
-  var opt = options || {
-    width: 320,
-    height: 120
-  }
+    var opt = options || {
+        width: 320,
+        height: 120
+    }
 
-  this.add(new InsurancePlz.BackgroundBox(game, 0, 0, {
-    background: 0x262626,
-    opacity: 1,
-    outline: 0xBBFA28,
-    outlineThickness: 1,
-    outlineOpacity: 1,
-    width: opt.width,
-    height: opt.height,
-    margin: 3
-  }))
-  // Define the text style
-  var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
-  // Add the elements for the available attack points
-  this.game.add.text(10, 10, "Available Attack Points:", style, this);
-  this.progressBar = new InsurancePlz.ProgressBar(game, 11, 50, 10, 10);
-  this.progressBar.setProgress(5);
-  this.add(this.progressBar)
-  this.progressText = this.game.add.text(315, 63, "10/10", style, this);
-  this.progressText.anchor = new Phaser.Point(1,0.5)
-  // Add the damage text
-  this.damageText = this.game.add.text(10, 80, "Damage: $0", style, this);
+    this.add(new InsurancePlz.BackgroundBox(game, 0, 0, {
+        background: 0x262626,
+        opacity: 1,
+        outline: 0xBBFA28,
+        outlineThickness: 1,
+        outlineOpacity: 1,
+        width: opt.width,
+        height: opt.height,
+        margin: 3
+    }))
+    // Define the text style
+    var style = {
+        font: "24px Arial",
+        fill: "#ffffff",
+        align: "center"
+    };
+    // Add the elements for the available attack points
+    this.game.add.text(10, 10, "Available Attack Points:", style, this);
+    this.progressBar = new InsurancePlz.ProgressBar(game, 11, 50, 10, 10);
+    this.add(this.progressBar)
+    this.progressText = this.game.add.text(315, 63, "10/10", style, this);
+    this.progressText.anchor = new Phaser.Point(1, 0.5)
+    // Add the damage text
+    this.damageText = this.game.add.text(10, 80, "Damage: $0", style, this);
 }
 
 InsurancePlz.InformationBox.prototype = Object.create(Phaser.Group.prototype);
@@ -41,7 +44,7 @@ InsurancePlz.InformationBox.prototype.constructor = InsurancePlz.InformationBox;
  * @param {Number} amount - The amount to show in the box
  */
 InsurancePlz.InformationBox.prototype.updateDamage = function(amount) {
-  this.damageText.text = "Damage: $" + amount;
+    this.damageText.text = "Damage: " + this.formatScore(amount);
 }
 
 /**
@@ -49,6 +52,14 @@ InsurancePlz.InformationBox.prototype.updateDamage = function(amount) {
  * @param {Number} attackPoints - The still available attack points
  */
 InsurancePlz.InformationBox.prototype.updateAttackPoints = function(attackPoints) {
-  this.progressBar.setProgress(attackPoints);
-  this.progressText.text = attackPoints + "/10";
+    this.progressBar.setProgress(attackPoints);
+    this.progressText.text = attackPoints + "/10";
+}
+
+/**
+ * @params {Number} c - A number to format in typical cash format.
+ * @returns {String} - A string representation of the number with $ and comma's added appropriately.
+ */
+InsurancePlz.InformationBox.prototype.formatScore = function(c) {
+    return '$' + c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

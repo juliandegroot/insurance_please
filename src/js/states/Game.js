@@ -23,8 +23,6 @@ InsurancePlz.GameState = {
     },
     create: function () {
         this.createUI();
-        //attackpanel area
-        this.attackpanel = this.add.sprite(0, 405, 'attackpanel');
         var style = {
             color: 'white',
             // temp font, need to find font for commercial use
@@ -71,35 +69,15 @@ InsurancePlz.GameState = {
             wordWrapWidth: 256
         };
 
-        this.attackpanelLabel = this.add.text(10, 400, '', style);
-
         //newspanel area
         this.newspanel = this.add.sprite(640, 0, 'newspanel');
         this.newspanelLabel = this.add.text(644, 15, '', style);
         //this.securedpanelLabel = this.add.text(644, 100, '', secmstyle);
         this.vulnerablepanelLabel = this.add.text(644, 90, '', secmstyle);
 
-        //scoreboard logo
-
         //loading the map with targets and attacks
         this.createMap();
-
-        //A bunch of ugly globals here. Stack should be changed to an array of sorts.
-        //overlay scoreboard text
-        hackingdamageText = this.game.add.text(250, 10, '', scorestyle);
-        //actionpoints text
-        actionpointsText = this.game.add.text(10, 10, '', acpointsstyle);
         this.refreshStats();
-
-        //end turn button and start of game
-        this.endturnbtn = this.add.button(700, 450, 'button-circle', this.endTurn, this);
-        this.endturntext = this.add.text(715, 470, 'Execute Attacks', style);
-
-        //how-to-play, information button
-        this.howtoplaybtn = this.add.button(800, 400, 'howtoplay', this.showHowToPlay, this);
-
-        //back-to-main-menu button
-        this.backtomenubtn = this.add.button(650, 400, 'howtoplay', this.askBackToMenu, this);
 
         //attack stack label
         this.attackStack = [];
@@ -142,8 +120,8 @@ InsurancePlz.GameState.refreshStats = function() {
         }
     }
     this.gameProgress.score = total;
-    hackingdamageText.text = "$ " + this.gameProgress.score + " Damage";
-    actionpointsText.text = "Attackpoints: " + this.gameProgress.actionPoints;
+    this.informationBox.updateAttackPoints(this.gameProgress.actionPoints);
+    this.informationBox.updateDamage(this.gameProgress.score);
 };
 
 /**
