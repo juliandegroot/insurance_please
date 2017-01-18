@@ -1,3 +1,27 @@
+leaderboard = null;
+
+/**
+ * Fetches the leaderboard.json, then creates a new leaderboard using the JSON.
+ * Note that this will not work unless you're on an actual webserver.
+ * @params {Object} game - A reference to the Phaser game.
+ */
+function createLeaderboard(game){
+    if (leaderboard!==null) return;
+    $.ajax({
+        type: "GET",
+        url: "assets/data/leaderboard.json",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        //so that the callback has access to the game as well
+        game: game,
+        success: function (data){
+            if (leaderboard===null){
+                leaderboard = new Leaderboard(data, this.game);
+            }
+        }
+    });
+}
+
 /**
  * Creates the Leaderboard. This is an entirely self-fulfilling game entity, no setup required.
  * Slightly unoptimized right now as it expects to receive ALL leaderboard entries, but this is only problematic after several thousand entries (outside of the current scope).
@@ -8,12 +32,6 @@
 function Leaderboard(data, game) {
     // Initializing variables
     this.data = data;
-    //temp fill
-    this.data = [];
-    for (var i=0;i<25;i++){
-        this.data.push({"n":"User"+i, "s":Math.round(100000/(i+1))});
-    }
-    //
     this.game = game;
     this.heightMargin = 0.1 * this.game.height;
     this.widthMargin = 0.25 * this.game.width;
@@ -206,7 +224,7 @@ Leaderboard.prototype.drawControls = function(){
     this.controls.x = this.game.width/2;
     this.controls.y = this.game.height - this.heightMargin - this.innerOffset*2 - this.controlsHeight/2;
 
-    var btn = this.controls.add(this.game.add.button(0, 0, 'button', this.destroy, this));
+    var btn = this.controls.add(this.game.add.button(0, 0, 'button', this.close, this));
     btn.anchor.setTo(0.5);
 
     var txt = btn.addChild(this.game.make.text(
@@ -327,4 +345,5 @@ Leaderboard.prototype.close = function(){
     if (this.panel!=null) this.panel.destroy();
     if (this.controls!=null) this.controls.destroy();
     if (this.entries!=null) this.entries.destroy();
+    leaderboard = null;
 };

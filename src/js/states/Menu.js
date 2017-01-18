@@ -78,6 +78,6 @@ InsurancePlz.MenuState = {
         InsurancePlz.isTutorial = true; // global variable to define tutorial status
     },
     showLeaderboard: function() {
-        new Leaderboard([], this.game);
+        createLeaderboard(this.game);
     }
 };
