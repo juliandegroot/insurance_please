@@ -68,6 +68,11 @@ InsurancePlz.GameState = {
             wordWrap: true,
             wordWrapWidth: 256
         };
+        
+        //Play gameplay audio
+        this.playmusic = this.add.audio('playmusic');
+        this.playmusic.loop = true;
+        this.playmusic.play();
 
         // TODO: actually remove
         //newspanel area
@@ -83,6 +88,9 @@ InsurancePlz.GameState = {
         this.createMap();
         this.createUI();
         this.refreshStats();
+        
+        //button to switch audio on/off
+        this.audiobtn = this.add.button(10, 10, 'sound', this.musicSwitch, this);
 
         //start turn:
         this.startTurn();
@@ -166,9 +174,22 @@ InsurancePlz.GameState.closePopup_showTutorialRoundinfo = function () {
  * Grants the given amount of action points and refreshes the UI.
  * Does not allow more than the maximum amount of action points to be gained.
  */
-InsurancePlz.GameState.updateActionPoints = function(amount){
-    this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
+InsurancePlz.GameState.updateActionPoints = function (amount) {
+    if (InsurancePlz.isTutorial == false) {
+        this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.gameProgress.actionPointsMax), 0);
+    } else {
+        this.gameProgress.actionPoints = Math.max(Math.min(this.gameProgress.actionPoints + amount, this.givePoints()), 0);
+    }
     this.refreshStats();
+};
+
+InsurancePlz.GameState.musicSwitch = function(){
+    if (this.sound.mute == true) {
+        this.sound.mute = false;
+    }
+    else {
+        this.sound.mute = true;
+    }
 };
 
 /**

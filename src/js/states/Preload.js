@@ -38,7 +38,7 @@ InsurancePlz.PreloadState = {
         this.load.image('socialengineering_small', 'assets/images/socialengineering_small.png');
         this.load.image('spoofing_small', 'assets/images/spoofing_small.png');
         this.load.image('stolenpasswords_small', 'assets/images/stolenpasswords_small.png');
-
+        this.load.image('sound', 'assets/images/sound.png');
         this.load.image('button', 'assets/images/button.png');
         this.load.image('howtoplay', 'assets/images/howtoplay.png');
 
@@ -50,7 +50,7 @@ InsurancePlz.PreloadState = {
         this.load.text('minor_events', 'assets/data/minorEvents.json');
         this.load.text('major_events', 'assets/data/majorEvents.json');
         this.load.text('news', 'assets/data/news.json');
-
+        
         // TODO: move
         this.load.image('button_small', 'assets/images/button_small.png');
         this.load.image('button_large', 'assets/images/button_large.png');
@@ -59,6 +59,9 @@ InsurancePlz.PreloadState = {
         this.load.image('page-prev', 'assets/images/page-prev.png');
         this.load.image('page-next', 'assets/images/page-next.png');
 
+        //audio
+        this.load.audio('menumusic', ['assets/audio/menumusic.mp3', 'assets/audio/menumusic.ogg']);
+        this.load.audio('playmusic', ['assets/audio/playingmusic.mp3', 'assets/audio/playingmusic.ogg']);
     },
     create: function() {
         this.state.start('Menu');

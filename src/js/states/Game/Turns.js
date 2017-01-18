@@ -5,7 +5,9 @@
  */
  InsurancePlz.GameState.startTurn = function () {
     this.gameProgress.roundscore = 0; //set points back to zero
-    this.updateActionPoints(this.gameProgress.actionPointsMax); //reset action points
+    if (InsurancePlz.isTutorial == false) {
+        this.updateActionPoints(this.gameProgress.actionPointsMax); //reset action points
+    } 
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || ((this.gameProgress.newsarray.length == 0) && (this.gameProgress.turn == 1))) {
         // start of the game or start of the tutorial from here:
@@ -56,7 +58,7 @@
  * Events and new for the next round is generated.
  * If the conditions are met, the game will be ended.
  */
-InsurancePlz.GameState.endTurn = function() {
+InsurancePlz.GameState.endTurn = function () {
     var events = this.executeAttacks(); // we are executing our attacks
 
     this.gameProgress.newsarray = this.gameProgress.newsarray.concat(this.newsbuilder.generateNewsItems(events));
@@ -84,7 +86,6 @@ InsurancePlz.GameState.endTurn = function() {
     }
     // roundscore is zero! and tutorial mode on , pass to next round is NOT ok (player needs feedback)
     if ((this.gameProgress.roundscore == 0) && (InsurancePlz.isTutorial)) {
-        console.log("newfwefwefwefd");
         this.gameProgress.turn--; //no round increase
         this.popup = new Popup("That's not good!", "You have done no damage. Try again by clicking on a target and looking at vulnerabilities", 'popuppanel');
         this.popup.addButton("Close", this.closePopup, this);
@@ -124,7 +125,8 @@ InsurancePlz.GameState.endTutorial = function () {
 * Loads the menu.
 */
 InsurancePlz.GameState.loadMenu = function () {
-    this.state.start('Menu')
+    this.playmusic.stop();
+    this.state.start('Menu');
 };
 
 /**
@@ -138,5 +140,8 @@ InsurancePlz.GameState.givePoints = function () {
         }
     }
     this.gameProgress.actionPoints = points_to_spend;
+    console.log("p to spend: " + this.gameProgress.actionPoints);
     this.refreshStats();
+    return points_to_spend;
+        console.log("p to spend after refresg: " + this.gameProgress.actionPoints);
 }

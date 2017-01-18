@@ -44,7 +44,6 @@ InsurancePlz.GameState.createMap = function () {
         var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('targets')).targets);
     }
     if (InsurancePlz.isTutorial) {
-        console.log("bla1")
         var targets = this.createTargetData(this.attackMapData, JSON.parse(this.game.cache.getText('tutorialtargets')).targets);
     }
     this.attackMapData.targets = targets;
