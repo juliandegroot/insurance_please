@@ -36,7 +36,7 @@ InsurancePlz.MenuState = {
 
         emitter.setRotation(0, 0);
         emitter.setAlpha(0.3, 0.8);
-        emitter.setScale(0.5, 1);
+        emitter.setScale(0.8, 1);
         emitter.gravity = -200;
 
         //	false means don't explode all the sprites at once, but instead release at a rate of one particle per 100ms
@@ -46,7 +46,7 @@ InsurancePlz.MenuState = {
 
         //Draw background for panel
         this.background = this.add.graphics(0, 0);
-        this.background.beginFill(0x000000);
+        //this.background.beginFill(0x000000);
         this.background.drawRect(0, 0, 1280, 720);
         this.background.endFill();
 
