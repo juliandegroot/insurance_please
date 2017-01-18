@@ -32,7 +32,7 @@ InsurancePlz.AttackBox = function(game, x, y, options) {
             fill: "#ff0000"
         };
 
-        var label_score = game.add.text(10, -45, attackData[i].points + " points", style); // adding attackweights/points as labels above the sprite
+        var label_score = game.add.text(10, -45, "AP cost " + attackData[i].points, style); // adding attackweights/points as labels above the sprite
         label_score.stroke = '#000000'; // give it a black outline (stroke)
         label_score.strokeThickness = 6;
         attack.addChild(label_score); // add it as child to the original instance
