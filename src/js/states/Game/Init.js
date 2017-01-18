@@ -51,6 +51,8 @@ InsurancePlz.GameState.createMap = function () {
     this.background = this.add.sprite(0, 0, this.attackMapData.background);
     this.background.height = 600;
     this.background.width = 1280;
+    this.background.inputEnabled = true;
+    this.background.events.onInputUp.add(this.touchMap, this);
     //create target instances
     this.targets = this.add.group();
     var target;
@@ -75,6 +77,9 @@ InsurancePlz.GameState.createMap = function () {
     }, this);
 };
 
+InsurancePlz.GameState.touchMap = function() {
+    this.targetInfo.hide();
+};
 
 /**
  * showHowToPlay creates an information button and fills it with tips and general
@@ -91,8 +96,8 @@ InsurancePlz.GameState.showHowToPlay = function() {
  */
 InsurancePlz.GameState.askBackToMenu = function() {
     this.popup = new Popup("Return to the main menu?", "Pay attention, if you click yes all progress will be lost. If you click no you return to the game", 'howtoplaypanel');
-    this.popup.addButton("No", this.closePopup, this);
     this.popup.addButton("Yes", this.loadMenu, this);
+    this.popup.addButton("No", this.closePopup, this);
 };
 
 InsurancePlz.GameState.createUI = function() {

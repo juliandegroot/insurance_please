@@ -1,6 +1,5 @@
 var InsurancePlz = InsurancePlz || {};
 
-
 /**
  * Creates a Popup with the given headline and text in the center of the screen.
  * A button can either be added immediately through the last 3 parameters, or by calling the addButton command.
@@ -25,6 +24,8 @@ function Popup(headline, text, panelname, btnText, callback, context) {
     this.group = InsurancePlz.game.add.group();
 
     // Initialize variables
+    this.buttonArgs = [];
+    this.buttons = [];
     this.page = 0;
     this.offset = 20;
 
@@ -93,33 +94,19 @@ Popup.prototype.display = function(){
     this.group.add(this.background);
     this.group.add(this.panel);
 
-    this.displayButton();
+    this.displayButtons();
     this.displayPageControls();
 };
-
 
 /**
  * Draws the button if one is supplied.
  */
-Popup.prototype.displayButton = function(){
+Popup.prototype.displayButtons = function(){
     // Destroy existing button
-    if (this.button != null){
-        this.button.destroy();
+    for (var i=0;i<this.buttons.length;i++){
+        this.buttons[i].destroy();
     }
-
-    // If not all required parameters are set, return
-    if (this.btnText==null || this.callback==null || this.context==null){
-        return;
-    }
-
-    this.button = this.panel.addChild(InsurancePlz.game.make.button(
-        0,
-        this.panel.height / 2 - this.offset - 30,
-        'button',
-        this.callback,
-        this.context
-    ));
-    this.button.anchor.setTo(0.5);
+    this.buttons = [];
 
     //Text style
     var style = {
@@ -128,39 +115,51 @@ Popup.prototype.displayButton = function(){
         align: 'center',
     };
 
-    var buttonText = this.button.addChild(InsurancePlz.game.make.text(
-        0,
-        3,
-        "Close",
-        style
-    ));
-    buttonText.anchor.setTo(0.5);
+    for (var i=0;i<this.buttonArgs.length;i++){
+        this.buttons.push(this.panel.addChild(InsurancePlz.game.make.button(
+            0,
+            this.panel.height / 2 - this.offset - 30,
+            'button',
+            this.buttonArgs[i].callback,
+            this.buttonArgs[i].context
+        )));
+        this.buttons[i].anchor.setTo(0.5);
+
+        var buttonText = this.buttons[i].addChild(InsurancePlz.game.make.text(
+            0,
+            3,
+            this.buttonArgs[i].text,
+            style
+        ));
+        buttonText.anchor.setTo(0.5);
+    }
+    this.organizeButtons();
 }
 
 /**
  * Draws the page control elements of this Popup if necessary.
  */
 Popup.prototype.displayPageControls = function(){
-    if (this.hasNextPage()){
-        var btn = this.panel.addChild(InsurancePlz.game.add.button(
-            150,
-            this.panel.height / 2 - this.offset - 30,
-            'page-next',
-            this.nextPage,
-            this
-        ));
-        btn.anchor.setTo(0.5);
-    }
-
     if (this.hasPreviousPage()){
-        var btn = this.panel.addChild(InsurancePlz.game.add.button(
-            -150,
+        this.prevBtn = this.panel.addChild(InsurancePlz.game.add.button(
+            -150 * this.buttons.length,
             this.panel.height / 2 - this.offset - 30,
             'page-prev',
             this.previousPage,
             this
         ));
-        btn.anchor.setTo(0.5);
+        this.prevBtn.anchor.setTo(0.5);
+    }
+
+    if (this.hasNextPage()){
+        this.nextBtn = this.panel.addChild(InsurancePlz.game.add.button(
+            150 * this.buttons.length,
+            this.panel.height / 2 - this.offset - 30,
+            'page-next',
+            this.nextPage,
+            this
+        ));
+        this.nextBtn.anchor.setTo(0.5);
     }
 };
 
@@ -171,12 +170,36 @@ Popup.prototype.displayPageControls = function(){
  * @param {Object} callback - The callback to be used when the button is pressed.
  * @param {Object} context - The context to be used in the callback.
  */
-Popup.prototype.addButton = function(btnText, callback, context){
-    this.btnText = btnText;
-    this.callback = callback;
-    this.context = context;
-    this.displayButton();
-}
+Popup.prototype.addButton = function(text, callback, context){
+    if (this.buttons.length >= 2) {
+        console.log('ERROR: Popups currently do not support more than 2 buttons.');
+        return;
+    }
+
+    this.buttonArgs.push({
+        "text": text,
+        "callback": callback,
+        "context": context
+    });
+    this.displayButtons();
+};
+
+/**
+ * Automatic function that is called whenever buttons are changed.
+ * Responsible for ensuring all buttons are aligned nicely.
+ */
+Popup.prototype.organizeButtons = function() {
+    //If there is nothing to organize, return
+    if (this.buttonArgs.length===0) return;
+
+    if (this.prevBtn!=null) this.prevBtn.destroy();
+    if (this.nextBtn!=null) this.nextBtn.destroy();
+    var startPoint = -(this.buttons[0].width * this.buttons.length + this.offset * (this.buttons.length - 1)) / 2;
+    for (var i = 0; i < this.buttons.length; i++) {
+        this.buttons[i].x = startPoint + this.offset * i + this.buttons[0].width * (i + 0.5);
+    }
+    this.displayPageControls();
+};
 
 /**
  * Remove this Popup and all sprite elements connected with it.

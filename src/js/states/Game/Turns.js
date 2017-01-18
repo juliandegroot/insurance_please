@@ -140,8 +140,6 @@ InsurancePlz.GameState.givePoints = function () {
         }
     }
     this.gameProgress.actionPoints = points_to_spend;
-    console.log("p to spend: " + this.gameProgress.actionPoints);
     this.refreshStats();
     return points_to_spend;
-        console.log("p to spend after refresg: " + this.gameProgress.actionPoints);
 }
