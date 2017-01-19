@@ -86,7 +86,7 @@ InsurancePlz.MenuState = {
         this.leaderboardText = this.add.text(this.game.world.centerX,
             this.game.world.centerY + 72, 'Leaderboard', menuStyle);
         this.leaderboardText.anchor.setTo(0.5);
-
+        
         //Uncomment to skip menu for testing
         //this.state.start('Game');
 

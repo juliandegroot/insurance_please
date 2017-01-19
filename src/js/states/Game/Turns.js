@@ -109,8 +109,16 @@ InsurancePlz.GameState.endTurn = function () {
  * preventing the player from taking further actions.
  */
 InsurancePlz.GameState.endGame = function() {
-    this.popup = new Popup("Congratulations!", "You have reached the end of the.game!", 'popuppanel');
-    this.popup.addButton("Close", this.loadMenu, this);
+    this.popup = new Popup("Congratulations!", "You have reached the end of the.game! If you wish, you may submit your highscore to the leaderboard.", 'popuppanel');
+    this.popup.addButton("Close", this.submitLeaderboard, this);
+};
+
+/**
+ * Opens the leaderboard submission window.
+ */
+InsurancePlz.GameState.submitLeaderboard = function() {
+    this.popup.destroy();
+    this.highscoreBox = new InsurancePlz.HighscoreBox(this);
 };
 
 /**

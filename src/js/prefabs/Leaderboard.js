@@ -12,6 +12,7 @@ function createLeaderboard(game){
         url: "assets/data/leaderboard.json",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
+        cache: false,
         //so that the callback has access to the game as well
         game: game,
         success: function (data){
