@@ -6,9 +6,11 @@ InsurancePlz.game = new Phaser.Game(1280, 720, Phaser.AUTO);
 //attackpanel is 640x99
 //newspanel is 256x504
 
+//add game states
 InsurancePlz.game.state.add('Boot', InsurancePlz.BootState);
 InsurancePlz.game.state.add('Preload', InsurancePlz.PreloadState);
 InsurancePlz.game.state.add('Menu', InsurancePlz.MenuState);
 InsurancePlz.game.state.add('Game', InsurancePlz.GameState);
 
+//boot game
 InsurancePlz.game.state.start('Boot');
