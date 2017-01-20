@@ -3,7 +3,7 @@
             "id": "usb",
             "asset": "freefoundusbstick",
             "text": "USB Leak",
-            "points": 5,
+            "points": 3,
             "x": 10,
             "y": 627,
             "securityVector": ["nobyod", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -12,7 +12,7 @@
             "id": "popup",
             "asset": "popup",
             "text": "Pop-up",
-            "points": 5,
+            "points": 3,
             "x": 100,
             "y": 627,
             "securityVector": ["websec", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -21,7 +21,7 @@
             "id": "wifi",
             "asset": "roguewifi",
             "text": "Rogue WiFi",
-            "points": 5,
+            "points": 4,
             "x": 190,
             "y": 627,
             "securityVector": ["nobyod", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -30,7 +30,7 @@
             "id": "phishing",
             "asset": "spoofing",
             "text": "Phish-Spoof",
-            "points": 5,
+            "points": 4,
             "x": 280,
             "y": 627,
             "securityVector": ["websec", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -39,7 +39,7 @@
             "id": "pw",
             "asset": "stolenpasswords",
             "text": "Stolen Passwords",
-            "points": 2,
+            "points": 3,
             "x": 370,
             "y": 627,
             "securityVector": ["pwman", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -49,7 +49,7 @@
             "id": "social",
             "asset": "socialengineering",
             "text": "Social Engineering",
-            "points": 2,
+            "points": 4,
             "x": 460,
             "y": 627,
             "securityVector": ["pwman", "autoup", "stafftrain", "riskaudit", "techadvice", "servicecon"]
