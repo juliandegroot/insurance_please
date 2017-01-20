@@ -37,7 +37,7 @@
 		{
 			"key": "global_sec_autoup",
 			"headlines": [
-				"Major exploit in in popular software package prompts system updates."
+				"Major exploit in popular software package."
 			],
 			"texts": [
 				"A major exploit was discovered that allowed administrator access to critical systems, making it possible for hackers to hack into these systems. After the exploit was discovered the software was quickly updated, prompting companies to also check their other software."
