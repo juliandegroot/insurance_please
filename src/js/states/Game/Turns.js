@@ -7,16 +7,16 @@
     this.gameProgress.roundscore = 0; //set points back to zero
     if (InsurancePlz.isTutorial == false) {
         this.updateActionPoints(this.gameProgress.actionPointsMax); //reset action points
-    } 
+    }
     //Pop up news message, fade out & make uninteractable rest of game
     if (this.gameProgress.newsarray === undefined || ((this.gameProgress.newsarray.length == 0) && (this.gameProgress.turn == 1))) {
         // start of the game or start of the tutorial from here:
         if (InsurancePlz.isTutorial == false) {
-            this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
+            this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember, if you are looking for information on vulnerabilities, attacks or how to play, click on the help button in the lower right.\nAll hackers start out gathering information...", 'popuppanel');
             this.popup.addButton("Let's begin!", this.closePopup, this);
         }
         if (InsurancePlz.isTutorial == true) {
-            this.popup = new Popup("Tutorial Start", "Welcome to this tutorial.\n You are the hacker!\n\nYou will play 2 rounds to learn how to execute single and multiple attacks.\n Round 1: Find the weak target and attack it!\n Round 2: Align attacks for both targets\n\nRemember.. if you are looking for some sort of manual on how to play, click on the help button on the lower right\nAll hackers start out gathering information..", 'popuppanel');
+            this.popup = new Popup("Tutorial Start", "Welcome to this tutorial.\n You are a hacker, your job is to do as much damage as possible to companies!\n\nYou will play 2 rounds to learn how to execute single and multiple attacks.\n Round 1: Find the weak target and attack it!\n Round 2: Align attacks for both targets.\n\nRemember, if you are looking for information on vulnerabilities, attacks or how to play, click on the help button in the lower right.\nAll hackers start out gathering information...", 'popuppanel');
             this.popup.addButton("Let's begin!", this.closePopupAndShowInstructions, this);
         }
     } else { // we are beyond round 1 and therefore start off by showing the news
