@@ -3,90 +3,97 @@
 		{
 			"key": "global_sec_nobyod",
 			"headlines": [
-				"Global nobyod"
+				"Companies prohibit bringing your own devices.",
+				"New security trend."
 			],
 			"texts": [
-				"All companies now have nobyod security."
+				"In the past year several cyberattack are executed via devices owned by employees themselves. To prevent this risks, each day more companies introduce the 'do not bring your own device policies'.",
+				"Companies are taking security measures at all levels. Right now a new trend can is developing: employees are not allowed to bring their own devices anymore."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_pwman",
 			"headlines": [
-				"Global pwman"
+				"Industry massively adopts password managers.",
+				"Companies see the benefit of password managers."
 			],
 			"texts": [
-				"All companies now have pwman security."
+				"Realising the importance of good password protection and the tendency of employees to re-use and keep simple passwords, companies have decided to use password managers. Widespread adoption should make password protected systems of companies safer.",
+				"After investigations into possible weaknesses in systems, companies have seen a possible solution in password managers. This would allow the use of complex passwords for all services, while a user only needs to remember a single passwords, making the individual services more difficult to hack."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_websec",
 			"headlines": [
-				"Global websec"
+				"Global websecurity increased."
 			],
 			"texts": [
-				"All companies now have websec security."
+				"As a company you cannot afford it anymore to be at a cyber risks, web security measures are the least thing companies can do to prevent these risks. As a result companies without websecurity have become rarer and rarer."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_autoup",
 			"headlines": [
-				"Global autoup"
+				"Major exploit in in popular software package prompts system updates."
 			],
 			"texts": [
-				"All companies now have autoup security."
+				"A major exploit was discovered that allowed administrator access to critical systems, making it possible for hackers to hack into these systems. After the exploit was discovered the software was quickly updated, prompting companies to also check their other software."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_firewall",
 			"headlines": [
-				"Global firewall"
+				"Protected digital environment."
 			],
 			"texts": [
-				"All companies now have firewall security."
+				"As a result of more companies introducing 'flexible offices', more employees will work on different devices. To protect the digital environment, all companies use a protected environment in which employees can work safely."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_stafftrain",
 			"headlines": [
-				"Global stafftrain"
+				"Human protection against cyber attacks."
 			],
 			"texts": [
-				"All companies now have stafftrain security."
+				"With all the cyber attacks of the past year, security devices are not enough anymore to protect your company. Well trained staff is something all companies do right now in order to protect the company.",
+				"Technical features are not the only protection a company needs against cybercrime. Industry has realised that one of the weak points still remains the human factor, and has adopted regular training to keep staff up-to-date with cyber risks and prevention."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_riskaudit",
 			"headlines": [
-				"Global riskaudit"
+				"Complex world of cybercrime.",
+				"Estimate the risk you are facing."
 			],
 			"texts": [
-				"All companies now have riskaudit security."
+				"The field of cybercrime is becoming increasingly complex. Most companies do not have the expertise inhouse to asses the risks they are facing. Most companies are therefore hiring external cyber risks experts to perform a risk-audit.",
+				"Companies are facing high cyber risks and it is not possible for a company to protect itself 100%. All companies are performing risk-audits to be better prepared for the moment they are attacked by hackers."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_techadvice",
 			"headlines": [
-				"Global techadvice"
+				"Upcoming cyber risk consultancy."
 			],
 			"texts": [
-				"All companies now have techadvice security."
+				"Due to increasing cyberattacks, the amount of different security measures against cyber attacks are also increasing. To protect the company as good as possible, companies hire specialized cyber risk consultants to advise them on cyber risk security measures."
 			],
 			"weight": 1
 		},
 		{
 			"key": "global_sec_servicecon",
 			"headlines": [
-				"Global servicecon"
+				"Service contracts becoming more popular."
 			],
 			"texts": [
-				"All companies now have servicecon security."
+				"Companies do not always have enough technical personnel to update all the security measures against cyber crime to keep them safe. More companies are therefore opting for service contracts to outsource it to professionals. "
 			],
 			"weight": 1
 		},
@@ -98,7 +105,7 @@
 			"texts": [
 				"All companies now have nobyod vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_pwman",
@@ -108,7 +115,7 @@
 			"texts": [
 				"All companies now have pwman vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_websec",
@@ -118,7 +125,7 @@
 			"texts": [
 				"All companies now have websec vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_autoup",
@@ -128,7 +135,7 @@
 			"texts": [
 				"All companies now have autoup vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_firewall",
@@ -138,7 +145,7 @@
 			"texts": [
 				"All companies now have firewall vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_stafftrain",
@@ -148,7 +155,7 @@
 			"texts": [
 				"All companies now have stafftrain vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_riskaudit",
@@ -158,7 +165,7 @@
 			"texts": [
 				"All companies now have riskaudit vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_techadvice",
@@ -168,7 +175,7 @@
 			"texts": [
 				"All companies now have techadvice vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		},
 		{
 			"key": "global_vuln_servicecon",
@@ -178,7 +185,7 @@
 			"texts": [
 				"All companies now have servicecon vulnerability."
 			],
-			"weight": 1
+			"weight": 0
 		}
 	]
 }
