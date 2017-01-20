@@ -1,6 +1,9 @@
 var InsurancePlz = InsurancePlz || {};
 
-//setting game configuration and loading the assets for the loading screen
+/**
+ * Prototype responsible for the very initial booting of the game.
+ * This loads the loading bar and sets a few basic window properties.
+ */
 InsurancePlz.BootState = {
     init: function() {
         //loading screen will have a white background

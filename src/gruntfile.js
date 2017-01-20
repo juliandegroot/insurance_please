@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 'js/*/*.js',
 				//Small 'recursive hack' because the line above cannot use **/*.js
 				//As that would include main.js which needs to be loaded last
-                'js/*/*.js',
+                'js/*/*/*.js',
 				//Resolves to only main.js as it needs all other files to have loaded 
                 'js/*.js'
               ],

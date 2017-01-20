@@ -5,7 +5,6 @@ InsurancePlz.Attack = function(state, data) {
 
     this.game = state.game;
     this.state = state;
-    //this.anchor.setTo(0.5);
     this.scale.setTo(0.5);
     this.data = data;
     this.secvector = this.data.securityVector;
@@ -23,8 +22,6 @@ InsurancePlz.Attack.prototype = Object.create(Phaser.Sprite.prototype);
 InsurancePlz.Attack.prototype.constructor = InsurancePlz.Attack;
 
 InsurancePlz.Attack.prototype.getSecmeasure = function() {
-    //console.log(this.data);
-    //console.log(this.secvector);
     return this.secvector;
 };
 
@@ -35,7 +32,6 @@ InsurancePlz.Attack.prototype.getEffect = function() {
 InsurancePlz.Attack.prototype.getName = function() {
     return this.data.text;
 };
-
 
 InsurancePlz.Attack.prototype.getPoints = function() {
     return this.data.points;

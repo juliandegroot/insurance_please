@@ -1,6 +1,6 @@
 var InsurancePlz = InsurancePlz || {};
 
-InsurancePlz.Target = function (state, data) {
+InsurancePlz.Target = function(state, data) {
     Phaser.Sprite.call(this, state.game, data.x, data.y, data.asset);
 
     this.game = state.game;
@@ -19,223 +19,213 @@ InsurancePlz.Target = function (state, data) {
 InsurancePlz.Target.prototype = Object.create(Phaser.Sprite.prototype);
 InsurancePlz.Target.prototype.constructor = InsurancePlz.Target;
 
-InsurancePlz.Target.prototype.touch = function () {
+InsurancePlz.Target.prototype.touch = function() {
     //shows target info in news panel:
+    this.state.newspanelLabel.text = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
+    //this.state.securedpanelLabel.text = this.getSecuredString();
+    this.state.vulnerablepanelLabel.text = this.getVulnerableString();
 
-    var news = "Targetname: " + this.data.name + "\nDamage: $" + this.data.damage + "\nVulnerabilities: \n";
-    var secured = this.getSecuredString();
-    var vulnerabilities = this.getVulnerableString();
-
-    this.state.newspanelLabel.text = news;
-    //this.state.securedpanelLabel.text = secured;
-    this.state.vulnerablepanelLabel.text = vulnerabilities;
-
-    //are we selecting anything?
-    var selectedAttack = this.state.selectedAttack;
-
-    if (selectedAttack) {
-        //are there interactions? are they with the selected attack?
-        var seclevel = 2;
-        console.log("Number security levels: " + seclevel);
-        var secvector = this.state.selectedAttack.data.securityVector; // the attack's security vector object
-        var attackweightpoints = this.state.selectedAttack.data.points;
-        var targetid = this.data.id;
-        var attackid = this.state.selectedAttack.data.id;
-        for (var key in secvector) { // i.e. "iot":1
-            //console.log("Attack" + attackid + " will try bypass sec. measure " + secvector[key] + " for Tar_id: " + this.data.id + " detected");
-        }
-        if ((this.state.enoughPoints(attackweightpoints) == true) && (this.state.alreadyStackedForTarget(targetid, attackid) == false) && this.state.gameProgress.attackstack.length <= 4) {
-            //while attack points last and selected attack does not let us drop below 0:
-            //throw combination of target & attack object into array while points last to execute these combinations when user clicks button "attack" at which a round ends.
-            // and cannot stack same tar/attack combination more than once
-            this.state.stackAttack(this, this.state.selectedAttack, this.state.selectedAttack.data.asset);
-            this.state.gameProgress.actionPoints = this.state.gameProgress.actionPoints - this.state.selectedAttack.data.points;
-            this.state.refreshStats();
-            console.log("Stacked: Target_id: " + this.data.id + " Attack_id: " + this.state.selectedAttack.data.id);
-            this.state.clearAttackSelection(); // deselect attack
-
-        }
-        else {
-            console.log("Already stacked or attackstack is full! (max 5)");
-            this.state.clearAttackSelection(); // deselect attack
-        }
+    //If no attack is selected, stop here
+    if (this.state.selectedAttack !== undefined){
+        this.state.stackAttack(this.state.selectedAttack, this);
+    } else if (this != this.state.targetInfo.target) {
+        this.state.targetInfo.updateInfo(this);
+        this.state.targetInfo.show();
+    } else {
+        this.state.targetInfo.updateInfo(this);
+        this.state.targetInfo.toggle();
     }
-    console.log("Current action points: " + this.state.gameProgress.actionPoints);
 };
 
-InsurancePlz.Target.prototype.getSecuredString = function () {
-    var secvector = this.data.securityVector; // the target's security vector object
+InsurancePlz.Target.prototype.getSecuredString = function() {
     var string = "Secured:\n";
-    for (var key in secvector) { // getting the actual array
-        if (secvector[key] == 1) {
+    for (var key in this.data.securityVector) { // getting the actual array
+        if (this.data.securityVector[key] === 1) {
             string = string + key + "\n";
-            //console.log(string);
         }
     }
     return string;
 };
 
-InsurancePlz.Target.prototype.getVulnerableString = function () {
-    var secvector = this.data.securityVector; // the target's security vector object
+InsurancePlz.Target.prototype.getVulnerableString = function() {
     var string = "";
-    var description = "";
-    for (var key in secvector) { // getting the actual array
-        if (secvector[key] == 0) {
+    for (var key in this.data.securityVector) { // getting the actual array
+        if (this.data.securityVector[key] === 0) {
             switch (key) {
-            case "iot":
-                string = string + "- IoT devices unprotected\n";
-                break;
-            case "nobyod":
-                string = string + "- Employees can bring their own device\n";
-                break;
-            case "pwman":
-                string = string + "- No password management\n";
-                break;
-            case "websec":
-                string = string + "- Email or web security devices missing\n";
-                break;
-            case "autoup":
-                string = string + "- No automatic software updating\n";
-                break;
-            case "firewall":
-                string = string + "- Firewall not up to date\n";
-                break;
-            case "stafftrain":
-                string = string + "- Staff is not well-trained (cyberaware)\n";
-                break;
-            case "riskaudit":
-                string = string + "- Risk assessment issues\n";
-                break;
-
-            case "techadvice":
-                string = string + "- Tech-advice on soft- & hardware missing\n";
-                break;
-
-            case "serviceon":
-                string = string + "- Proper service contracts missing\n";
-                break;
+                case "nobyod":
+                    string = string + "- Employees can bring their own device\n";
+                    break;
+                case "pwman":
+                    string = string + "- No password management\n";
+                    break;
+                case "websec":
+                    string = string + "- Email or web security devices missing\n";
+                    break;
+                case "autoup":
+                    string = string + "- No automatic software updating\n";
+                    break;
+                case "firewall":
+                    string = string + "- Firewall not up to date\n";
+                    break;
+                case "stafftrain":
+                    string = string + "- Staff is not well-trained (cyberaware)\n";
+                    break;
+                case "riskaudit":
+                    string = string + "- Risk assessment issues\n";
+                    break;
+                case "techadvice":
+                    string = string + "- Tech-advice on soft- & hardware missing\n";
+                    break;
+                case "serviceon":
+                    string = string + "- Proper service contracts missing\n";
+                    break;
             }
         }
     }
-    //console.log(string);
     return string;
 };
 
-InsurancePlz.Target.prototype.getDamage = function () {
+InsurancePlz.Target.prototype.getDamage = function() {
     return this.damage;
 };
 
-InsurancePlz.Target.prototype.getID = function () {
+InsurancePlz.Target.prototype.getID = function() {
     return this.data.id;
 };
 
-InsurancePlz.Target.prototype.getName = function () {
+InsurancePlz.Target.prototype.getName = function() {
     return this.data.name;
 };
 
-InsurancePlz.Target.prototype.doDamage = function (atkvec, effectiveness, attackid, attackname, targetname, targetobject) {
-    //console.log("D.dmage: attack vector: ");
-    //console.log(atkvec);
-    //console.log("D.dmage: target secvector: ");
-    //console.log(this.data.securityVector);
+InsurancePlz.Target.prototype.doDamage = function(attack) {
 
-    var weights = { //constant attack weights
-        "iot":1,
-        "nobyod":1,
-        "pwman":1,
-        "websec":1,
-        "autoup":1,
-        "firewall":1,
-        "stafftrain":0.2,
-        "riskaudit":0.2,
-        "techadvice":0.2,
-        "serviceon":0.2
+    var aweights = { //constant attack weights
+        "nobyod": 1,
+        "pwman": 1,
+        "websec": 1,
+        "autoup": 1,
+        "firewall": 1,
+        "stafftrain": 0.2,
+        "riskaudit": 0.2,
+        "techadvice": 0.2,
+        "serviceon": 0.2
     }
+
     var dweights = { //constant defense weights
-        "insurance":0.25,
-        "backup":0.25,
-        "offline":0.25,
-        "infra":0.25
+        "insurance": 0.25,
+        "backup": 0.25,
+        "offline": 0.25,
+        "infra": 0.25
     }
-    var attackstrength = 0;
-    var reducfactor = 0;
-    var effecton = [];
-    var damageavoidedon = [];
 
+    var attackStrength = 0;
+    var reducFactor = 0;
+    var effectOn = [];
+    var damageAvoidedOn = [];
+
+    // Get the damage effects and factor.
+    for (var key in attack.secvector) {
+        if (this.data.securityVector[attack.secvector[key]] === 0) {
+            effectOn.push(attack.secvector[key]);
+            attackStrength += aweights[attack.secvector[key]];
+        }
+    }
+    
+    //Introducing a learning-element for targets to secure what they have been attacked on
+    //After a target is attacked we introduce a 75% chance for it to update one of its security
+    //vector elements the attack just had effect on
+    if (effectOn.length > 0) { // as long as there actually are weaknesses
+        var totalweaknesses = effectOn.length;
+        var picked_weakness_index = Math.floor(Math.random() * totalweaknesses);
+        //console.log("totalw: " + totalweaknesses + " random index: " + picked_weakness_index);
+        //console.log(effectOn);
+        //if (Math.random() >= 0.25) {
+            //console.log("Weakness picked: " + effectOn[picked_weakness_index]);
+            this.data.securityVector[effectOn[picked_weakness_index]] = 1; // there is now protection for this weakness
+            //console.log(this.data.name + " now protected for " + effectOn[picked_weakness_index]);
+        //}
+    }
+
+    // Get the reduction effects and factor.
     for (var key in dweights) {
-        if (this.data.damagecontrol[key]===1){
-            damageavoidedon.push(key);
-            reducfactor += dweights[key];
+        if (this.data.damagecontrol[key] === 1) {
+            damageAvoidedOn.push(key);
+            reducFactor += dweights[key];
         }
     }
 
-    for (var i=0;i<atkvec.length;i++){
-        if (this.data.securityVector[atkvec[i]]===0){
-            effecton.push(atkvec[i]);
-            attackstrength += weights[atkvec[i]];
-        }
-    }
+    var hacker_damage_inflicted = Math.round(attackStrength * 100000);
+    var company_damage_suffered = hacker_damage_inflicted * (1 - reducFactor) * (1 + (0.5-Math.random())/10);
+    // Cleanliness rounding
+    company_damage_suffered = company_damage_suffered - company_damage_suffered%100;
 
-    var hacker_damage_inflicted = Math.round(attackstrength * 100000);
-    var company_damage_suffered = hacker_damage_inflicted * (1-reducfactor);
-
-
-    console.log("Attackstrength: " + attackstrength);
-    console.log(effecton);
-    console.log("Damage reduc factor: " + reducfactor);
-    console.log(damageavoidedon);
-    console.log("Hacker has done $" + Math.round(attackstrength * 100000) + " in damage")
-    console.log("Company suffered $" + Math.round(((attackstrength - (reducfactor * attackstrength)) * 100000)) + " in damage")
-
+    // Display graphic when damage is dealt
     if (company_damage_suffered > 0) {
-        var sufferedTargetTween = this.game.add.tween(targetobject);
+        var sufferedTargetTween = this.game.add.tween(this);
         sufferedTargetTween.to({
             tint: 0xFF0000 // flicker to red
         }, 500);
-        sufferedTargetTween.onComplete.add(function () {
-            targetobject.tint = 0xFFFFFF; // back to normal tint
+        sufferedTargetTween.onComplete.add(function() {
+            this.tint = 0xFFFFFF; // back to normal tint
         }, this);
         sufferedTargetTween.start();
-        // TODO: remove this?
-        // this.state.generateAttackNewsItem(company_damage_suffered, attackname, targetname, this.data.category);
     }
+
+    // Keeping count of total damage done
     this.data.damage = this.data.damage + company_damage_suffered;
-    //TODO pass on to news: this.state.generateAttackNewsItem(damage_inflicted, attackname, targetname, this.data.category);
-    //TODO random damage range that determines what effects are chosen for the news sheet
-    var res = {
-      attackID: attackid,
-      attackName: attackname,
-      companyName: targetname,
-      damage: company_damage_suffered,
-      // TODO: this should be the actual thing, currently a placeholder
-      reduction: "TemporaryReduction"
-    }
 
-    return res;
+    // Data that needs to be returned for generating the news
+    return {
+        "attackID": attack.id,
+        "attackName": attack.data.name,
+        "companyName": this.data.name,
+        "damage": company_damage_suffered,
+        "effect_on": effectOn
+    };
 };
 
-InsurancePlz.Target.prototype.canBeUpgraded = function(){
-  for (var k in this.data.securityVector){
-    if (this.data.securityVector[k][1]===0){
-      return true;
+/**
+ * @returns {Boolean} - Returns true if this target has any security set to 0.
+ */
+InsurancePlz.Target.prototype.canBeUpgraded = function() {
+    for (var k in this.data.securityVector) {
+        if (this.data.securityVector[k][1] === 0) {
+            return true;
+        }
     }
-  }
-  return false;
-};
-
-InsurancePlz.Target.prototype.upgradeSecurity = function(){
-  var keys = [];
-  for (var key in this.data.securityVector){
-    if (this.data.securityVector[key]===0){
-      keys.push(key);
-    }
-  }
-  if (keys.length>0){
-    var rand = keys[Math.floor(Math.random()*keys.length)];
-    console.log(this.data.name + " upgraded security " + rand);
-    this.data.securityVector[rand]=1;
-    return true;
-  } else {
     return false;
+};
+
+/**
+ * Sets a random security to 1.
+ * @returns {Boolean} - True if something could be upgraded. False otherwise.
+ */
+InsurancePlz.Target.prototype.upgradeSecurity = function() {
+    var keys = [];
+    for (var key in this.data.securityVector) {
+        if (this.data.securityVector[key] === 0) {
+            keys.push(key);
+        }
+    }
+    if (keys.length > 0) {
+        var rand = keys[Math.floor(Math.random() * keys.length)];
+        this.data.securityVector[rand] = 1;
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/**
+ * Get the number of vulnerabilities of the target.
+ * @return {Number} - The number of vulnerabilities
+ */
+InsurancePlz.Target.prototype.getNumberOfVulnerabilities = function() {
+  var res = 0;
+  for (var key in this.data.securityVector) {
+    if (this.data.securityVector[key] === 0) {
+      res += 1;
+    }
   }
+  return res;
 };

@@ -7,7 +7,7 @@ var InsurancePlz = InsurancePlz || {};
  * @param {String} newsJSON - A JSON String containing all the news snippets.
  */
 InsurancePlz.NewsItemBuilder = function(newsJSON) {
-  this.newsSnippets = newsJSON;
+    this.newsSnippets = newsJSON;
 }
 
 InsurancePlz.NewsItemBuilder.prototype.constructor = InsurancePlz.NewsItemBuilder;
@@ -19,12 +19,11 @@ InsurancePlz.NewsItemBuilder.prototype.constructor = InsurancePlz.NewsItemBuilde
  * @return {Array} - The array containing the news items on the events.
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsItems = function(infoArray) {
-  var res = [];
-  for (var i = 0; i < infoArray.length; i++) {
-    res.push(this.generateNewsItem(infoArray[i]));
-  }
-  console.log(res)
-  return res;
+    var res = [];
+    for (var i = 0; i < infoArray.length; i++) {
+        res.push(this.generateNewsItem(infoArray[i]));
+    }
+    return res;
 }
 
 /**
@@ -34,11 +33,11 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsItems = function(infoArray) {
  * @return {Object} - The generated news item.
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsItem = function(eventInformation) {
-  var newsitem = {};
-  // TODO: create the actual news, nows still waiting for the requirements
-  newsitem.headline = this.generateHeadline(eventInformation);
-  newsitem.body = this.generateNewsBody(eventInformation);
-  return newsitem;
+    var newsitem = {};
+    // TODO: create the actual news, nows still waiting for the requirements
+    newsitem.headline = this.generateHeadline(eventInformation);
+    newsitem.body = this.generateNewsBody(eventInformation);
+    return newsitem;
 }
 
 /**
@@ -47,9 +46,9 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsItem = function(eventInformat
  * @return {String} - The generated headline.
  */
 InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformation) {
-  var headlines = this.newsSnippets.headlines.general.concat(
-    this.newsSnippets.headlines[eventInformation.attackID]);
-  return this.replaceAllTags(this.chooseRandomString(headlines), eventInformation);
+    var headlines = this.newsSnippets.headlines.general.concat(
+        this.newsSnippets.headlines[eventInformation.attackID]);
+    return this.replaceAllTags(this.chooseRandomString(headlines), eventInformation);
 }
 
 /**
@@ -58,11 +57,9 @@ InsurancePlz.NewsItemBuilder.prototype.generateHeadline = function(eventInformat
  * @return {String} - The generated news body.
  */
 InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformation) {
-  var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
-  console.log(intro)
-  // var attack = this.chooseCategorySentence("attack", eventInformation.attackID);
-  var body = intro + " " + this.chooseDamageSentence();
-  return this.replaceAllTags(body, eventInformation);
+    var intro = this.chooseCategorySentence("intro", eventInformation.attackID);
+    var body = intro + " " + this.chooseCategorySentence("effect", eventInformation.attackID) + this.chooseDamageSentence();
+    return this.replaceAllTags(body, eventInformation);
 }
 
 /**
@@ -72,16 +69,16 @@ InsurancePlz.NewsItemBuilder.prototype.generateNewsBody = function(eventInformat
  * @param {String} id - The id to combine with the general entries.
  */
 InsurancePlz.NewsItemBuilder.prototype.chooseCategorySentence = function(category, id) {
-  // TODO: null check on category and id
-  var options = this.newsSnippets[category].general.concat(
-    this.newsSnippets[category][id]
-  );
-  return this.chooseRandomString(options);
+    // TODO: null check on category and id
+    var options = this.newsSnippets[category].general.concat(
+        this.newsSnippets[category][id]
+    );
+    return this.chooseRandomString(options);
 }
 
 // TODO: this might change depending on the stories.
 InsurancePlz.NewsItemBuilder.prototype.chooseDamageSentence = function() {
-  return this.chooseRandomString(this.newsSnippets.damage);
+    return this.chooseRandomString(this.newsSnippets.damage);
 }
 
 /**
@@ -90,8 +87,8 @@ InsurancePlz.NewsItemBuilder.prototype.chooseDamageSentence = function() {
  * @return {String} - The random chosen string.
  */
 InsurancePlz.NewsItemBuilder.prototype.chooseRandomString = function(array) {
-  // TODO: length == 0 check?
-  return array[Math.floor(Math.random() * array.length)];
+    // TODO: length == 0 check?
+    return array[Math.floor(Math.random() * array.length)];
 }
 
 /**
@@ -101,11 +98,11 @@ InsurancePlz.NewsItemBuilder.prototype.chooseRandomString = function(array) {
  * @return {String} - The string with all tags replaced with the event information.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceAllTags = function(string, eventInformation) {
-  string = this.replaceCompanyTag(string, eventInformation.companyName);
-  string = this.replaceAttackTag(string, eventInformation.attackName);
-  string = this.replaceDamageTag(string, eventInformation.damage);
-  string = this.replaceReductionTag(string, eventInformation.reduction);
-  return string;
+    string = this.replaceCompanyTag(string, eventInformation.companyName);
+    string = this.replaceAttackTag(string, eventInformation.attackName);
+    string = this.replaceDamageTag(string, formatCash(eventInformation.damage));
+    string = this.replaceReductionTag(string, eventInformation.reduction);
+    return string;
 }
 
 /**
@@ -114,7 +111,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceAllTags = function(string, eventIn
  * @param {String} companyName - The company name to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceCompanyTag = function(string, companyName) {
-  return string.replace(new RegExp("%CN", 'g'), companyName);
+    return string.replace(new RegExp("%CN", 'g'), companyName);
 }
 
 /**
@@ -123,7 +120,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceCompanyTag = function(string, comp
  * @param {String} attackName - The attack name to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceAttackTag = function(string, attackName) {
-  return string.replace(new RegExp("%a", 'g'), attackName);
+    return string.replace(new RegExp("%a", 'g'), attackName);
 }
 
 /**
@@ -132,7 +129,7 @@ InsurancePlz.NewsItemBuilder.prototype.replaceAttackTag = function(string, attac
  * @param {Number} damage - The damage amount to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceDamageTag = function(string, damage) {
-  return string.replace(new RegExp("%d", 'g'), damage);
+    return string.replace(new RegExp("%CDMG", 'g'), damage);
 }
 
 /**
@@ -141,5 +138,5 @@ InsurancePlz.NewsItemBuilder.prototype.replaceDamageTag = function(string, damag
  * @param {String} reduction - The reduction name to replace it with.
  */
 InsurancePlz.NewsItemBuilder.prototype.replaceReductionTag = function(string, reduction) {
-  return string.replace(new RegExp("%r", 'g'), reduction);
+    return string.replace(new RegExp("%r", 'g'), reduction);
 }

@@ -11,7 +11,6 @@ InsurancePlz.GameState.triggerMajorEvent = function() {
     }
     if (roulette.length > 0) {
         var rand = Math.floor(Math.random() * roulette.length);
-        //TODO: Add result to news list
         var news = this.majorEventList[rand].getNews();
         this.gameProgress.newsarray.push({
             round: this.gameProgress.turn,

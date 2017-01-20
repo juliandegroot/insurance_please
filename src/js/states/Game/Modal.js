@@ -1,7 +1,7 @@
 var gameModal = gameModal || {};
 
 
-gameModal = function (game) {
+gameModal = function(game) {
 
     var _this = this;
 
@@ -12,14 +12,14 @@ gameModal = function (game) {
      * @param  {[type]} type [description]
      * @return {[type]}      [description]
      */
-    this.hideModal = function (type) {
+    this.hideModal = function(type) {
         window.console.log(type);
         game.modals[type].visible = false;
     };
 
     return {
 
-        createModal: function (options) {
+        createModal: function(options) {
 
             var type = options.type || ''; // must be unique
             var includeBackground = options.includeBackground; // maybe not optional
@@ -56,7 +56,7 @@ gameModal = function (game) {
                     innerModal.height = game.height;
                     innerModal.type = type;
                     innerModal.input.priorityID = 0;
-                    innerModal.events.onInputDown.add(function (e, pointer) {
+                    innerModal.events.onInputDown.add(function(e, pointer) {
                         this.hideModal(e.type);
                     }, _this, 2);
 
@@ -198,7 +198,7 @@ gameModal = function (game) {
             game.modals[type] = modalGroup;
 
         },
-        updateModalValue: function (value, type, index, id) {
+        updateModalValue: function(value, type, index, id) {
             var item;
             if (index !== undefined && index !== null) {
                 item = game.modals[type].getChildAt(index);
@@ -229,19 +229,19 @@ gameModal = function (game) {
             }
 
         },
-        getModalItem: function (type, index) {
+        getModalItem: function(type, index) {
             return game.modals[type].getChildAt(index);
         },
-        showModal: function (type) {
+        showModal: function(type) {
             game.world.bringToTop(game.modals[type]);
             game.modals[type].visible = true;
             // you can add animation here
         },
-        hideModal: function (type) {
+        hideModal: function(type) {
             game.modals[type].visible = false;
             // you can add animation here
         },
-        destroyModal: function (type) {
+        destroyModal: function(type) {
             game.modals[type].destroy();
             delete game.modals[type];
         }

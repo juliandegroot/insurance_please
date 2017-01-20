@@ -1,79 +1,68 @@
 {
-  "attacks": [
-      {
-          "id": "usb",
-          "asset": "freefoundusbstick",
-          "text": "USB Leak",
-          "points": 5,
-          "x": 10,
-          "y": 410,
-          "securityVector": ["iot","nobyod","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-   },
-      {
-          "id": "popup",
-          "asset": "popup",
-          "text": "Pop-up",
-          "points": 6,
-          "x": 100,
-          "y": 410,
-          "securityVector": ["iot","nobyod","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-   },
-      {
-          "id": "wifi",
-          "asset": "roguewifi",
-          "text": "Rogue WiFi",
-          "points": 6,
-          "x": 190,
-          "y": 410,
-          "securityVector": ["iot","nobyod","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-   },
-      {
-          "id": "phishing",
-          "asset": "spoofing",
-          "text": "Phish-Spoof",
-          "points": 6,
-          "x": 280,
-          "y": 410,
-          "securityVector": ["iot","nobyod","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-   },
-      {
-          "id": "pw",
-          "asset": "stolenpasswords",
-          "text": "Stolen Passwords",
-          "points": 2,
-          "x": 370,
-          "y": 410,
-          "securityVector": ["pwman","stafftrain","riskaudit","techadvice","servicecon"]
-   },
+    "attacks": [{
+            "id": "usb",
+            "asset": "freefoundusbstick",
+            "text": "USB Leak",
+            "points": 3,
+            "x": 10,
+            "y": 627,
+            "securityVector": ["nobyod", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
+        {
+            "id": "popup",
+            "asset": "popup",
+            "text": "Pop-up",
+            "points": 3,
+            "x": 100,
+            "y": 627,
+            "securityVector": ["websec", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
+        {
+            "id": "wifi",
+            "asset": "roguewifi",
+            "text": "Rogue WiFi",
+            "points": 4,
+            "x": 190,
+            "y": 627,
+            "securityVector": ["nobyod", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
+        {
+            "id": "phishing",
+            "asset": "spoofing",
+            "text": "Phish-Spoof",
+            "points": 4,
+            "x": 280,
+            "y": 627,
+            "securityVector": ["websec", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
+        {
+            "id": "pw",
+            "asset": "stolenpasswords",
+            "text": "Stolen Passwords",
+            "points": 3,
+            "x": 370,
+            "y": 627,
+            "securityVector": ["pwman", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
 
-      {
-          "id": "social",
-          "asset": "socialengineering",
-          "text": "Social Engineering",
-          "points": 2,
-          "x": 460,
-          "y": 410,
-          "securityVector": ["pwman","stafftrain","riskaudit","techadvice","servicecon"]
-   },
+        {
+            "id": "social",
+            "asset": "socialengineering",
+            "text": "Social Engineering",
+            "points": 4,
+            "x": 460,
+            "y": 627,
+            "securityVector": ["pwman", "autoup", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        },
 
-      {
-          "id": "download",
-          "asset": "drivebydownload",
-          "text": "Drive-by-download",
-          "points": 6,
-          "x": 550,
-          "y": 410,
-          "securityVector": ["iot","nobyod","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-   },
-
-      {
-          "id": 7,
-          "asset": "ddos_attack",
-          "text": "DDoS",
-          "points": 20,
-          "x": 1000,
-          "y": 1000,
-          "securityVector": ["iot","nobyod","pwman","websec","autoup","firewall","stafftrain","riskaudit","techadvice","servicecon"]
-    }
-]
+        {
+            "id": "download",
+            "asset": "drivebydownload",
+            "text": "Drive-by-download",
+            "points": 5,
+            "x": 550,
+            "y": 627,
+            "securityVector": ["websec", "autoup", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
+        }
+    ]
 }

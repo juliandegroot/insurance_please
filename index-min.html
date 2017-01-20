@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 		<title>Insurance Please</title>
-
-		<style>
-		  body {
-		  	background-color: black;
-		    padding: 0px;
-		    margin: 0px;
-		  }
-		  @font-face {
-		  	font-family: ZrNic;
-		  	src: url('assets/fonts/zrnic_rg.ttf');
-		  }
-
-		  .fontPreload {
-		  	font-family: ZrNic;
-		  	position:absolute;
-		  	left:-100px;
-		  }
-
-
-	  </style>
+		<link rel="stylesheet" href="assets/css/cybercrime.css" type="text/css">
 	</head>
 
 	<body>
 		<div class="fontPreload">.</div>
+		<audio id="menu-music" src="assets/audio/menumusic.mp3" preload="auto" autoplay loop/>
+		<audio id="game-music" src="assets/audio/playingmusic.mp3" preload="auto" loop/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="src/build/cybercrime.min.js"></script>
 	</body>
 </html>

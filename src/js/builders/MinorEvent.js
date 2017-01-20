@@ -1,8 +1,16 @@
 var InsurancePlz = InsurancePlz || {};
 
+/**
+ * Holds all required data for the execution of a minor event.
+ * Minor events are events that impact a single comapny and will not be reported on the news.
+ * In order to trigger an event the execute() function should be called.
+ * A minor event consists of a key (the name of the function in GameState that will execute the actions of this event) and an occurrence probability weight.
+ * @params {Object} eventJSON - An Object containing the required data.
+ */
 InsurancePlz.MinorEvent = function(data) {
-    this.key = data.key;
-    this.weight = data.weight;
+    for (var key in data){
+        this[key] = data[key];
+    }
     //Sets up a link to the function that executes this event.
     this.execute = new Function("InsurancePlz.GameState.triggerMinorEvent_" + this.key + "()");
 }

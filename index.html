@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 		<title>Insurance Please</title>
-
-		<style>
-		  body {
-		  	background-color: black;
-		    padding: 0px;
-		    margin: 0px;
-		  }
-		  @font-face {
-		  	font-family: ZrNic;
-		  	src: url('assets/fonts/zrnic_rg.ttf');
-		  }
-
-		  .fontPreload {
-		  	font-family: ZrNic;
-		  	position:absolute;
-		  	left:-100px;
-		  }
-
-
-	  </style>
+		<link rel="stylesheet" href="assets/css/cybercrime.css" type="text/css">
 	</head>
 
 	<body>
 		<div class="fontPreload">.</div>
+		<audio id="menu-music" src="assets/audio/menumusic.mp3" preload="auto" autoplay loop/>
+		<audio id="game-music" src="assets/audio/playingmusic.mp3" preload="auto" loop/>
+
 		<script type="text/javascript" src="src/js/phaser.js"></script>
+		<script type="text/javascript" src="src/js/phaser-input.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="src/js/states/Boot.js"></script>
 		<script type="text/javascript" src="src/js/states/Preload.js"></script>
 		<script type="text/javascript" src="src/js/states/Menu.js"></script>
@@ -39,16 +24,24 @@
 		<script type="text/javascript" src="src/js/states/Game/MajorEventHandler.js"></script>
 		<script type="text/javascript" src="src/js/states/Game/MinorEventHandler.js"></script>
 		<script type="text/javascript" src="src/js/states/Game/Turns.js"></script>
-        <script type="text/javascript" src="src/js/states/Game/Modal.js"></script>
+    <script type="text/javascript" src="src/js/states/Game/Modal.js"></script>
 		<script type="text/javascript" src="src/js/prefabs/Target.js"></script>
 		<script type="text/javascript" src="src/js/prefabs/Attack.js"></script>
+		<script type="text/javascript" src="src/js/prefabs/StackedAttack.js"></script>
+		<script type="text/javascript" src="src/js/prefabs/Indicator.js"></script>
+		<script type="text/javascript" src="src/js/prefabs/Leaderboard.js"></script>
 		<script type="text/javascript" src="src/js/builders/Popup.js"></script>
 		<script type="text/javascript" src="src/js/builders/MinorEvent.js"></script>
 		<script type="text/javascript" src="src/js/builders/MajorEvent.js"></script>
-		<script type="text/javascript" src="src/js/builders/AttackData.js"></script>
-		<script type="text/javascript" src="src/js/builders/AttackDataBuilder.js"></script>
-		<script type="text/javascript" src="src/js/main.js"></script>
-
 		<script type="text/javascript" src="src/js/builders/NewsItemBuilder.js"></script>
+		<script type="text/javascript" src="src/js/ui/BackgroundBox.js"></script>
+		<script type="text/javascript" src="src/js/ui/TargetInfoDisplay.js"></script>
+		<script type="text/javascript" src="src/js/ui/ButtonBox.js"></script>
+		<script type="text/javascript" src="src/js/ui/InformationBox.js"></script>
+		<script type="text/javascript" src="src/js/ui/AttackBox.js"></script>
+		<script type="text/javascript" src="src/js/ui/ProgressBar.js"></script>
+		<script type="text/javascript" src="src/js/ui/StackBox.js"></script>
+		<script type="text/javascript" src="src/js/ui/HighscoreBox.js"></script>
+		<script type="text/javascript" src="src/js/main.js"></script>
 	</body>
 </html>
