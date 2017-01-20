@@ -139,11 +139,11 @@ InsurancePlz.Target.prototype.doDamage = function(attack) {
         var picked_weakness_index = Math.floor(Math.random() * totalweaknesses);
         //console.log("totalw: " + totalweaknesses + " random index: " + picked_weakness_index);
         //console.log(effectOn);
-        if (Math.random() >= 0.25) {
+        //if (Math.random() >= 0.25) {
             //console.log("Weakness picked: " + effectOn[picked_weakness_index]);
             this.data.securityVector[effectOn[picked_weakness_index]] = 1; // there is now protection for this weakness
             //console.log(this.data.name + " now protected for " + effectOn[picked_weakness_index]);
-        }
+        //}
     }
 
     // Get the reduction effects and factor.
