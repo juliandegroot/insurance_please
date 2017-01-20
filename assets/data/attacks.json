@@ -12,7 +12,7 @@
             "id": "popup",
             "asset": "popup",
             "text": "Pop-up",
-            "points": 6,
+            "points": 5,
             "x": 100,
             "y": 627,
             "securityVector": ["websec", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -21,7 +21,7 @@
             "id": "wifi",
             "asset": "roguewifi",
             "text": "Rogue WiFi",
-            "points": 6,
+            "points": 5,
             "x": 190,
             "y": 627,
             "securityVector": ["nobyod", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -30,7 +30,7 @@
             "id": "phishing",
             "asset": "spoofing",
             "text": "Phish-Spoof",
-            "points": 6,
+            "points": 5,
             "x": 280,
             "y": 627,
             "securityVector": ["websec", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]
@@ -59,7 +59,7 @@
             "id": "download",
             "asset": "drivebydownload",
             "text": "Drive-by-download",
-            "points": 6,
+            "points": 5,
             "x": 550,
             "y": 627,
             "securityVector": ["websec", "autoup", "firewall", "stafftrain", "riskaudit", "techadvice", "servicecon"]

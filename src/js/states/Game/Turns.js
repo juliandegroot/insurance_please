@@ -16,8 +16,8 @@
             this.popup.addButton("Let's begin!", this.closePopup, this);
         }
         if (InsurancePlz.isTutorial == true) {
-            this.popup = new Popup("Tutorial Start", "Welcome to this tutorial. Your objective in this first round is to find the weak target!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
-            this.popup.addButton("Let's begin!", this.closePopup, this);
+            this.popup = new Popup("Tutorial Start", "Welcome to this tutorial.\n You are the hacker!\n\nYou will play 2 rounds to learn how to execute single and multiple attacks.\n Round 1: Find the weak target and attack it!\n Round 2: Align attacks for both targets\n\nRemember.. if you are looking for some sort of manual on how to play, click on the help button on the lower right\nAll hackers start out gathering information..", 'popuppanel');
+            this.popup.addButton("Let's begin!", this.closePopupAndShowInstructions, this);
         }
     } else { // we are beyond round 1 and therefore start off by showing the news
         var headlines = [];

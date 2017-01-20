@@ -29,7 +29,10 @@ InsurancePlz.PreloadState = {
         this.load.image('socialengineering', 'assets/images/socialengineering.png');
         this.load.image('spoofing', 'assets/images/spoofing.png');
         this.load.image('stolenpasswords', 'assets/images/stolenpasswords.png');
-
+        this.load.image('arrowdown', 'assets/images/arrow_down.png');
+        this.load.image('arrowright', 'assets/images/arrow_right.png');
+        this.load.image('arrowleft', 'assets/images/arrow_left.png');
+        
         //for the attack stack images:
         this.load.image('drivebydownload_small', 'assets/images/drivebydownload_small.png');
         this.load.image('freefoundusbstick_small', 'assets/images/freefoundusbstick_small.png');
