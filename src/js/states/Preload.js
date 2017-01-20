@@ -60,8 +60,8 @@ InsurancePlz.PreloadState = {
         this.load.image('page-next', 'assets/images/page-next.png');
 
         //audio
-        this.load.audio('menumusic', ['assets/audio/menumusic.m4a', 'assets/audio/menumusic.ogg']);
-        this.load.audio('playmusic', ['assets/audio/playingmusic.m4a', 'assets/audio/playingmusic.ogg']);
+        this.load.audio('menumusic', ['assets/audio/menumusic.ogg']);
+        this.load.audio('playmusic', ['assets/audio/playingmusic.ogg']);
     },
     create: function() {
         this.state.start('Menu');

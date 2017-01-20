@@ -1,6 +1,5 @@
 {
-    "targets":
-    [
+    "targets": [
         {
             "id": 1,
             "asset": "company",
@@ -8,21 +7,21 @@
             "name": "Gouden Kruis",
             "category": "Insurance",
             "securityVector": {
-                "nobyod":1,
-                "pwman":1,
-                "websec":1,
-                "autoup":1,
-                "firewall":1,
-                "stafftrain":1,
-                "riskaudit":1,
-                "techadvice":1,
-                "serviceon":1
+                "nobyod": 1,
+                "pwman": 1,
+                "websec": 1,
+                "autoup": 0,
+                "firewall": 1,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 1,
+                "serviceon": 1
             },
             "damagecontrol": {
-                "insurance":0,
-                "backup":0,
-                "offline":1,
-                "infra":1
+                "insurance": 0,
+                "backup": 0,
+                "offline": 1,
+                "infra": 1
             },
             "impact": 5,
             "damage": 0
@@ -34,21 +33,21 @@
             "name": "EvilCorp",
             "category": "Tech",
             "securityVector": {
-                "nobyod":0,
-                "pwman":0,
-                "websec":1,
-                "autoup":0,
-                "firewall":0,
-                "stafftrain":1,
-                "riskaudit":1,
-                "techadvice":0,
-                "serviceon":0
+                "nobyod": 0,
+                "pwman": 0,
+                "websec": 1,
+                "autoup": 0,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 0,
+                "serviceon": 0
             },
             "damagecontrol": {
-                "insurance":0,
-                "backup":0,
-                "offline":0,
-                "infra":0
+                "insurance": 0,
+                "backup": 0,
+                "offline": 0,
+                "infra": 0
             },
             "impact": 2,
             "damage": 0
@@ -60,21 +59,21 @@
             "name": "OCHMEA",
             "category": "Insurance",
             "securityVector": {
-                "nobyod":1,
-                "pwman":0,
-                "websec":0,
-                "autoup":1,
-                "firewall":0,
-                "stafftrain":1,
-                "riskaudit":0,
-                "techadvice":1,
-                "serviceon":0
+                "nobyod": 1,
+                "pwman": 0,
+                "websec": 0,
+                "autoup": 1,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 0,
+                "techadvice": 1,
+                "serviceon": 0
             },
             "damagecontrol": {
-                "insurance":1,
-                "backup":1,
-                "offline":0,
-                "infra":1
+                "insurance": 1,
+                "backup": 1,
+                "offline": 0,
+                "infra": 1
             },
             "impact": 5,
             "damage": 0
@@ -86,21 +85,21 @@
             "name": "ROBO BANK",
             "category": "Banking",
             "securityVector": {
-                "nobyod":0,
-                "pwman":0,
-                "websec":0,
-                "autoup":0,
-                "firewall":0,
-                "stafftrain":0,
-                "riskaudit":0,
-                "techadvice":0,
-                "serviceon":0
+                "nobyod": 1,
+                "pwman": 0,
+                "websec": 0,
+                "autoup": 1,
+                "firewall": 1,
+                "stafftrain": 1,
+                "riskaudit": 0,
+                "techadvice": 0,
+                "serviceon": 1
             },
             "damagecontrol": {
-                "insurance":0,
-                "backup":0,
-                "offline":0,
-                "infra":0
+                "insurance": 0,
+                "backup": 0,
+                "offline": 0,
+                "infra": 0
             },
             "impact": 4,
             "damage": 0
@@ -112,23 +111,153 @@
             "name": "Lema Brothers",
             "category": "Banking",
             "securityVector": {
-                "nobyod":0,
-                "pwman":1,
-                "websec":0,
-                "autoup":1,
-                "firewall":0,
-                "stafftrain":1,
-                "riskaudit":0,
-                "techadvice":1,
-                "serviceon":0
+                "nobyod": 0,
+                "pwman": 1,
+                "websec": 0,
+                "autoup": 1,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 0,
+                "techadvice": 1,
+                "serviceon": 0
             },
             "damagecontrol": {
-                "insurance":1,
-                "backup":0,
-                "offline":1,
-                "infra":1
+                "insurance": 1,
+                "backup": 0,
+                "offline": 1,
+                "infra": 1
             },
             "impact": 2,
+            "damage": 0
+        },
+        {
+            "id": 6,
+            "asset": "company",
+            "text": "AllSafe",
+            "name": "AllSafe",
+            "category": "Tech",
+            "securityVector": {
+                "nobyod": 0,
+                "pwman": 1,
+                "websec": 1,
+                "autoup": 1,
+                "firewall": 1,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 1,
+                "serviceon": 1
+            },
+            "damagecontrol": {
+                "insurance": 1,
+                "backup": 1,
+                "offline": 1,
+                "infra": 1
+            },
+            "impact": 5,
+            "damage": 0
+        },
+        {
+            "id": 7,
+            "asset": "company",
+            "text": "BM Storage",
+            "name": "BM Storage",
+            "category": "Retailer",
+            "securityVector": {
+                "nobyod": 0,
+                "pwman": 1,
+                "websec": 1,
+                "autoup": 1,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 1,
+                "serviceon": 0
+            },
+            "damagecontrol": {
+                "insurance": 0,
+                "backup": 1,
+                "offline": 1,
+                "infra": 1
+            },
+            "impact": 2,
+            "damage": 0
+        },
+        {
+            "id": 8,
+            "asset": "company",
+            "text": "Devn College",
+            "name": "Devn College",
+            "category": "school",
+            "securityVector": {
+                "nobyod": 1,
+                "pwman": 1,
+                "websec": 1,
+                "autoup": 1,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 0,
+                "serviceon": 1
+            },
+            "damagecontrol": {
+                "insurance": 0,
+                "backup": 0,
+                "offline": 0,
+                "infra": 0
+            },
+            "impact": 1,
+            "damage": 0
+        },
+        {
+            "id": 9,
+            "asset": "company",
+            "text": "Intelligence Bureau",
+            "name": "Intelligence Bureau",
+            "category": "gov",
+            "securityVector": {
+                "nobyod": 0,
+                "pwman": 1,
+                "websec": 1,
+                "autoup": 1,
+                "firewall": 1,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 1,
+                "serviceon": 0
+            },
+            "damagecontrol": {
+                "insurance": 0,
+                "backup": 1,
+                "offline": 1,
+                "infra": 1
+            },
+            "impact": 5,
+            "damage": 0
+        },
+        {
+            "id": 10,
+            "asset": "company",
+            "text": "FIFA",
+            "name": "FIFA",
+            "category": "Sports",
+            "securityVector": {
+                "nobyod": 1,
+                "pwman": 1,
+                "websec": 0,
+                "autoup": 1,
+                "firewall": 0,
+                "stafftrain": 1,
+                "riskaudit": 1,
+                "techadvice": 1,
+                "serviceon": 0
+            },
+            "damagecontrol": {
+                "insurance": 0,
+                "backup": 1,
+                "offline": 1,
+                "infra": 0
+            },
+            "impact": 3,
             "damage": 0
         }
     ]
