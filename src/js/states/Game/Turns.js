@@ -12,7 +12,7 @@
     if (this.gameProgress.newsarray === undefined || ((this.gameProgress.newsarray.length == 0) && (this.gameProgress.turn == 1))) {
         // start of the game or start of the tutorial from here:
         if (InsurancePlz.isTutorial == false) {
-            this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember.. if you are looking for some sort of manual on how to play, click on the big information icon on the lower right\nAll hackers start out gathering information..", 'popuppanel');
+            this.popup = new Popup("Game Start", "There is no news today!\nHappy hacking!\nRemember, if you are looking for information on vulnerabilities, attacks or how to play, click on the help button in the lower right.\nAll hackers start out gathering information...", 'popuppanel');
             this.popup.addButton("Let's begin!", this.closePopup, this);
         }
         if (InsurancePlz.isTutorial == true) {
