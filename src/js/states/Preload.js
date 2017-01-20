@@ -62,10 +62,6 @@ InsurancePlz.PreloadState = {
         this.load.image('page-prev', 'assets/images/page-prev.png');
         this.load.image('page-next', 'assets/images/page-next.png');
 
-        //audio
-        this.load.audio('menumusic', ['assets/audio/menumusic.m4a', 'assets/audio/menumusic.ogg']);
-        this.load.audio('playmusic', ['assets/audio/playingmusic.m4a', 'assets/audio/playingmusic.ogg']);
-
         //activate required plugin
         this.add.plugin(PhaserInput.Plugin);
     },
