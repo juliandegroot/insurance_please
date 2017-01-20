@@ -23,16 +23,25 @@ if (!preg_match("/^[a-zA-Z0-9-_ ]*$/", $name) && $name!=''){
 $json = json_decode(file_get_contents('assets/data/leaderboard.json'));
 $count = count($json);
 
+$added = false;
+
 if ($count===0){
 	$json[0] = array('n'=>$name, 's'=>$score);
+	$added = true;
 }
+
 for ($i=0;$i<$count;$i++){
 	if ($json[$i]->{'s'}<$score){
 		array_splice($json, $i, 0, array(
 			array('n'=>$name, 's'=>$score)
 		));
+		$added = true;
 		break;
 	}
+}
+
+if (!$added){
+	array_push($json, array('n'=>$name, 's'=>$score));
 }
 
 file_put_contents('assets/data/leaderboard.json', json_encode($json));
