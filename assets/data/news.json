@@ -1,131 +1,128 @@
 {
-    "headlines": {
-        "general": [
-            "Company %CN victim of cyber attack.",
-            "%CN attacked yesterday by %a."
-        ],
-        "usb": [
-            "USB-stick used to attack %CN.",
-            "%CN attacked by USB-stick.",
-            "%CN attacked using a USB-stick"
-        ],
-        "pw": [
-            "Stolen passwords used to attack %CN.",
-            "%CN attacked due to stolen passwords.",
-            "%CN attacked using stolen passwords."
-        ],
-        "download": [
-            "Infected downloads used to attack %CN.",
-            "%CN attacked by infected downloads.",
-            "%CN attacked using infected downloads."
-        ],
-        "popup": [
-            "Pop-up used to attack %CN.",
-            "%CN attacked by pop-up.",
-            "%CN attacked using a pop-up."
-        ],
-        "wifi": [
-            "Fake Wi-fi network used to attack %CN.",
-            "%CN attacked by fake wifi network.",
-            "%CN attacked using a fake wifi network."
-        ],
-        "phishing": [
-            "Phising mails used to attack %CN.",
-            "%CN attacked by phising mails.",
-            "%CN attacked using phising mails."
-        ],
-        "social": [
-            "Social Engineering used to attack %CN.",
-            "%CN attacked through social engineering.",
-            "%CN attacked using social engineering."
-        ]
-    },
-    "intro": {
-        "general": [
+  "headlines": {
+    "general": [
 
-        ],
-        "usb": [
-            "Hackers distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC.  This is not very surpising,  because there’s always the possibility of getting someone to connect an infected USB device – if we’ve learned anything from Mr. Robot and a certain university study it’s that if someone finds a USB device, they tend to plug it in. ",
-            "Hackers distributed free USB sticks at an event. An employee of %CN brought this free USB-stick to work an plugged it in his work PC. That this happened, is not new. Earlier this year in September, a study  confirmed the human behavior of plugging the random USB drives in the laptops as soon as possible. In another study from early-2016, it was found that at least 48% of people will pick up a random USB stick and plug it into their PCs. ",
-            "An employee of the financial department pluged-in an infected, free USB-stick."
-        ],
-        "pw": [
-            "Hackers stole various passwords of employees. It seemed that the employees made it easy for the hacker by writing their passwords down in their calendar.",
-            "The passwords of multiple employees of the customer relations department were stolen by the hackers.",
-            "Passwords were simply stolen from an employee in their office. The employee wrote down the passwords on a note, which was clearly visible for anyone entering the office."
-        ],
-        "download": [
-            "Employees of the financial department aimed to download a new program, helping them with their bookings. What they didn't know was that the additional malware was downloaded.",
-            "With the so-called drive-by-downloads, hackers infiltrated %CN. It is unknown how and when this happened, although fingers are pointed at the strategy department.",
-            "A simple plugin caused major problems at %CN. Malicious malware was drive-by-downloaded unbeknownst of the employees."
-        ],
-        "popup": [
-            "Hackers designed an infected pop-up in order to enter the company. One of the employees on the customer service department opened this pop-up.",
-            "An employee of the financial department clicked on an infected pop-up. The pop-up showed a certain discount of office supplies",
-            "A pop-up with malicious content showed up on websites visited by employees in the financial department. One of the employees reportedly clicked on the pop-up by accident."
-        ],
-        "wifi": [
-            "The hackers set-up a fake wifi network. Multiple employees of the legal department conencted to this network.",
-            "Hackers found a new victim, %CN is attacked via a fake wifi-network.",
-            "A rogue wifi-network was setup, and employees of the service department were unaware that this was not safe."
-        ],
-        "phishing": [
-            "Hackers have targeted %CN by using phishing emails.",
-            "The hackers used spoofing as a mean to trick personell of the financial department to install certain security measures.  A pixel-perfect counterfeit of a corporate email made it very hard to distinguis from a real one.",
-            "Using phishing emails, the hackers tricked the legal department into providing valueable information, like social security numbers, tax ID and bank account numbers."
-        ],
-        "social": [
-            "One member of the board was psychologically manipulated into giving valuable passwords by social engineering, giving the hackers access to the complete system of %CN.",
-            "Multiple employees were manipulated into giving away very sensitive information, without them realizing what they have done.",
-            "Hackers used social engineering, where attacks take advantage of human vulnerabilities by using deception to trick targeted victims into performing harmful actions."
-        ]
-    },
-    "effect": {
-        "general": [
-
-        ],
-        "usb": [
-            "While normally one generally trusts free USB sticks, this one came with Ransomware called KillDisk. The KillDisk ransomware variant that targets Windows machines worked by encrypting each file via an AES-256 key, and then encrypting the AES keys with a public RSA-1028 key. When ransomware is used, typically extortion is used to retrieve money. The attackers asked to be paid in bitcoins.",
-            "A while ago, a Russian hacker showed how a tool that looks like a small USB drive could disable any electronic device with a USB port. This “USB Killer” worked by sending a high-voltage charge through a USB port, effectively frying the internal components. Such an USB stick was inserted in a laptop, effectively destroying it. This resulted in the loss of critical business data and property damage.",
-            "The attack is called USBee, which was developed by researchers in Israel. It joins a new variety of data exfiltration techniques, known as “air gap attacks”. USBee can work with any USB device that meets the specifications of USB 2.0. Though a USB stick the malware was installed on a laptop, which than transmitted to the hacker, leading to stolen customer information. "
-        ],
-        "popup": [
-            "The business owner who was pulling up an important payroll document that was needed before he could pay his staff. Instead of seeing the payroll file he need, he got a pop-up that took over the screen and says, “Your computer has been compromised. To open the file, please pay the fee to decrypt the data.” This type of extortion is not very uncommon. Because no back-up was available, the damages were huge.",
-            "The seemingly innocent pop-up caused major havoc in the company, as it installed malware within the system. This led to %CN being out of business for a while, resulting in reputation loss and breach of contract. ",
-            "The pop-ups where in name of WhatsApp and asked the users to install a new web-version of the app. However, when clicked, the notification, “22 seconds” shows. Through this time-pressure, employees were triggered to continue. However, a Trojan horse was behind this, causing the IT specialists to shut down the system. This led to a loss of a lot of customers, says the CEO Clark Buckerzerg of %CN"
-        ],
-        "wifi": [
-            "The evil twin AP method was used. The evil twin AP is an access point that looks and acts just like a legitimate AP and entices the end-user to connect to our access point. This is a powerful client-side hack that will enable us to see all of the traffic from the client and conduct a man-in-the middle attack. A lot of client data was stolen. The local government was soon to hand out a fine to the company. ",
-            "The hacker used WPS attacks. This a wireless network attacks that can be very dangerous. With the major flaws present in the protection of wireless networks an individual with a WPS password guessing tool is in a position to launch such an attack on a particular network. With the password guessing tool, an attacker is in a position to retrieve the wireless network passwords and use the password to gain access to data and information that is on one's network. Critical business data was stolen as a result",
-            "The Rogue Wi-Fi network had almost the same name as the company’s name, causing the employees to assume that it was safe to use outside, when they were on their lunch break. However, the hackers stole a lot of client information while the employees ate their sandwiches. This resulted in reputation damage and breach of contract of many clients."
-        ],
-        "phishing": [
-            "What partly caused this is the browser autofill that many browers now used, with the exception of Mozilla Firefox. This autofill makes it easier for hackers to use phishing, as some information is automatically filled in, sometime invisible for the user. %CN immediately disabled all autofill functions, however, stolen customer information could not be avoided. ",
-            "Phishing-mails are a lot more convincing than they used to be. This has a big effect. End-users are quick to convince themselves that the e-mail is legitimate, which makes them an ever bigger danger than the user that wildly click on things. The effect of the mails was that data was encrypted. A large part of the company had to go to a full stop, resulting in customer and profit losses. ",
-            "If users are fooled into clicking the malicious link within the email, they'll find themselves directed to a legitimate looking %CN login page. One signed in, they will be asked to enter further details such as their name, date of birth, billing address and payment card information, and then directed to the official %CN website. The company profits took a big blow that day. "
-        ],
-        "pw": [
-            "The passwords caused major havoc, since the hacker could easily enter the system. Passwords were quickly changed by the hackers, so they could easily retrieve lots of valuable business information and client’s details, which are worth a lot of money on the black market. ",
-            "For a while, nobody at the company noticed anything, until clients complained of strange emails were they were asked to pay a certain amount of money to an unknown bank-account. Luckily some clients were alert, else the damages could have been catastrophic. ",
-            "The CEO of %CN, Jack Dorsey, was logically furious and could not comprehend how his employees made it so easy. The company lost critical business data as a result."
-        ],
-        "download": [
-            "It was an attack in which a user who accessed a malicious website is force-fed a malformed file. When the file reaches the user's desktop, malicious code contained within can execute via the non-sandboxed Tracker app. This type of automated attack chain is known as a drive-by download and has been used for all sorts of nefarious actions from mundane malware distribution to targeted attacks in cyber-espionage operations. It caused %CN profits to drop, because a large part of the system was off-line. ",
-            "Hackers used a so-called hailstorm attacks, where massive spam attacks are launched over an extended period of time from across thousands of IP addresses, but at low volumes per IP address, with the intent to get malware past the anti-malware filters as drive-by-downloads. The successfully damaged customer information, and asked for a ransom. ",
-            "Kaspersky Lab researchers spotted the Ammyy Admin site being used in drive-by-downloader attacks to install the Lurk trojan and other malware. Ammyy Admin is used for remote desktop access by %CN. Is successfully rendered the system useless for a long-time, resulting in a sales and client drop of 50% that month. It will take a will before the reputation of %CN will be restored. "
-        ],
-        "social": [
-            "The hackers targeted the employee on its love for apple products. The employee was phoned by what he thought was a representative of Apple. He was told that because of all his purchases his house was basically an iStore, he could get the new Designed by Apple in California book for only 150 USD instead of the original 200 USD, he only needed to log-in on a website. Result, malware infecting the company’s network. The employee is temporarily suspended. Whatever happened, one might do that anyway when someone wants to spend that amount of money on a book with just pictures of their products. ",
-            "Criminals send batches of emails to enterprises and retailers. Every email contains a message in which someone sends over their resume in the hopes of landing a job. Although these messages may seem harmless, they are capable of wreaking a lot of havoc. To be more precise, these spam emails involve a ransomware-laden email attachment. The resume in question contains the CryptoWall 3.0 ransomware family, which locks down the infected system and demands a Bitcoin ransom",
-            "BEC (Business email compromise) scam %CN employees, resulting in company information being stolen and exposed. Although this did not damage the day-to-day operations of %CN, it goes to show even technology companies are vulnerable to social engineering."
-        ]
-
-    },
-    "damage": [
-        "The damage for %CN was no less than %CDMG.",
-        "The attack cost %CN %CDMG.",
-        "The damage for %CN consists of %CDMG.",
-        "The incident resulted in $%CDMG of damages for the company.",
-        "As a consequence of the hack %CN suffered $%CDMG in damages."
+    ],
+    "usb": [
+      "USB-stick used to attack %CN.",
+      "%CN attacked by USB-stick.",
+      "%CN attacked using a USB-stick"
+    ],
+    "pw": [
+      "Stolen passwords used to attack %CN.",
+      "%CN attacked due to stolen passwords.",
+      "%CN attacked using stolen passwords."
+    ],
+    "download": [
+      "Infected downloads used to attack %CN.",
+      "%CN attacked by infected downloads.",
+      "%CN attacked using infected downloads."
+    ],
+    "popup": [
+      "Pop-up used to attack %CN.",
+      "%CN attacked by pop-up.",
+      "%CN attacked using a pop-up."
+    ],
+    "wifi": [
+      "Fake Wi-Fi network used to attack %CN.",
+      "%CN attacked by fake Wi-Fi network.",
+      "%CN attacked using a fake Wi-Fi network."
+    ],
+    "phishing": [
+      "Phishing mails used to attack %CN.",
+      "%CN attacked by phishing mails.",
+      "%CN attacked using phishing mails."
+    ],
+    "social": [
+      "Social Engineering used to attack %CN.",
+      "%CN attacked through social engineering.",
+      "%CN attacked using social engineering."
     ]
+  },
+  "intro": {
+    "general": [
+
+    ],
+    "usb": [
+      ". A certain university study found that if someone finds a USB device, they tend to plug it in, as was the case here at %CN ",
+      "In a study from early-2016, it was found that at least 48% of people will pick up a random USB stick and plug it into their PCs. Unfortunately, this is confirmed today ",
+      "An employee of the financial department plugged-in an infected, free USB-stick."
+    ],
+    "pw": [
+      "Hackers stole various passwords of employees. It seemed that the employees made it easy for the hacker by writing their passwords down in their calendar.",
+      "The passwords of multiple employees of the customer relations department were stolen by the hackers.",
+      "Passwords were simply stolen from an employee in their office. The employee wrote down the passwords on a note, which was clearly visible for anyone entering the office."
+    ],
+    "download": [
+      "Employees of the financial department aimed to download a new program, helping them with their bookings. What they didn't know was that the additional malware was downloaded.",
+      "With the so-called drive-by-downloads, hackers infiltrated %CN. It is unknown how and when this happened, although fingers are pointed at the strategy department.",
+      "A simple plugin caused major problems at %CN. Malicious malware was drive-by-downloaded unbeknownst of the employees."
+    ],
+    "popup": [
+      "Hackers designed an infected pop-up in order to enter the company. One of the employees on the customer service department opened this pop-up.",
+      "An employee of the financial department clicked on an infected pop-up. The pop-up showed a certain discount of office supplies",
+      "A pop-up with malicious content showed up on websites visited by employees in the financial department. One of the employees reportedly clicked on the pop-up by accident."
+    ],
+    "wifi": [
+      "The hackers set-up a fake wifi network. Multiple employees of the legal department connected to this network.",
+      "Hackers found a new victim, %CN is attacked via a fake wifi-network.",
+      "A rogue wifi-network was setup, and employees of the service department were unaware that this was not safe."
+    ],
+    "phishing": [
+      "Hackers have targeted %CN by using phishing emails.",
+      "The hackers used spoofing as a mean to trick personel of the financial department to install certain security measures.  A pixel-perfect counterfeit of a corporate email made it very hard to distinguish from a real one.",
+      "Using phishing emails, the hackers tricked the legal department into providing valuable information, like social security numbers, tax ID and bank account numbers."
+    ],
+    "social": [
+      "One member of the board was psychologically manipulated into giving valuable passwords by social engineering, giving the hackers access to the complete system of %CN.",
+      "Multiple employees were manipulated into giving away very sensitive information, without them realizing what they have done.",
+      "Hackers used social engineering, where attacks take advantage of human vulnerabilities by using deception to trick targeted victims into performing harmful actions."
+    ]
+  },
+  "effect": {
+    "general": [
+
+    ],
+    "usb": [
+      "While normally one can trust free USB sticks, this one came with Ransomware called KillDisk. The KillDisk ransomware variant that targets Windows machines worked by encrypting each file via an AES-256 key, and then encrypting the AES keys with a public RSA-1028 key. When ransomware is used, typically EXTORTION is used to retrieve money. The attackers asked to be paid in bitcoins.",
+      "A while ago, a Russian hacker showed how a tool that looks like a small USB drive could disable any electronic device with a USB port. This “USB Killer” worked by sending a high-voltage charge through a USB port, effectively frying the internal components. Such an USB stick was inserted in a laptop, effectively destroying it. This resulted in the LOSS OF CRITICAL BUSINESS VALUE and PROPERTY DAMAGE.",
+      "The attack is called USBee, which was developed by researchers in Israel. It joins a new variety of data exfiltration techniques, known as “air gap attacks”. USBee can work with any USB device that meets the specifications of USB 2.0. Though a USB stick the malware was installed on a laptop, which than transmitted to the hacker, leading to STOLEN CUSTOMER INFORMATION. "
+    ],
+    "popup": [
+      "The business owner who was pulling up an important payroll document that was needed before he could pay his staff. Instead of seeing the payroll file he need, he got a pop-up that took over the screen and says, “Your computer has been compromised. To open the file, please pay the fee to decrypt the data.” This type of EXTORTION is not very uncommon. Because NO-BACKUP was available, the damages were huge.",
+      "The seemingly innocent pop-up caused major havoc in the company, as it installed malware within the system. This led to %CN being out of business for a while, resulting in reputation loss and breach of contract. ",
+      "The pop-ups where in name of WhatsApp and asked the users to install a new web-version of the app. However, when clicked, the notification, “22 seconds” shows. Through this time-pressure, employees were triggered to continue. However, a Trojan horse was behind this, causing the IT specialists to shut down the system. This led to a LOSS OF A LOT OF CUSTOMERS, says the CEO Clark Buckerzerg of %CN"
+    ],
+    "wifi": [
+      "The evil twin AP method was used. The evil twin AP is an access point that looks and acts just like a legitimate AP and entices the end-user to connect to our access point. This is a powerful client-side hack that will enable us to see all of the traffic from the client and conduct a man-in-the middle attack. A lot of CLIENT DATA WAS STOLEN. The local government was soon to hand out a FINE TO THE COMPANY.",
+      "The hacker used WPS attacks. This a wireless network attacks that can be very dangerous. With the major flaws present in the protection of wireless networks an individual with a WPS password guessing tool is in a position to launch such an attack on a particular network. With the password guessing tool, an attacker is in a position to retrieve the wireless network passwords and use the password to gain access to data and information that is on one's network. CRITICAL BUSINESS DATA WAS STOLEN as a result",
+      "The Rogue Wi-Fi network had almost the same name as the company’s name, causing the employees to assume that it was safe to use outside, when they were on their lunch break. However, the hackers stole a lot of client information while the employees ate their sandwiches. This resulted in REPUTATION DAMAGE and BREACH OF CONTRACTS of many clients."
+    ],
+    "phishing": [
+      "What partly caused this is the browser autofill that many browsers now used, with the exception of Mozilla Firefox. This autofill makes it easier for hackers to use phishing, as some information is automatically filled in, sometime invisible for the user. %CN immediately disabled all autofill functions, however, STOLEN CUSTOMER INFORMATION could not be avoided. ",
+      "Phishing-mails are a lot more convincing than they used to be. This has a big effect. End-users are quick to convince themselves that the e-mail is legitimate, which makes them an ever bigger danger than the user that wildly click on things. The effect of the mails was that data was encrypted. A large part of the company had to go to a full stop, RESULTING IN CUSTOMER AND PROFIT LOSSES. ",
+      "If users are fooled into clicking the malicious link within the email, they'll find themselves directed to a legitimate looking %CN login page. One signed in, they will be asked to enter further details such as their name, date of birth, billing address and payment card information, and then directed to the official %CN website. The COMPANY PROFIT TOOK A BIG BLOW THAT DAY. "
+    ],
+    "pw": [
+      "The passwords caused major havoc, since the hacker could easily enter the system. Passwords were quickly changed by the hackers, so they COULD EASILY RETRIEVE LOTS OF VALUABLE BUSINESS INFORMATION AND CLIENT'S DETAILS, which are worth a lot of money on the black market. ",
+      "For a while, nobody at the company noticed anything, until clients complained of strange emails were they were asked to PAY A CERTAIN AMOUNT OF MONEY to an unknown bank-account. Luckily some clients were alert, else the damages could have been catastrophic, with HUGE CLIENT LOSSES. ",
+      "The CEO of %CN, Jack Dorsey, was logically furious and could not comprehend how his employees made it so easy. The company LOST CRITICAL BUSINESS data as a result."
+    ],
+    "download": [
+      "It was an attack in which a user who accessed a malicious website is force-fed a malformed file. When the file reaches the user's desktop, malicious code contained within can execute via the non-sandboxed Tracker app. This type of automated attack chain is known as a drive-by download and has been used for all sorts of nefarious actions from mundane MALWARE distribution to targeted attacks in cyber-espionage operations. It caused %CN PROFITS TO DROP, because a large part of the system was off-line. ",
+      "Hackers used a so-called hailstorm attacks, where massive spam attacks are launched over an extended period of time from across thousands of IP addresses, but at low volumes per IP address, with the intent to get malware past the anti-malware filters as drive-by-downloads. The successfully DAMAGED CUSTOMER INFORMATION, and asked for a RANSOM. ",
+      "Kaspersky Lab researchers spotted the Ammyy Admin site being used in drive-by-downloader attacks to install the Lurk trojan and other malware. Ammyy Admin is used for remote desktop access by %CN. Is successfully rendered the system useless for a long-time, resulting in a sales and CLIENT DROP OF 50% that month. It will take a will before the REPUTATION OF %CN WILL BE RESTORED. "
+    ],
+    "social": [
+      "The hackers targeted the employee on its love for apple products. The employee was phoned by what he thought was a representative of Apple. He was told that because of all his purchases his house was basically an iStore, he could get the new Designed by Apple in California book for only 150 USD instead of the original 200 USD, he only needed to log-in on a website. Result, MALWARE INFECTING THE COMPANIES NETWORK. The employee is temporarily suspended. Whatever happened, one might do that anyway when someone wants to spend that amount of money on a book with just pictures of their products. ",
+      "Criminals send batches of emails to enterprises and retailers. Every email contains a message in which someone sends over their resume in the hopes of landing a job. Although these messages may seem harmless, they are capable of wreaking a lot of havoc. To be more precise, these spam emails involve a RANSOMEWARE-LADEN email attachment. The resume in question contains the CryptoWall 3.0 RANSOMWARE family, which locks down the infected system and demands a BITCOIN RANSOM",
+      "BEC (Business email compromise) scam %CN employees, resulting in COMPANY INFORMATION BEING STOLEN AND EXPOSED. Although this did not damage the day-to-day operations of %CN, it goes to show even technology companies are vulnerable to social engineering."
+    ]
+
+  },
+  "damage": [
+    "The damage for %CN was no less than %CDMG.",
+    "The attack cost %CN %CDMG.",
+    "The damage for %CN consists of %CDMG."
+  ]
 }
