@@ -182,11 +182,13 @@ InsurancePlz.GameState.updateActionPoints = function (amount) {
 };
 
 InsurancePlz.GameState.musicSwitch = function(){
-    if (this.sound.mute == true) {
-        this.sound.mute = false;
+    if (document.getElementById('game-music').volume > 0) {
+        document.getElementById('game-music').volume = 0;
+        document.getElementById('menu-music').volume = 0;
     }
     else {
-        this.sound.mute = true;
+        document.getElementById('game-music').volume = 1;
+        document.getElementById('menu-music').volume = 1;
     }
 };
 
