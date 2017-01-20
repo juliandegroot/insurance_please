@@ -81,8 +81,7 @@ InsurancePlz.HighscoreBox.prototype.submit = function() {
             'name': this.nameBox.value,
             'score': InsurancePlz.GameState.gameProgress.score
         },
-        dataType: "json",
-        success: function() {}
+        dataType: "json"
     });
     InsurancePlz.GameState.loadMenu.call(this.game);
 };

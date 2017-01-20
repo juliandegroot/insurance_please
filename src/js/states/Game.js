@@ -70,9 +70,7 @@ InsurancePlz.GameState = {
         };
         
         //Play gameplay audio
-        this.playmusic = this.add.audio('playmusic');
-        this.playmusic.loop = true;
-        this.playmusic.play();
+        document.getElementById('game-music').play();
 
         // TODO: actually remove
         //newspanel area

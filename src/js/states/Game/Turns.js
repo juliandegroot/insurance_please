@@ -133,7 +133,8 @@ InsurancePlz.GameState.endTutorial = function () {
 * Loads the menu.
 */
 InsurancePlz.GameState.loadMenu = function () {
-    this.playmusic.stop();
+    document.getElementById('game-music').pause();
+    document.getElementById('game-music').currentTime = 0;
     this.state.start('Menu');
 };
 

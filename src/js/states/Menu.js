@@ -24,9 +24,7 @@ InsurancePlz.MenuState = {
         };
         //Play intro (menu) music
         //var music = new Phaser.Sound(this.game, 'menumusic',1,true);
-        this.menumusic = this.add.audio('menumusic');
-        this.menumusic.loop = true;
-        this.menumusic.play();
+        document.getElementById('menu-music').play();
 
         //Particle effects backrground
         this.game.stage.backgroundColor = '#000000';
@@ -86,18 +84,20 @@ InsurancePlz.MenuState = {
         this.leaderboardText = this.add.text(this.game.world.centerX,
             this.game.world.centerY + 72, 'Leaderboard', menuStyle);
         this.leaderboardText.anchor.setTo(0.5);
-        
+
         //Uncomment to skip menu for testing
         //this.state.start('Game');
 
     },
     startGame: function () {
-        this.menumusic.stop() // stop menu music
+        document.getElementById('menu-music').pause(); // stop menu music
+        document.getElementById('menu-music').currentTime = 0;
         this.state.start('Game');
         InsurancePlz.isTutorial = false; // global variabel to define normal game status
     },
     startTutorial: function () {
-        this.menumusic.stop() // stop menu music
+        document.getElementById('menu-music').pause(); // stop menu music
+        document.getElementById('menu-music').currentTime = 0;
         this.state.start('Game');
         InsurancePlz.isTutorial = true; // global variable to define tutorial status
     },
