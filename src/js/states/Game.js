@@ -9,7 +9,7 @@ InsurancePlz.GameState = {
     init: function () {
         this.gameProgress = {
             "turn": 1,
-            "maxTurns": 15,
+            "maxTurns": 10,
             "actionPoints": 10,
             "actionPointsMax": 10,
             "score": 0,
